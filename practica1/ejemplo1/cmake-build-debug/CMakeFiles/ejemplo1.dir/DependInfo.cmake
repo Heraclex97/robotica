@@ -8,9 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ruben/Escritorio/Robotica/robotica/ejemplo1/ejemplo1.cpp" "/home/ruben/Escritorio/Robotica/robotica/ejemplo1/cmake-build-debug/CMakeFiles/ejemplo1.dir/ejemplo1.cpp.o"
-  "/home/ruben/Escritorio/Robotica/robotica/ejemplo1/main.cpp" "/home/ruben/Escritorio/Robotica/robotica/ejemplo1/cmake-build-debug/CMakeFiles/ejemplo1.dir/main.cpp.o"
-  "/home/ruben/Escritorio/Robotica/robotica/ejemplo1/cmake-build-debug/moc_ejemplo1.cpp" "/home/ruben/Escritorio/Robotica/robotica/ejemplo1/cmake-build-debug/CMakeFiles/ejemplo1.dir/moc_ejemplo1.cpp.o"
+  "/home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/ejemplo1.cpp" "/home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/cmake-build-debug/CMakeFiles/ejemplo1.dir/ejemplo1.cpp.o"
+  "/home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/main.cpp" "/home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/cmake-build-debug/CMakeFiles/ejemplo1.dir/main.cpp.o"
+  "/home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/cmake-build-debug/moc_ejemplo1.cpp" "/home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/cmake-build-debug/CMakeFiles/ejemplo1.dir/moc_ejemplo1.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

@@ -27,7 +27,7 @@ void ejemplo1::doButton() {
 }
 
 void ejemplo1::doReset() {
-    cont = -1; //reinicia el contador cada vez que se para
+    cont = -1;
     timer->start(500);
     stopped = false;
 

@@ -1,4 +1,4 @@
-/snap/clion/163/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/ruben/Escritorio/Robotica/robotica/ejemplo1
+/snap/clion/164/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_DEPENDS_USE_COMPILER=FALSE -G "CodeBlocks - Unix Makefiles" /home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1
 -- The C compiler identification is GNU 9.3.0
 -- The CXX compiler identification is GNU 9.3.0
 -- Detecting C compiler ABI info
@@ -23,4 +23,4 @@ CMake Deprecation Warning at CMakeLists.txt:2 (cmake_minimum_required):
 -- Generating header file from counterDlg.ui
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/ruben/Escritorio/Robotica/robotica/ejemplo1/cmake-build-debug
+-- Build files have been written to: /home/ruben/Escritorio/Robotica/robotica/practica1/ejemplo1/cmake-build-debug
