@@ -5,11 +5,11 @@ ejemplo1::ejemplo1() : Ui_Counter() {
     setupUi(this);
     show();
     connect(button, SIGNAL(clicked()), this, SLOT(doButton()));
-    connect(pushButton,  SIGNAL(clicked()), this, SLOT(doReset()));
-    connect(pushButton_2, SIGNAL(clicked()),this, SLOT(doChangePeriod()));
-    connect(pushButton_3, SIGNAL(clicked()),this, SLOT(doCurrentPeriod()));
-    connect(pushButton_4, SIGNAL(clicked()),this, SLOT(doTotalTime()));
-    connect(pushButton_5, SIGNAL(clicked()),this, SLOT(doLapTime()));
+    connect(pushButton, SIGNAL(clicked()), this, SLOT(doReset()));
+    connect(pushButton_2, SIGNAL(clicked()), this, SLOT(doChangePeriod()));
+    connect(pushButton_3, SIGNAL(clicked()), this, SLOT(doCurrentPeriod()));
+    connect(pushButton_4, SIGNAL(clicked()), this, SLOT(doTotalTime()));
+    connect(pushButton_5, SIGNAL(clicked()), this, SLOT(doLapTime()));
 
     mytimer.connect(std::bind(&ejemplo1::cuenta, this));
     mytimer.setInit(cont);
@@ -22,7 +22,7 @@ void ejemplo1::doButton() {
     stopped = !stopped;
     if (stopped) {
         mytimer.stop();
-    }else {
+    } else {
         mytimer.start(500);
     }
     qDebug() << "click on button";
@@ -36,20 +36,18 @@ void ejemplo1::doReset() {
 
     qDebug() << "click on reset";
 }
-void ejemplo1::doCurrentPeriod(){
-    qDebug("The current period is: %d",mytimer.getPeriod());
+
+void ejemplo1::doCurrentPeriod() {
+    qDebug("The current period is: %d", mytimer.getPeriod());
 }
 
 void ejemplo1::doTotalTime() {
-    qDebug("Total time is: %d",(cont));
+    qDebug("Total time is: %d", (cont));
 }
 
-//void ejemplo1::doPartialTime() {
-//    qDebug("Partial time is: %d",(cont - mytimer.getInit()));
-//}
 
 void ejemplo1::doLapTime() {
-    qDebug("Lap: %d",(cont - mytimer.getInit()));
+    qDebug("Lap: %d", (cont - mytimer.getInit()));
     mytimer.setInit(cont);
 }
 
