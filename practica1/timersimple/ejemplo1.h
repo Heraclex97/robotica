@@ -28,10 +28,8 @@ private:
     int cont = 0;
     bool stopped = false;
 
-    // dos callbacks con diferente número de parámetros
     void cuenta();
 
-//    void doPartialTime();
     int trick = 5;
 };
 
