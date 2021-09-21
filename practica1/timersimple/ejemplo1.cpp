@@ -11,7 +11,7 @@ ejemplo1::ejemplo1() : Ui_Counter() {
     connect(pushButton_4, SIGNAL(clicked()), this, SLOT(doTotalTime()));
     connect(pushButton_5, SIGNAL(clicked()), this, SLOT(doLapTime()));
 
-    mytimer.connect(std::bind(&ejemplo1::cuenta, this));
+    mytimer.connect(std::bind(&ejemplo1::upd, this));
     mytimer.setInit(cont);
     mytimer.start(500);
 }
@@ -51,7 +51,7 @@ void ejemplo1::doLapTime() {
     mytimer.setInit(cont);
 }
 
-void ejemplo1::cuenta() {
+void ejemplo1::upd() {
     lcdNumber->display(++cont);
     trick++;
 }

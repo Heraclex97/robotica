@@ -15,8 +15,10 @@ public:
 
 public slots:
 
+    //Manages the stop/start button.
     void doButton();
 
+    //Resets the stopwatch by setting cont = 0.
     void doReset();
 
 
@@ -25,6 +27,7 @@ private:
     int cont = 0;
     bool stopped = false;
 
+    //Displays the stopwatch graphically
     void upd();
 
 };

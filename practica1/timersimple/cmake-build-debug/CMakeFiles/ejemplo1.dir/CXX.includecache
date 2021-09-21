@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/cmake-build-debug/moc_ejemplo1.cpp
+../ejemplo1.h
+/home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/ejemplo1.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
+-
+
 /home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/ejemplo1.cpp
 ejemplo1.h
 /home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/ejemplo1.h
@@ -19,6 +27,12 @@ chrono
 -
 timer.h
 /home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/timer.h
+
+/home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/main.cpp
+QApplication
+-
+ejemplo1.h
+/home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/ejemplo1.h
 
 /home/ruben/Escritorio/Robotica/robotica/practica1/timersimple/timer.h
 thread
