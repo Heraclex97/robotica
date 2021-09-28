@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/ruben/robocomp/myComponent/src/CommonBehavior.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/DifferentialRobot.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/GenericBase.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/Laser.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/Laser.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/MyFirstComp_autogen/mocs_compilation.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/commonbehaviorI.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/genericmonitor.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/genericworker.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.o"
-  "/home/ruben/robocomp/classes/qlog/qlog.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/qlog/qlog.cpp.o"
-  "/home/ruben/robocomp/classes/rapplication/rapplication.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/rapplication/rapplication.cpp.o"
-  "/home/ruben/robocomp/classes/sigwatch/sigwatch.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/main.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/main.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/specificmonitor.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.o"
-  "/home/ruben/robocomp/myComponent/src/specificworker.cpp" "/home/ruben/robocomp/myComponent/src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/CommonBehavior.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/GenericBase.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/Laser.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/Laser.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/mocs_compilation.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/commonbehaviorI.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/genericmonitor.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/genericworker.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.o"
+  "/home/alumno/robocomp/classes/qlog/qlog.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.o"
+  "/home/alumno/robocomp/classes/rapplication/rapplication.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.o"
+  "/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/main.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/main.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/specificmonitor.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.o"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/specificworker.cpp" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -42,9 +42,9 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/opt/robocomp/include"
   "/classes"
   "."
-  "/home/ruben/robocomp/classes"
-  "/home/ruben/robocomp/libs"
-  "/home/ruben/robocomp/interfaces"
+  "/home/alumno/robocomp/classes"
+  "/home/alumno/robocomp/libs"
+  "/home/alumno/robocomp/interfaces"
   "/include"
   "/usr/include/x86_64-linux-gnu/qt5"
   "/usr/include/x86_64-linux-gnu/qt5/QtGui"
@@ -60,10 +60,10 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Pairs of files generated by the same build rule.
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
-  "/home/ruben/robocomp/myComponent/src/CommonBehavior.h" "/home/ruben/robocomp/myComponent/src/CommonBehavior.cpp"
-  "/home/ruben/robocomp/myComponent/src/DifferentialRobot.h" "/home/ruben/robocomp/myComponent/src/DifferentialRobot.cpp"
-  "/home/ruben/robocomp/myComponent/src/GenericBase.h" "/home/ruben/robocomp/myComponent/src/GenericBase.cpp"
-  "/home/ruben/robocomp/myComponent/src/Laser.h" "/home/ruben/robocomp/myComponent/src/Laser.cpp"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/CommonBehavior.h" "/home/alumno/robocomp/robotica/practica2/myComponent/src/CommonBehavior.cpp"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.h" "/home/alumno/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.cpp"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/GenericBase.h" "/home/alumno/robocomp/robotica/practica2/myComponent/src/GenericBase.cpp"
+  "/home/alumno/robocomp/robotica/practica2/myComponent/src/Laser.h" "/home/alumno/robocomp/robotica/practica2/myComponent/src/Laser.cpp"
   )
 
 

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ruben/robocomp/myComponent
+CMAKE_SOURCE_DIR = /home/alumno/robocomp/robotica/practica2/myComponent
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ruben/robocomp/myComponent
+CMAKE_BINARY_DIR = /home/alumno/robocomp/robotica/practica2/myComponent
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,14 +126,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/ruben/robocomp/myComponent && $(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles /home/ruben/robocomp/myComponent/src/CMakeFiles/progress.marks
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 0
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles /home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/progress.marks
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/clean
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -143,22 +143,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/ruben/robocomp/myComponent && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/MyFirstComp.dir/rule:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/MyFirstComp.dir/rule
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/MyFirstComp.dir/rule
 .PHONY : src/CMakeFiles/MyFirstComp.dir/rule
 
 # Convenience name for target.
@@ -168,27 +168,27 @@ MyFirstComp: src/CMakeFiles/MyFirstComp.dir/rule
 
 # fast build rule for target.
 MyFirstComp/fast:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/build
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/build
 .PHONY : MyFirstComp/fast
 
 # Convenience name for target.
-src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule
-.PHONY : src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule
+src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule
+.PHONY : src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule
 
 # Convenience name for target.
-ICES__home_ruben_robocomp_myComponent_src: src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule
+ICES__home_alumno_robocomp_robotica_practica2_myComponent_src: src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule
 
-.PHONY : ICES__home_ruben_robocomp_myComponent_src
+.PHONY : ICES__home_alumno_robocomp_robotica_practica2_myComponent_src
 
 # fast build rule for target.
-ICES__home_ruben_robocomp_myComponent_src/fast:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/build
-.PHONY : ICES__home_ruben_robocomp_myComponent_src/fast
+ICES__home_alumno_robocomp_robotica_practica2_myComponent_src/fast:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/build
+.PHONY : ICES__home_alumno_robocomp_robotica_practica2_myComponent_src/fast
 
 # Convenience name for target.
 src/CMakeFiles/MyFirstComp_autogen.dir/rule:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/MyFirstComp_autogen.dir/rule
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/MyFirstComp_autogen.dir/rule
 .PHONY : src/CMakeFiles/MyFirstComp_autogen.dir/rule
 
 # Convenience name for target.
@@ -198,7 +198,7 @@ MyFirstComp_autogen: src/CMakeFiles/MyFirstComp_autogen.dir/rule
 
 # fast build rule for target.
 MyFirstComp_autogen/fast:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp_autogen.dir/build.make src/CMakeFiles/MyFirstComp_autogen.dir/build
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp_autogen.dir/build.make src/CMakeFiles/MyFirstComp_autogen.dir/build
 .PHONY : MyFirstComp_autogen/fast
 
 CommonBehavior.o: CommonBehavior.cpp.o
@@ -207,7 +207,7 @@ CommonBehavior.o: CommonBehavior.cpp.o
 
 # target to build an object file
 CommonBehavior.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.o
 .PHONY : CommonBehavior.cpp.o
 
 CommonBehavior.i: CommonBehavior.cpp.i
@@ -216,7 +216,7 @@ CommonBehavior.i: CommonBehavior.cpp.i
 
 # target to preprocess a source file
 CommonBehavior.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.i
 .PHONY : CommonBehavior.cpp.i
 
 CommonBehavior.s: CommonBehavior.cpp.s
@@ -225,7 +225,7 @@ CommonBehavior.s: CommonBehavior.cpp.s
 
 # target to generate assembly for a file
 CommonBehavior.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/CommonBehavior.cpp.s
 .PHONY : CommonBehavior.cpp.s
 
 DifferentialRobot.o: DifferentialRobot.cpp.o
@@ -234,7 +234,7 @@ DifferentialRobot.o: DifferentialRobot.cpp.o
 
 # target to build an object file
 DifferentialRobot.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.o
 .PHONY : DifferentialRobot.cpp.o
 
 DifferentialRobot.i: DifferentialRobot.cpp.i
@@ -243,7 +243,7 @@ DifferentialRobot.i: DifferentialRobot.cpp.i
 
 # target to preprocess a source file
 DifferentialRobot.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.i
 .PHONY : DifferentialRobot.cpp.i
 
 DifferentialRobot.s: DifferentialRobot.cpp.s
@@ -252,7 +252,7 @@ DifferentialRobot.s: DifferentialRobot.cpp.s
 
 # target to generate assembly for a file
 DifferentialRobot.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/DifferentialRobot.cpp.s
 .PHONY : DifferentialRobot.cpp.s
 
 GenericBase.o: GenericBase.cpp.o
@@ -261,7 +261,7 @@ GenericBase.o: GenericBase.cpp.o
 
 # target to build an object file
 GenericBase.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.o
 .PHONY : GenericBase.cpp.o
 
 GenericBase.i: GenericBase.cpp.i
@@ -270,7 +270,7 @@ GenericBase.i: GenericBase.cpp.i
 
 # target to preprocess a source file
 GenericBase.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.i
 .PHONY : GenericBase.cpp.i
 
 GenericBase.s: GenericBase.cpp.s
@@ -279,7 +279,7 @@ GenericBase.s: GenericBase.cpp.s
 
 # target to generate assembly for a file
 GenericBase.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/GenericBase.cpp.s
 .PHONY : GenericBase.cpp.s
 
 Laser.o: Laser.cpp.o
@@ -288,7 +288,7 @@ Laser.o: Laser.cpp.o
 
 # target to build an object file
 Laser.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/Laser.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/Laser.cpp.o
 .PHONY : Laser.cpp.o
 
 Laser.i: Laser.cpp.i
@@ -297,7 +297,7 @@ Laser.i: Laser.cpp.i
 
 # target to preprocess a source file
 Laser.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/Laser.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/Laser.cpp.i
 .PHONY : Laser.cpp.i
 
 Laser.s: Laser.cpp.s
@@ -306,7 +306,7 @@ Laser.s: Laser.cpp.s
 
 # target to generate assembly for a file
 Laser.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/Laser.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/Laser.cpp.s
 .PHONY : Laser.cpp.s
 
 MyFirstComp_autogen/mocs_compilation.o: MyFirstComp_autogen/mocs_compilation.cpp.o
@@ -315,7 +315,7 @@ MyFirstComp_autogen/mocs_compilation.o: MyFirstComp_autogen/mocs_compilation.cpp
 
 # target to build an object file
 MyFirstComp_autogen/mocs_compilation.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.o
 .PHONY : MyFirstComp_autogen/mocs_compilation.cpp.o
 
 MyFirstComp_autogen/mocs_compilation.i: MyFirstComp_autogen/mocs_compilation.cpp.i
@@ -324,7 +324,7 @@ MyFirstComp_autogen/mocs_compilation.i: MyFirstComp_autogen/mocs_compilation.cpp
 
 # target to preprocess a source file
 MyFirstComp_autogen/mocs_compilation.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.i
 .PHONY : MyFirstComp_autogen/mocs_compilation.cpp.i
 
 MyFirstComp_autogen/mocs_compilation.s: MyFirstComp_autogen/mocs_compilation.cpp.s
@@ -333,7 +333,7 @@ MyFirstComp_autogen/mocs_compilation.s: MyFirstComp_autogen/mocs_compilation.cpp
 
 # target to generate assembly for a file
 MyFirstComp_autogen/mocs_compilation.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/MyFirstComp_autogen/mocs_compilation.cpp.s
 .PHONY : MyFirstComp_autogen/mocs_compilation.cpp.s
 
 commonbehaviorI.o: commonbehaviorI.cpp.o
@@ -342,7 +342,7 @@ commonbehaviorI.o: commonbehaviorI.cpp.o
 
 # target to build an object file
 commonbehaviorI.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.o
 .PHONY : commonbehaviorI.cpp.o
 
 commonbehaviorI.i: commonbehaviorI.cpp.i
@@ -351,7 +351,7 @@ commonbehaviorI.i: commonbehaviorI.cpp.i
 
 # target to preprocess a source file
 commonbehaviorI.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.i
 .PHONY : commonbehaviorI.cpp.i
 
 commonbehaviorI.s: commonbehaviorI.cpp.s
@@ -360,7 +360,7 @@ commonbehaviorI.s: commonbehaviorI.cpp.s
 
 # target to generate assembly for a file
 commonbehaviorI.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/commonbehaviorI.cpp.s
 .PHONY : commonbehaviorI.cpp.s
 
 genericmonitor.o: genericmonitor.cpp.o
@@ -369,7 +369,7 @@ genericmonitor.o: genericmonitor.cpp.o
 
 # target to build an object file
 genericmonitor.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.o
 .PHONY : genericmonitor.cpp.o
 
 genericmonitor.i: genericmonitor.cpp.i
@@ -378,7 +378,7 @@ genericmonitor.i: genericmonitor.cpp.i
 
 # target to preprocess a source file
 genericmonitor.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.i
 .PHONY : genericmonitor.cpp.i
 
 genericmonitor.s: genericmonitor.cpp.s
@@ -387,7 +387,7 @@ genericmonitor.s: genericmonitor.cpp.s
 
 # target to generate assembly for a file
 genericmonitor.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericmonitor.cpp.s
 .PHONY : genericmonitor.cpp.s
 
 genericworker.o: genericworker.cpp.o
@@ -396,7 +396,7 @@ genericworker.o: genericworker.cpp.o
 
 # target to build an object file
 genericworker.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.o
 .PHONY : genericworker.cpp.o
 
 genericworker.i: genericworker.cpp.i
@@ -405,7 +405,7 @@ genericworker.i: genericworker.cpp.i
 
 # target to preprocess a source file
 genericworker.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.i
 .PHONY : genericworker.cpp.i
 
 genericworker.s: genericworker.cpp.s
@@ -414,89 +414,89 @@ genericworker.s: genericworker.cpp.s
 
 # target to generate assembly for a file
 genericworker.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/genericworker.cpp.s
 .PHONY : genericworker.cpp.s
 
-home/ruben/robocomp/classes/qlog/qlog.o: home/ruben/robocomp/classes/qlog/qlog.cpp.o
+home/alumno/robocomp/classes/qlog/qlog.o: home/alumno/robocomp/classes/qlog/qlog.cpp.o
 
-.PHONY : home/ruben/robocomp/classes/qlog/qlog.o
-
-# target to build an object file
-home/ruben/robocomp/classes/qlog/qlog.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/qlog/qlog.cpp.o
-.PHONY : home/ruben/robocomp/classes/qlog/qlog.cpp.o
-
-home/ruben/robocomp/classes/qlog/qlog.i: home/ruben/robocomp/classes/qlog/qlog.cpp.i
-
-.PHONY : home/ruben/robocomp/classes/qlog/qlog.i
-
-# target to preprocess a source file
-home/ruben/robocomp/classes/qlog/qlog.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/qlog/qlog.cpp.i
-.PHONY : home/ruben/robocomp/classes/qlog/qlog.cpp.i
-
-home/ruben/robocomp/classes/qlog/qlog.s: home/ruben/robocomp/classes/qlog/qlog.cpp.s
-
-.PHONY : home/ruben/robocomp/classes/qlog/qlog.s
-
-# target to generate assembly for a file
-home/ruben/robocomp/classes/qlog/qlog.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/qlog/qlog.cpp.s
-.PHONY : home/ruben/robocomp/classes/qlog/qlog.cpp.s
-
-home/ruben/robocomp/classes/rapplication/rapplication.o: home/ruben/robocomp/classes/rapplication/rapplication.cpp.o
-
-.PHONY : home/ruben/robocomp/classes/rapplication/rapplication.o
+.PHONY : home/alumno/robocomp/classes/qlog/qlog.o
 
 # target to build an object file
-home/ruben/robocomp/classes/rapplication/rapplication.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/rapplication/rapplication.cpp.o
-.PHONY : home/ruben/robocomp/classes/rapplication/rapplication.cpp.o
+home/alumno/robocomp/classes/qlog/qlog.cpp.o:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.o
+.PHONY : home/alumno/robocomp/classes/qlog/qlog.cpp.o
 
-home/ruben/robocomp/classes/rapplication/rapplication.i: home/ruben/robocomp/classes/rapplication/rapplication.cpp.i
+home/alumno/robocomp/classes/qlog/qlog.i: home/alumno/robocomp/classes/qlog/qlog.cpp.i
 
-.PHONY : home/ruben/robocomp/classes/rapplication/rapplication.i
+.PHONY : home/alumno/robocomp/classes/qlog/qlog.i
 
 # target to preprocess a source file
-home/ruben/robocomp/classes/rapplication/rapplication.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/rapplication/rapplication.cpp.i
-.PHONY : home/ruben/robocomp/classes/rapplication/rapplication.cpp.i
+home/alumno/robocomp/classes/qlog/qlog.cpp.i:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.i
+.PHONY : home/alumno/robocomp/classes/qlog/qlog.cpp.i
 
-home/ruben/robocomp/classes/rapplication/rapplication.s: home/ruben/robocomp/classes/rapplication/rapplication.cpp.s
+home/alumno/robocomp/classes/qlog/qlog.s: home/alumno/robocomp/classes/qlog/qlog.cpp.s
 
-.PHONY : home/ruben/robocomp/classes/rapplication/rapplication.s
+.PHONY : home/alumno/robocomp/classes/qlog/qlog.s
 
 # target to generate assembly for a file
-home/ruben/robocomp/classes/rapplication/rapplication.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/rapplication/rapplication.cpp.s
-.PHONY : home/ruben/robocomp/classes/rapplication/rapplication.cpp.s
+home/alumno/robocomp/classes/qlog/qlog.cpp.s:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.s
+.PHONY : home/alumno/robocomp/classes/qlog/qlog.cpp.s
 
-home/ruben/robocomp/classes/sigwatch/sigwatch.o: home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.o
+home/alumno/robocomp/classes/rapplication/rapplication.o: home/alumno/robocomp/classes/rapplication/rapplication.cpp.o
 
-.PHONY : home/ruben/robocomp/classes/sigwatch/sigwatch.o
+.PHONY : home/alumno/robocomp/classes/rapplication/rapplication.o
 
 # target to build an object file
-home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.o
-.PHONY : home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.o
+home/alumno/robocomp/classes/rapplication/rapplication.cpp.o:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.o
+.PHONY : home/alumno/robocomp/classes/rapplication/rapplication.cpp.o
 
-home/ruben/robocomp/classes/sigwatch/sigwatch.i: home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.i
+home/alumno/robocomp/classes/rapplication/rapplication.i: home/alumno/robocomp/classes/rapplication/rapplication.cpp.i
 
-.PHONY : home/ruben/robocomp/classes/sigwatch/sigwatch.i
+.PHONY : home/alumno/robocomp/classes/rapplication/rapplication.i
 
 # target to preprocess a source file
-home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.i
-.PHONY : home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.i
+home/alumno/robocomp/classes/rapplication/rapplication.cpp.i:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.i
+.PHONY : home/alumno/robocomp/classes/rapplication/rapplication.cpp.i
 
-home/ruben/robocomp/classes/sigwatch/sigwatch.s: home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.s
+home/alumno/robocomp/classes/rapplication/rapplication.s: home/alumno/robocomp/classes/rapplication/rapplication.cpp.s
 
-.PHONY : home/ruben/robocomp/classes/sigwatch/sigwatch.s
+.PHONY : home/alumno/robocomp/classes/rapplication/rapplication.s
 
 # target to generate assembly for a file
-home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.s
-.PHONY : home/ruben/robocomp/classes/sigwatch/sigwatch.cpp.s
+home/alumno/robocomp/classes/rapplication/rapplication.cpp.s:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.s
+.PHONY : home/alumno/robocomp/classes/rapplication/rapplication.cpp.s
+
+home/alumno/robocomp/classes/sigwatch/sigwatch.o: home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+.PHONY : home/alumno/robocomp/classes/sigwatch/sigwatch.o
+
+# target to build an object file
+home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o
+.PHONY : home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o
+
+home/alumno/robocomp/classes/sigwatch/sigwatch.i: home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.i
+
+.PHONY : home/alumno/robocomp/classes/sigwatch/sigwatch.i
+
+# target to preprocess a source file
+home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.i:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.i
+.PHONY : home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.i
+
+home/alumno/robocomp/classes/sigwatch/sigwatch.s: home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.s
+
+.PHONY : home/alumno/robocomp/classes/sigwatch/sigwatch.s
+
+# target to generate assembly for a file
+home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.s:
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.s
+.PHONY : home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.s
 
 main.o: main.cpp.o
 
@@ -504,7 +504,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/main.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -513,7 +513,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/main.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -522,7 +522,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/main.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 specificmonitor.o: specificmonitor.cpp.o
@@ -531,7 +531,7 @@ specificmonitor.o: specificmonitor.cpp.o
 
 # target to build an object file
 specificmonitor.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.o
 .PHONY : specificmonitor.cpp.o
 
 specificmonitor.i: specificmonitor.cpp.i
@@ -540,7 +540,7 @@ specificmonitor.i: specificmonitor.cpp.i
 
 # target to preprocess a source file
 specificmonitor.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.i
 .PHONY : specificmonitor.cpp.i
 
 specificmonitor.s: specificmonitor.cpp.s
@@ -549,7 +549,7 @@ specificmonitor.s: specificmonitor.cpp.s
 
 # target to generate assembly for a file
 specificmonitor.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificmonitor.cpp.s
 .PHONY : specificmonitor.cpp.s
 
 specificworker.o: specificworker.cpp.o
@@ -558,7 +558,7 @@ specificworker.o: specificworker.cpp.o
 
 # target to build an object file
 specificworker.cpp.o:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.o
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.o
 .PHONY : specificworker.cpp.o
 
 specificworker.i: specificworker.cpp.i
@@ -567,7 +567,7 @@ specificworker.i: specificworker.cpp.i
 
 # target to preprocess a source file
 specificworker.cpp.i:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.i
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.i
 .PHONY : specificworker.cpp.i
 
 specificworker.s: specificworker.cpp.s
@@ -576,7 +576,7 @@ specificworker.s: specificworker.cpp.s
 
 # target to generate assembly for a file
 specificworker.cpp.s:
-	cd /home/ruben/robocomp/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.s
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/specificworker.cpp.s
 .PHONY : specificworker.cpp.s
 
 # Help Target
@@ -592,7 +592,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MyFirstComp"
-	@echo "... ICES__home_ruben_robocomp_myComponent_src"
+	@echo "... ICES__home_alumno_robocomp_robotica_practica2_myComponent_src"
 	@echo "... MyFirstComp_autogen"
 	@echo "... CommonBehavior.o"
 	@echo "... CommonBehavior.i"
@@ -618,15 +618,15 @@ help:
 	@echo "... genericworker.o"
 	@echo "... genericworker.i"
 	@echo "... genericworker.s"
-	@echo "... home/ruben/robocomp/classes/qlog/qlog.o"
-	@echo "... home/ruben/robocomp/classes/qlog/qlog.i"
-	@echo "... home/ruben/robocomp/classes/qlog/qlog.s"
-	@echo "... home/ruben/robocomp/classes/rapplication/rapplication.o"
-	@echo "... home/ruben/robocomp/classes/rapplication/rapplication.i"
-	@echo "... home/ruben/robocomp/classes/rapplication/rapplication.s"
-	@echo "... home/ruben/robocomp/classes/sigwatch/sigwatch.o"
-	@echo "... home/ruben/robocomp/classes/sigwatch/sigwatch.i"
-	@echo "... home/ruben/robocomp/classes/sigwatch/sigwatch.s"
+	@echo "... home/alumno/robocomp/classes/qlog/qlog.o"
+	@echo "... home/alumno/robocomp/classes/qlog/qlog.i"
+	@echo "... home/alumno/robocomp/classes/qlog/qlog.s"
+	@echo "... home/alumno/robocomp/classes/rapplication/rapplication.o"
+	@echo "... home/alumno/robocomp/classes/rapplication/rapplication.i"
+	@echo "... home/alumno/robocomp/classes/rapplication/rapplication.s"
+	@echo "... home/alumno/robocomp/classes/sigwatch/sigwatch.o"
+	@echo "... home/alumno/robocomp/classes/sigwatch/sigwatch.i"
+	@echo "... home/alumno/robocomp/classes/sigwatch/sigwatch.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
@@ -647,6 +647,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/ruben/robocomp/myComponent && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

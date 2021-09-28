@@ -44,10 +44,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ruben/robocomp/myComponent
+CMAKE_SOURCE_DIR = /home/alumno/robocomp/robotica/practica2/myComponent
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ruben/robocomp/myComponent
+CMAKE_BINARY_DIR = /home/alumno/robocomp/robotica/practica2/myComponent
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -72,7 +72,7 @@ clean: src/clean
 
 # Recursive "all" directory target.
 src/all: src/CMakeFiles/MyFirstComp.dir/all
-src/all: src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/all
+src/all: src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/all
 
 .PHONY : src/all
 
@@ -83,7 +83,7 @@ src/preinstall:
 
 # Recursive "clean" directory target.
 src/clean: src/CMakeFiles/MyFirstComp.dir/clean
-src/clean: src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/clean
+src/clean: src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/clean
 src/clean: src/CMakeFiles/MyFirstComp_autogen.dir/clean
 
 .PHONY : src/clean
@@ -92,18 +92,18 @@ src/clean: src/CMakeFiles/MyFirstComp_autogen.dir/clean
 # Target rules for target src/CMakeFiles/MyFirstComp.dir
 
 # All Build rule for target.
-src/CMakeFiles/MyFirstComp.dir/all: src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/all
+src/CMakeFiles/MyFirstComp.dir/all: src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/all
 src/CMakeFiles/MyFirstComp.dir/all: src/CMakeFiles/MyFirstComp_autogen.dir/all
 	$(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/depend
 	$(MAKE) -f src/CMakeFiles/MyFirstComp.dir/build.make src/CMakeFiles/MyFirstComp.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ruben/robocomp/myComponent/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 "Built target MyFirstComp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 "Built target MyFirstComp"
 .PHONY : src/CMakeFiles/MyFirstComp.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/MyFirstComp.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 20
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 20
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/MyFirstComp.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 0
 .PHONY : src/CMakeFiles/MyFirstComp.dir/rule
 
 # Convenience name for target.
@@ -117,31 +117,31 @@ src/CMakeFiles/MyFirstComp.dir/clean:
 .PHONY : src/CMakeFiles/MyFirstComp.dir/clean
 
 #=============================================================================
-# Target rules for target src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir
+# Target rules for target src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir
 
 # All Build rule for target.
-src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/all:
-	$(MAKE) -f src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/depend
-	$(MAKE) -f src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ruben/robocomp/myComponent/CMakeFiles --progress-num= "Built target ICES__home_ruben_robocomp_myComponent_src"
-.PHONY : src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/all
+src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/all:
+	$(MAKE) -f src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/depend
+	$(MAKE) -f src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles --progress-num= "Built target ICES__home_alumno_robocomp_robotica_practica2_myComponent_src"
+.PHONY : src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/all
 
 # Build rule for subdir invocation for target.
-src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 0
-	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 0
-.PHONY : src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule
+src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 0
+	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 0
+.PHONY : src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule
 
 # Convenience name for target.
-ICES__home_ruben_robocomp_myComponent_src: src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/rule
+ICES__home_alumno_robocomp_robotica_practica2_myComponent_src: src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/rule
 
-.PHONY : ICES__home_ruben_robocomp_myComponent_src
+.PHONY : ICES__home_alumno_robocomp_robotica_practica2_myComponent_src
 
 # clean rule for target.
-src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/clean:
-	$(MAKE) -f src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/clean
-.PHONY : src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/clean
+src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/clean:
+	$(MAKE) -f src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/clean
+.PHONY : src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica2_myComponent_src.dir/clean
 
 #=============================================================================
 # Target rules for target src/CMakeFiles/MyFirstComp_autogen.dir
@@ -150,14 +150,14 @@ src/CMakeFiles/ICES__home_ruben_robocomp_myComponent_src.dir/clean:
 src/CMakeFiles/MyFirstComp_autogen.dir/all:
 	$(MAKE) -f src/CMakeFiles/MyFirstComp_autogen.dir/build.make src/CMakeFiles/MyFirstComp_autogen.dir/depend
 	$(MAKE) -f src/CMakeFiles/MyFirstComp_autogen.dir/build.make src/CMakeFiles/MyFirstComp_autogen.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ruben/robocomp/myComponent/CMakeFiles --progress-num=20 "Built target MyFirstComp_autogen"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles --progress-num=20 "Built target MyFirstComp_autogen"
 .PHONY : src/CMakeFiles/MyFirstComp_autogen.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/MyFirstComp_autogen.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 1
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 1
 	$(MAKE) -f CMakeFiles/Makefile2 src/CMakeFiles/MyFirstComp_autogen.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/myComponent/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles 0
 .PHONY : src/CMakeFiles/MyFirstComp_autogen.dir/rule
 
 # Convenience name for target.
