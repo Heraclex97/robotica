@@ -73,58 +73,50 @@ void SpecificWorker::initialize(int period)
 void SpecificWorker::compute( )
 {
     const float threshold = 200; // millimeters
-    float rot = 0.6;  // rads per second
-    float speed = 200;
+    static float rot = MAX_ROT;  // rads per second
+    float speed = 300;
 
     try
     {
-        while (1) {
+
             // read laser data
             //timer.interval() < this->Period
             RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
             //sort laser data from small to large distances using a lambda function.
-            std::sort(ldata.begin(), ldata.end(),
+            std::sort(ldata.begin()+10, ldata.end()-10,
                       [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
 
-//        if( ldata.front().dist < threshold) {
-//            pos=2;
-//        }
+        if( ldata[10].dist < threshold)
+        {
+            pos=2;
+        }
 
-            switch (pos) {
+            switch (pos)
+            {
                 case 1: //espiral
-                    std::cout << ldata.front().dist << std::endl;
-                    if (speed < MAX_ADV)
-                        speed += 10;
-                    if (speed > MAX_ADV)
-                        speed = MAX_ADV;
-
+                    std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
+                    if (rot > 0)
+                        rot -= 0.005;
+                    speed=300;
                     differentialrobot_proxy->setSpeedBase(speed, rot);
-                    //usleep(rand() % (1500000 - 100000 + 1) + 100000);
-
                     break;
                 case 2: //choque
-                    std::cout << ldata.front().dist << std::endl;
-                    differentialrobot_proxy->setSpeedBase(5, rot);
+                    std::cout << "choque: " << ldata[10].dist << std::endl;
+                    differentialrobot_proxy->setSpeedBase(5, 0.6);
                     usleep(rand() % (1500000 - 100000 + 1) + 100000);
-                    pos = 1;
+                    rot=MAX_ROT;
+                    pos = 0;
                     break;
                 case 3: //cuadrado
                     break;
                 default:
+//                    ;
+                    std::cout << "default: " << ldata[10].dist << std::endl;
                     differentialrobot_proxy->setSpeedBase(200, 0);
             }
-//	if( ldata.front().dist < threshold)
-//	{
-//		std::cout << ldata.front().dist << std::endl;
-// 		differentialrobot_proxy->setSpeedBase(5, rot);
-//		usleep(rand()%(1500000-100000 + 1) + 100000);  // random wait between 1.5s and 0.1sec
-//	}
-//	else
-//	{
-//		differentialrobot_proxy->setSpeedBase(200, 0);
-//  	}
+
         }
-    }
+
     catch(const Ice::Exception &ex)
     {
         std::cout << ex << std::endl;
