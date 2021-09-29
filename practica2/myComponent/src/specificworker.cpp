@@ -93,7 +93,8 @@ void SpecificWorker::compute( )
 
             switch (pos)
             {
-                case 1: //espiral
+
+            case 1: //espiral
                     std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
                     if (rot > 0)
                         rot -= 0.005;
