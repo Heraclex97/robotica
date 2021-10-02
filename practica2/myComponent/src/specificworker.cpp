@@ -109,14 +109,15 @@ void SpecificWorker::compute( )
                     usleep(rand() % (1500000 - 100000 + 1) + 100000);
                     rot=1.2;
                     currentS =State::RECTO;
+                    initTime = timer.interval();
                     break;
                 case State::CUADRADO: //cuadrado
                     break;
                 case State::RECTO:
-                    std::cout << "Recto " << ldata[10].dist << " "<<timer.remainingTime()<<std::endl;
+                    std::cout << "Recto " << ldata[10].dist << " "<<(timer.interval()-timer.remainingTime())-initTime<<std::endl;
                     differentialrobot_proxy->setSpeedBase(200, 0);
 
-                    if((100- timer.remainingTime())==5){
+                    if((timer.interval()-timer.remainingTime())-initTime==10){
                         currentS = State::ESPIRAL;
                     }
                     break;
