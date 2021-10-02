@@ -75,6 +75,7 @@ void SpecificWorker::compute( )
     const float threshold = 200; // millimeters
     static float rot = MAX_ROT;  // rads per second
     float speed = 300;
+    int inter=0;
 
     try
     {
@@ -88,32 +89,41 @@ void SpecificWorker::compute( )
 
         if( ldata[10].dist < threshold)
         {
-            pos=2;
+            currentS = State::CHOQUE;
         }
 
-            switch (pos)
+            switch (currentS)
             {
 
-            case 1: //espiral
+            case State::ESPIRAL: //espiral
                     std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
                     if (rot > 0)
                         rot -= 0.005;
                     speed=300;
                     differentialrobot_proxy->setSpeedBase(speed, rot);
+
                     break;
-                case 2: //choque
+                case State::CHOQUE: //choque
                     std::cout << "choque: " << ldata[10].dist << std::endl;
                     differentialrobot_proxy->setSpeedBase(5, 0.6);
                     usleep(rand() % (1500000 - 100000 + 1) + 100000);
-                    rot=MAX_ROT;
-                    pos = 0;
+                    rot=1.2;
+                    currentS =State::RECTO;
                     break;
-                case 3: //cuadrado
+                case State::CUADRADO: //cuadrado
+                    break;
+                case State::RECTO:
+                    std::cout << "Recto " << ldata[10].dist << " "<<timer.remainingTime()<<std::endl;
+                    differentialrobot_proxy->setSpeedBase(200, 0);
+
+                    if((100- timer.remainingTime())==5){
+                        currentS = State::ESPIRAL;
+                    }
                     break;
                 default:
-//                    ;
                     std::cout << "default: " << ldata[10].dist << std::endl;
                     differentialrobot_proxy->setSpeedBase(200, 0);
+
             }
 
         }
