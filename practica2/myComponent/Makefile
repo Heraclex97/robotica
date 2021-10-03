@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ruben/robocomp/robotica/practica2/myComponent
+CMAKE_SOURCE_DIR = /home/celia/robocomp/robotica/practica2/myComponent
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ruben/robocomp/robotica/practica2/myComponent
+CMAKE_BINARY_DIR = /home/celia/robocomp/robotica/practica2/myComponent
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -126,9 +126,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/robotica/practica2/myComponent/CMakeFiles /home/ruben/robocomp/robotica/practica2/myComponent/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/celia/robocomp/robotica/practica2/myComponent/CMakeFiles /home/celia/robocomp/robotica/practica2/myComponent/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ruben/robocomp/robotica/practica2/myComponent/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/celia/robocomp/robotica/practica2/myComponent/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -170,17 +170,17 @@ MyFirstComp/fast:
 .PHONY : MyFirstComp/fast
 
 #=============================================================================
-# Target rules for targets named ICES__home_ruben_robocomp_robotica_practica2_myComponent_src
+# Target rules for targets named ICES__home_celia_robocomp_robotica_practica2_myComponent_src
 
 # Build rule for target.
-ICES__home_ruben_robocomp_robotica_practica2_myComponent_src: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 ICES__home_ruben_robocomp_robotica_practica2_myComponent_src
-.PHONY : ICES__home_ruben_robocomp_robotica_practica2_myComponent_src
+ICES__home_celia_robocomp_robotica_practica2_myComponent_src: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 ICES__home_celia_robocomp_robotica_practica2_myComponent_src
+.PHONY : ICES__home_celia_robocomp_robotica_practica2_myComponent_src
 
 # fast build rule for target.
-ICES__home_ruben_robocomp_robotica_practica2_myComponent_src/fast:
-	$(MAKE) -f src/CMakeFiles/ICES__home_ruben_robocomp_robotica_practica2_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_ruben_robocomp_robotica_practica2_myComponent_src.dir/build
-.PHONY : ICES__home_ruben_robocomp_robotica_practica2_myComponent_src/fast
+ICES__home_celia_robocomp_robotica_practica2_myComponent_src/fast:
+	$(MAKE) -f src/CMakeFiles/ICES__home_celia_robocomp_robotica_practica2_myComponent_src.dir/build.make src/CMakeFiles/ICES__home_celia_robocomp_robotica_practica2_myComponent_src.dir/build
+.PHONY : ICES__home_celia_robocomp_robotica_practica2_myComponent_src/fast
 
 #=============================================================================
 # Target rules for targets named MyFirstComp_autogen
@@ -208,7 +208,7 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... MyFirstComp"
-	@echo "... ICES__home_ruben_robocomp_robotica_practica2_myComponent_src"
+	@echo "... ICES__home_celia_robocomp_robotica_practica2_myComponent_src"
 	@echo "... MyFirstComp_autogen"
 .PHONY : help
 
