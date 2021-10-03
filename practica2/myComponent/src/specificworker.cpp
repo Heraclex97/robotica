@@ -71,20 +71,9 @@ void SpecificWorker::initialize(int period)
 
 }
 void SpecificWorker::compute( ) {
-    const float threshold = 200; // millimeters
+    const float threshold = 300; // millimeters
     static float rot = MAX_ROT;  // rads per second
     float speed = 200;
-
-<<<<<<< HEAD
-
-    try {
-
-        // read laser data
-        RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
-        //sort laser data from small to large distances using a lambda function.
-        std::sort(ldata.begin() + 10, ldata.end() - 10,
-                  [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
-=======
     try
     {
             // read laser data
@@ -93,13 +82,14 @@ void SpecificWorker::compute( ) {
             //sort laser data from small to large distances using a lambda function.
             std::sort(ldata.begin()+10, ldata.end()-10,
                       [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
->>>>>>> origin/main
 
         if (ldata[10].dist < threshold) {
             currentS = State::SHOCK;
         }
+        if (ldata[10].dist >1500 && currentS == State::STRAIGHT) {
+            currentS = State::SPIRAL;
+        }
 
-<<<<<<< HEAD
         switch (currentS) {
             case State::SPIRAL: //espiral
                 std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
@@ -112,63 +102,27 @@ void SpecificWorker::compute( ) {
                 break;
             case State::SHOCK: //choque
                 std::cout << "choque: " << ldata[10].dist << std::endl;
-                differentialrobot_proxy->setSpeedBase(5, 0.6);
+                differentialrobot_proxy->setSpeedBase(5, 1);
                 usleep(rand() % (1500000 - 100000 + 1) + 100000);
-                rot = 1.2;
-                currentS = State::STRAIGTH;
+                rot = 0.8;
+                currentS = State::STRAIGHT;
                 break;
             case State::SQUARE: //cuadrado
+                std::cout << "Square " << ldata[10].dist << " " << rot << std::endl;
 
-                differentialrobot_proxy->setSpeedBase(5,ldata.back().angle);
-                currentS = State::STRAIGTH;
+                differentialrobot_proxy->setSpeedBase(5,ldata.front().angle);
+                currentS = State::STRAIGHT;
                 break;
-            case State::STRAIGTH:
+            case State::STRAIGHT:
                 std::cout << "Recto " << ldata[10].dist << " " << std::endl;
-                differentialrobot_proxy->setSpeedBase(200, 0);
+                differentialrobot_proxy->setSpeedBase(500, 0);
                 break;
             default:
                 std::cout << "default: " << ldata[10].dist << std::endl;
-                differentialrobot_proxy->setSpeedBase(200, 0);
-=======
-            switch (currentS)
-            {
+                differentialrobot_proxy->setSpeedBase(800, 0);
 
-            case State::ESPIRAL: //espiral
-                    std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
-                    if (rot > 1)
-                        rot -= 0.005;
-                    else
-                        rot -= rot/200;
-                    speed=300;
-                    differentialrobot_proxy->setSpeedBase(speed, rot);
-
-                    break;
-                case State::CHOQUE: //choque
-                    std::cout << "choque: " << ldata[10].dist << std::endl;
-                    differentialrobot_proxy->setSpeedBase(5, 0.6);
-                    usleep(rand() % (1500000 - 100000 + 1) + 100000);
-                    rot=1.2;
-                    currentS =State::RECTO;
-                    break;
-                case State::CUADRADO: //cuadrado
-                    break;
-                case State::RECTO:
-                    std::cout << "Recto " << ldata[10].dist << " "<<timer.remainingTime()<<std::endl;
-                    differentialrobot_proxy->setSpeedBase(200, 0);
-
-                    if(timer.remainingTime()==0){
-                        currentS = State::ESPIRAL;
-                    }
-                    break;
-                default:
-                    std::cout << "default: " << ldata[10].dist << std::endl;
-                    differentialrobot_proxy->setSpeedBase(200, 0);
 
             }
->>>>>>> origin/main
-
-        }
-
     }catch(const Ice::Exception &ex)
     {
         std::cout << ex << std::endl;

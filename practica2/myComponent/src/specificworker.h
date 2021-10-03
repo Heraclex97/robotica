@@ -47,14 +47,9 @@ public slots:
 private:
 	std::shared_ptr < InnerModel > innerModel;
 	bool startup_check_flag;
-<<<<<<< HEAD
-	enum class State{SPIRAL,SHOCK,SQUARE,STRAIGTH};
+	enum class State{SPIRAL,SHOCK,SQUARE,STRAIGHT};
 	State currentS = State::SPIRAL;
-=======
     int initTime;
-	enum class State{ESPIRAL,CHOQUE,CUADRADO,RECTO};
-	State currentS = State::ESPIRAL;
->>>>>>> origin/main
 };
 
 #endif
