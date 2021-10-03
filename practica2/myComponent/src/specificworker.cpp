@@ -79,7 +79,6 @@ void SpecificWorker::compute( )
 
     try
     {
-
             // read laser data
             //timer.interval() < this->Period
             RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
@@ -97,8 +96,10 @@ void SpecificWorker::compute( )
 
             case State::ESPIRAL: //espiral
                     std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
-                    if (rot > 0)
+                    if (rot > 1)
                         rot -= 0.005;
+                    else
+                        rot -= rot/200;
                     speed=300;
                     differentialrobot_proxy->setSpeedBase(speed, rot);
 
@@ -109,15 +110,14 @@ void SpecificWorker::compute( )
                     usleep(rand() % (1500000 - 100000 + 1) + 100000);
                     rot=1.2;
                     currentS =State::RECTO;
-                    initTime = timer.interval();
                     break;
                 case State::CUADRADO: //cuadrado
                     break;
                 case State::RECTO:
-                    std::cout << "Recto " << ldata[10].dist << " "<<(timer.interval()-timer.remainingTime())-initTime<<std::endl;
+                    std::cout << "Recto " << ldata[10].dist << " "<<timer.remainingTime()<<std::endl;
                     differentialrobot_proxy->setSpeedBase(200, 0);
 
-                    if((timer.interval()-timer.remainingTime())-initTime==10){
+                    if(timer.remainingTime()==0){
                         currentS = State::ESPIRAL;
                     }
                     break;
