@@ -91,8 +91,8 @@ void SpecificWorker::compute( ) {
         }
 
         switch (currentS) {
-            case State::SPIRAL: //espiral
-                std::cout << "espiral: " << ldata[10].dist << " " << rot << std::endl;
+            case State::SPIRAL:
+                std::cout << "Spiral: " << ldata[10].dist << " " << rot << std::endl;
                 if (rot > 1) {
                     speed = 300;
                     rot -= 0.005;
@@ -103,28 +103,25 @@ void SpecificWorker::compute( ) {
                 }
                 differentialrobot_proxy->setSpeedBase(speed, rot);
                 break;
-            case State::SHOCK: //choque
-
-                std::cout << "choque: " << ldata[10].dist << std::endl;
+            case State::SHOCK:
+                std::cout << "Shock: " << ldata[10].dist << std::endl;
                 differentialrobot_proxy->setSpeedBase(5, 1);
                 usleep(rand() % (1500000 - 100000 + 1) + 100000);
                 currentS = State::STRAIGHT;
                 break;
-            case State::SQUARE: //cuadrado
-                std::cout << "Square " << ldata[10].angle << " " << ldata[5].angle +1 << std::endl;
+            case State::SQUARE:
+                std::cout << "Square: " << ldata[10].angle << " " << ldata[5].angle +1 << std::endl;
                 differentialrobot_proxy->setSpeedBase(5,ldata.front().angle) ;
-
-
                 currentS = State::STRAIGHT;
                 break;
             case State::STRAIGHT:
-                std::cout << "Recto " << ldata[10].dist << " " << std::endl;
+                std::cout << "Straight: " << ldata[10].dist << " " << std::endl;
                 differentialrobot_proxy->setSpeedBase(500, 0);
                 rot = 1.2;
                 break;
                 
             default:
-                std::cout << "default: " << ldata[10].dist << std::endl;
+                std::cout << "Default: " << ldata[10].dist << std::endl;
                 differentialrobot_proxy->setSpeedBase(800, 0);
 
 
