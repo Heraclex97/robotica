@@ -105,13 +105,20 @@ void SpecificWorker::compute( ) {
                 }
                 differentialrobot_proxy->setSpeedBase(speed, rot);
                 break;
+
             case State::SHOCK:
-                rot2 = -1.0 + (drand48() * 3.0);
-                std::cout << "Shock: " << ldata[10].dist << " "<<rot2<< std::endl;
-                differentialrobot_proxy->setSpeedBase(5, rot2);
+                std::cout << "Shock: " << ldata[10].dist << " "<< std::endl;
+                differentialrobot_proxy->setSpeedBase(5, 0.6);
                 usleep(rand() % (1500000 - 100000 + 1) + 100000);
                 currentS = State::STRAIGHT;
                 break;
+//            case State::SHOCK: //Random shock
+//                rot2 = -1.0 + (drand48() * 3.0);
+//                std::cout << "Shock: " << ldata[10].dist << " "<<rot2<< std::endl;
+//                differentialrobot_proxy->setSpeedBase(5, rot2);
+//                usleep(rand() % (1500000 - 100000 + 1) + 100000);
+//                currentS = State::STRAIGHT;
+//                break;
 
             case State::STRAIGHT:
                 std::cout << "Straight: " << ldata[10].dist << " " << std::endl;
