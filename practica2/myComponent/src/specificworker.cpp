@@ -74,6 +74,8 @@ void SpecificWorker::compute( ) {
     const float threshold = 300; // millimeters
     static float rot = MAX_ROT;  // rads per second
     float speed = 200;
+    const float thSpiral = 2000;
+    static float rot2 = rot;
     try
     {
             // read laser data
@@ -86,7 +88,7 @@ void SpecificWorker::compute( ) {
         if (ldata[10].dist < threshold ) {
             currentS = State::SHOCK;
         }
-        if (ldata[10].dist >1500 && currentS == State::STRAIGHT) {
+        if (ldata[10].dist >thSpiral && currentS == State::STRAIGHT) {
             currentS = State::SPIRAL;
         }
 
@@ -104,20 +106,17 @@ void SpecificWorker::compute( ) {
                 differentialrobot_proxy->setSpeedBase(speed, rot);
                 break;
             case State::SHOCK:
-                std::cout << "Shock: " << ldata[10].dist << std::endl;
-                differentialrobot_proxy->setSpeedBase(5, 1);
+                rot2 = -1.0 + (drand48() * 3.0);
+                std::cout << "Shock: " << ldata[10].dist << " "<<rot2<< std::endl;
+                differentialrobot_proxy->setSpeedBase(5, rot2);
                 usleep(rand() % (1500000 - 100000 + 1) + 100000);
                 currentS = State::STRAIGHT;
                 break;
-            case State::SQUARE:
-                std::cout << "Square: " << ldata[10].angle << " " << ldata[5].angle +1 << std::endl;
-                differentialrobot_proxy->setSpeedBase(5,ldata.front().angle) ;
-                currentS = State::STRAIGHT;
-                break;
+
             case State::STRAIGHT:
                 std::cout << "Straight: " << ldata[10].dist << " " << std::endl;
                 differentialrobot_proxy->setSpeedBase(500, 0);
-                rot = 1.2;
+                rot = 1.4;
                 break;
                 
             default:
