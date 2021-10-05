@@ -1,56 +1,56 @@
 {
-	"BUILD_DIR" : "/home/celia/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen",
-	"CMAKE_BINARY_DIR" : "/home/celia/robocomp/robotica/practica2/myComponent",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/celia/robocomp/robotica/practica2/myComponent/src",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/celia/robocomp/robotica/practica2/myComponent/src",
+	"BUILD_DIR" : "/home/alumno/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen",
+	"CMAKE_BINARY_DIR" : "/home/alumno/robocomp/robotica/practica2/myComponent",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/alumno/robocomp/robotica/practica2/myComponent/src",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/alumno/robocomp/robotica/practica2/myComponent/src",
 	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
-	"CMAKE_SOURCE_DIR" : "/home/celia/robocomp/robotica/practica2/myComponent",
+	"CMAKE_SOURCE_DIR" : "/home/alumno/robocomp/robotica/practica2/myComponent",
 	"HEADERS" : 
 	[
 		[
-			"/home/celia/robocomp/classes/qlog/qlog.h",
+			"/home/alumno/robocomp/classes/qlog/qlog.h",
 			"MU",
-			"EZB72ZHE37/moc_qlog.cpp"
+			"DVFBV33MU7/moc_qlog.cpp"
 		],
 		[
-			"/home/celia/robocomp/classes/rapplication/rapplication.h",
+			"/home/alumno/robocomp/classes/rapplication/rapplication.h",
 			"MU",
-			"RYOOJZUFWZ/moc_rapplication.cpp"
+			"GKJOXEN2T4/moc_rapplication.cpp"
 		],
 		[
-			"/home/celia/robocomp/classes/sigwatch/sigwatch.h",
+			"/home/alumno/robocomp/classes/sigwatch/sigwatch.h",
 			"MU",
-			"MKPH3C7EQ6/moc_sigwatch.cpp"
+			"Z2MVH3G4AO/moc_sigwatch.cpp"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/commonbehaviorI.h",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/commonbehaviorI.h",
 			"MU",
 			"EWIEGA46WW/moc_commonbehaviorI.cpp"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/genericmonitor.h",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/genericmonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_genericmonitor.cpp"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/genericworker.h",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/genericworker.h",
 			"MU",
 			"EWIEGA46WW/moc_genericworker.cpp"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/specificmonitor.h",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/specificmonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_specificmonitor.cpp"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/specificworker.h",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/specificworker.h",
 			"MU",
 			"EWIEGA46WW/moc_specificworker.cpp"
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/celia/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/celia/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/alumno/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/alumno/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"QT_CORE_LIB",
@@ -72,14 +72,14 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/celia/robocomp/robotica/practica2/myComponent/src",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src",
 		"/opt/robocomp/include",
 		"/classes",
-		"/home/celia/robocomp/robotica/practica2/myComponent",
-		"/home/celia/robocomp/classes",
-		"/home/celia/robocomp/libs",
-		"/home/celia/robocomp/interfaces",
+		"/home/alumno/robocomp/robotica/practica2/myComponent",
+		"/home/alumno/robocomp/classes",
+		"/home/alumno/robocomp/libs",
+		"/home/alumno/robocomp/interfaces",
 		"/include",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
@@ -91,10 +91,10 @@
 		"/usr/include/x86_64-linux-gnu/qt5/QtXml",
 		"/usr/include/x86_64-linux-gnu/qt5/QtXmlPatterns",
 		"/usr/include/x86_64-linux-gnu/qt5/QtNetwork",
-		"/usr/include/c++/9",
-		"/usr/include/x86_64-linux-gnu/c++/9",
-		"/usr/include/c++/9/backward",
-		"/usr/lib/gcc/x86_64-linux-gnu/9/include",
+		"/usr/include/c++/10",
+		"/usr/include/x86_64-linux-gnu/c++/10",
+		"/usr/include/c++/10/backward",
+		"/usr/lib/gcc/x86_64-linux-gnu/10/include",
 		"/usr/local/include",
 		"/usr/include/x86_64-linux-gnu",
 		"/usr/include"
@@ -110,49 +110,49 @@
 		"-c",
 		"/usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/celia/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/alumno/robocomp/robotica/practica2/myComponent/src/MyFirstComp_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/CommonBehavior.cpp",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.cpp",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/GenericBase.cpp",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/Laser.cpp"
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/CommonBehavior.cpp",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.cpp",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/GenericBase.cpp",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/Laser.cpp"
 	],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 6,
-	"PARSE_CACHE_FILE" : "/home/celia/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/ParseCache.txt",
+	"PARALLEL" : 8,
+	"PARSE_CACHE_FILE" : "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
 	"QT_UIC_EXECUTABLE" : "/usr/lib/qt5/bin/uic",
 	"QT_VERSION_MAJOR" : 5,
-	"SETTINGS_FILE" : "/home/celia/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/celia/robocomp/classes/qlog/qlog.cpp", "MU" ],
-		[ "/home/celia/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
-		[ "/home/celia/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
+		[ "/home/alumno/robocomp/classes/qlog/qlog.cpp", "MU" ],
+		[ "/home/alumno/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
+		[ "/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/commonbehaviorI.cpp",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/commonbehaviorI.cpp",
 			"MU"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/genericmonitor.cpp",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/genericmonitor.cpp",
 			"MU"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/genericworker.cpp",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/genericworker.cpp",
 			"MU"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/main.cpp",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/main.cpp",
 			"MU"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/specificmonitor.cpp",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/specificmonitor.cpp",
 			"MU"
 		],
 		[
-			"/home/celia/robocomp/robotica/practica2/myComponent/src/specificworker.cpp",
+			"/home/alumno/robocomp/robotica/practica2/myComponent/src/specificworker.cpp",
 			"MU"
 		]
 	],
@@ -160,10 +160,10 @@
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
 	[
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/CommonBehavior.cpp",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.cpp",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/GenericBase.cpp",
-		"/home/celia/robocomp/robotica/practica2/myComponent/src/Laser.cpp"
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/CommonBehavior.cpp",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/DifferentialRobot.cpp",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/GenericBase.cpp",
+		"/home/alumno/robocomp/robotica/practica2/myComponent/src/Laser.cpp"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

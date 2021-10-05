@@ -75,7 +75,6 @@ void SpecificWorker::compute( ) {
     static float rot = MAX_ROT;  // rads per second
     float speed = 200;
     const float thSpiral = 2000;
-    static float rot2 = rot;
     try
     {
             // read laser data
@@ -91,6 +90,8 @@ void SpecificWorker::compute( ) {
         if (ldata[10].dist >thSpiral && currentS == State::STRAIGHT) {
             currentS = State::SPIRAL;
         }
+
+
 
         switch (currentS) {
             case State::SPIRAL:
@@ -112,13 +113,6 @@ void SpecificWorker::compute( ) {
                 usleep(rand() % (1500000 - 100000 + 1) + 100000);
                 currentS = State::STRAIGHT;
                 break;
-//            case State::SHOCK: //Random shock
-//                rot2 = -1.0 + (drand48() * 3.0);
-//                std::cout << "Shock: " << ldata[10].dist << " "<<rot2<< std::endl;
-//                differentialrobot_proxy->setSpeedBase(5, rot2);
-//                usleep(rand() % (1500000 - 100000 + 1) + 100000);
-//                currentS = State::STRAIGHT;
-//                break;
 
             case State::STRAIGHT:
                 std::cout << "Straight: " << ldata[10].dist << " " << std::endl;
@@ -148,6 +142,15 @@ int SpecificWorker::startup_check()
 
 
 
+/**************************************/
+//            case State::SHOCK: //Random shock
+//                rot2 = -1.0 + (drand48() * 3.0);
+//                std::cout << "Shock: " << ldata[10].dist << " "<<rot2<< std::endl;
+//                differentialrobot_proxy->setSpeedBase(5, rot2);
+//                usleep(rand() % (1500000 - 100000 + 1) + 100000);
+//                currentS = State::STRAIGHT;
+//                break;
+//static float rot2 = rot;
 
 /**************************************/
 // From the RoboCompDifferentialRobot you can call this methods:

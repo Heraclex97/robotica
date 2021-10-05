@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/celia/robocomp/robotica/practica2/myComponent
+CMAKE_SOURCE_DIR = /home/alumno/robocomp/robotica/practica2/myComponent
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/celia/robocomp/robotica/practica2/myComponent
+CMAKE_BINARY_DIR = /home/alumno/robocomp/robotica/practica2/myComponent
 
 # Utility rule file for MyFirstComp_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/celia/robocomp/robotica/practica2/myComponent
 include src/CMakeFiles/MyFirstComp_autogen.dir/progress.make
 
 src/CMakeFiles/MyFirstComp_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/celia/robocomp/robotica/practica2/myComponent/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target MyFirstComp"
-	cd /home/celia/robocomp/robotica/practica2/myComponent/src && /usr/bin/cmake -E cmake_autogen /home/celia/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/alumno/robocomp/robotica/practica2/myComponent/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target MyFirstComp"
+	cd /home/alumno/robocomp/robotica/practica2/myComponent/src && /usr/bin/cmake -E cmake_autogen /home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/AutogenInfo.json ""
 
 MyFirstComp_autogen: src/CMakeFiles/MyFirstComp_autogen
 MyFirstComp_autogen: src/CMakeFiles/MyFirstComp_autogen.dir/build.make
@@ -68,10 +68,10 @@ src/CMakeFiles/MyFirstComp_autogen.dir/build: MyFirstComp_autogen
 .PHONY : src/CMakeFiles/MyFirstComp_autogen.dir/build
 
 src/CMakeFiles/MyFirstComp_autogen.dir/clean:
-	cd /home/celia/robocomp/robotica/practica2/myComponent/src && $(CMAKE_COMMAND) -P CMakeFiles/MyFirstComp_autogen.dir/cmake_clean.cmake
+	cd /home/alumno/robocomp/robotica/practica2/myComponent/src && $(CMAKE_COMMAND) -P CMakeFiles/MyFirstComp_autogen.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/MyFirstComp_autogen.dir/clean
 
 src/CMakeFiles/MyFirstComp_autogen.dir/depend:
-	cd /home/celia/robocomp/robotica/practica2/myComponent && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/celia/robocomp/robotica/practica2/myComponent /home/celia/robocomp/robotica/practica2/myComponent/src /home/celia/robocomp/robotica/practica2/myComponent /home/celia/robocomp/robotica/practica2/myComponent/src /home/celia/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/alumno/robocomp/robotica/practica2/myComponent && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alumno/robocomp/robotica/practica2/myComponent /home/alumno/robocomp/robotica/practica2/myComponent/src /home/alumno/robocomp/robotica/practica2/myComponent /home/alumno/robocomp/robotica/practica2/myComponent/src /home/alumno/robocomp/robotica/practica2/myComponent/src/CMakeFiles/MyFirstComp_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/MyFirstComp_autogen.dir/depend
 

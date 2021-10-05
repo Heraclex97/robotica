@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/celia/robocomp/classes/qlog/qlog.h
+/home/alumno/robocomp/classes/qlog/qlog.h
 config.h
-/home/celia/robocomp/classes/qlog/config.h
+/home/alumno/robocomp/classes/qlog/config.h
 QtCore
 -
 iostream
@@ -20,11 +20,11 @@ boost/format.hpp
 boost/format.hpp
 -
 
-/home/celia/robocomp/robotica/practica2/myComponent/src/specificworker.cpp
+/home/alumno/robocomp/robotica/practica2/myComponent/src/specificworker.cpp
 specificworker.h
-/home/celia/robocomp/robotica/practica2/myComponent/src/specificworker.h
+/home/alumno/robocomp/robotica/practica2/myComponent/src/specificworker.h
 
-/home/celia/robocomp/robotica/practica2/myComponent/src/specificworker.h
+/home/alumno/robocomp/robotica/practica2/myComponent/src/specificworker.h
 genericworker.h
 -
 innermodel/innermodel.h
