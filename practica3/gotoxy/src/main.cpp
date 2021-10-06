@@ -93,7 +93,7 @@ public:
 private:
 	void initialize();
 	std::string prefix;
-	MapPrx mprx;
+	TuplePrx tprx;
 	bool startup_check_flag = false;
 
 public:
@@ -130,8 +130,8 @@ int ::gotoxy::run(int argc, char* argv[])
 
 	int status=EXIT_SUCCESS;
 
-	RoboCompDifferentialRobot::DifferentialRobotPrx differentialrobot_proxy;
-	RoboCompLaser::LaserPrx laser_proxy;
+	RoboCompDifferentialRobot::DifferentialRobotPrxPtr differentialrobot_proxy;
+	RoboCompLaser::LaserPrxPtr laser_proxy;
 
 	string proxy, tmp;
 	initialize();
@@ -142,7 +142,7 @@ int ::gotoxy::run(int argc, char* argv[])
 		{
 			cout << "[" << PROGRAM_NAME << "]: Can't read configuration for proxy DifferentialRobotProxy\n";
 		}
-		differentialrobot_proxy = RoboCompDifferentialRobot::DifferentialRobotPrx::uncheckedCast( communicator()->stringToProxy( proxy ) );
+		differentialrobot_proxy = Ice::uncheckedCast<RoboCompDifferentialRobot::DifferentialRobotPrx>( communicator()->stringToProxy( proxy ) );
 	}
 	catch(const Ice::Exception& ex)
 	{
@@ -151,7 +151,6 @@ int ::gotoxy::run(int argc, char* argv[])
 	}
 	rInfo("DifferentialRobotProxy initialized Ok!");
 
-	mprx["DifferentialRobotProxy"] = (::IceProxy::Ice::Object*)(&differentialrobot_proxy);//Remote server proxy creation example
 
 	try
 	{
@@ -159,7 +158,7 @@ int ::gotoxy::run(int argc, char* argv[])
 		{
 			cout << "[" << PROGRAM_NAME << "]: Can't read configuration for proxy LaserProxy\n";
 		}
-		laser_proxy = RoboCompLaser::LaserPrx::uncheckedCast( communicator()->stringToProxy( proxy ) );
+		laser_proxy = Ice::uncheckedCast<RoboCompLaser::LaserPrx>( communicator()->stringToProxy( proxy ) );
 	}
 	catch(const Ice::Exception& ex)
 	{
@@ -168,9 +167,9 @@ int ::gotoxy::run(int argc, char* argv[])
 	}
 	rInfo("LaserProxy initialized Ok!");
 
-	mprx["LaserProxy"] = (::IceProxy::Ice::Object*)(&laser_proxy);//Remote server proxy creation example
 
-	SpecificWorker *worker = new SpecificWorker(mprx, startup_check_flag);
+	tprx = std::make_tuple(differentialrobot_proxy,laser_proxy);
+	SpecificWorker *worker = new SpecificWorker(tprx, startup_check_flag);
 	//Monitor thread
 	SpecificMonitor *monitor = new SpecificMonitor(worker,communicator());
 	QObject::connect(monitor, SIGNAL(kill()), &a, SLOT(quit()));
@@ -193,7 +192,7 @@ int ::gotoxy::run(int argc, char* argv[])
 				cout << "[" << PROGRAM_NAME << "]: Can't read configuration for proxy CommonBehavior\n";
 			}
 			Ice::ObjectAdapterPtr adapterCommonBehavior = communicator()->createObjectAdapterWithEndpoints("commonbehavior", tmp);
-			CommonBehaviorI *commonbehaviorI = new CommonBehaviorI(monitor);
+			auto commonbehaviorI = std::make_shared<CommonBehaviorI>(monitor);
 			adapterCommonBehavior->add(commonbehaviorI, Ice::stringToIdentity("commonbehavior"));
 			adapterCommonBehavior->activate();
 		}

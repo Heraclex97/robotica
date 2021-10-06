@@ -53,7 +53,6 @@
 #define __SHRT_MAX__ 0x7fff
 #define __LDBL_MAX__ 1.18973149535723176502126385303097021e+4932L
 #define __FLT64X_MAX_10_EXP__ 4932
-#define QT_NO_DEBUG 1
 #define __FLT64X_HAS_QUIET_NAN__ 1
 #define __UINT_LEAST8_MAX__ 0xff
 #define __GCC_ATOMIC_BOOL_LOCK_FREE 2
@@ -222,6 +221,7 @@
 #define __UINT32_TYPE__ unsigned int
 #define __FLT_RADIX__ 2
 #define __INT_LEAST16_TYPE__ short int
+#define ICE_CPP11_MAPPING 1
 #define __LDBL_EPSILON__ 1.08420217248550443400745280086994171e-19L
 #define __UINTMAX_C(c) c ## UL
 #define __GLIBCXX_BITSIZE_INT_N_0 128

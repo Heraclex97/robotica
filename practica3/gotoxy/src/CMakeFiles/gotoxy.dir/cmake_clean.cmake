@@ -26,6 +26,7 @@ file(REMOVE_RECURSE
   "GenericBase.h"
   "Laser.cpp"
   "Laser.h"
+  "ui_mainUI.h"
 )
 
 # Per-language clean rules from dependency scanning.

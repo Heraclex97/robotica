@@ -94,9 +94,9 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DICE_CPP11_MAPPING"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_CORE_LIB"/>
-					<Add option="-DQT_NO_DEBUG"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
 					<Add option="-DQT_SQL_LIB"/>
 					<Add option="-DQT_OPENGL_LIB"/>
@@ -138,9 +138,9 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add option="-DICE_CPP11_MAPPING"/>
 					<Add option="-DQT_GUI_LIB"/>
 					<Add option="-DQT_CORE_LIB"/>
-					<Add option="-DQT_NO_DEBUG"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
 					<Add option="-DQT_SQL_LIB"/>
 					<Add option="-DQT_OPENGL_LIB"/>
@@ -246,6 +246,9 @@
 		<Unit filename="/home/alumno/robocomp/robotica/practica3/gotoxy/src/main.cpp">
 			<Option target="gotoxy"/>
 		</Unit>
+		<Unit filename="/home/alumno/robocomp/robotica/practica3/gotoxy/src/mainUI.ui">
+			<Option target="gotoxy"/>
+		</Unit>
 		<Unit filename="/home/alumno/robocomp/robotica/practica3/gotoxy/src/specificmonitor.cpp">
 			<Option target="gotoxy"/>
 		</Unit>
@@ -256,6 +259,9 @@
 			<Option target="gotoxy"/>
 		</Unit>
 		<Unit filename="/home/alumno/robocomp/robotica/practica3/gotoxy/src/specificworker.h">
+			<Option target="gotoxy"/>
+		</Unit>
+		<Unit filename="/home/alumno/robocomp/robotica/practica3/gotoxy/src/ui_mainUI.h">
 			<Option target="gotoxy"/>
 		</Unit>
 		<Unit filename="/opt/robocomp/classes/qlog/qlog.cpp">

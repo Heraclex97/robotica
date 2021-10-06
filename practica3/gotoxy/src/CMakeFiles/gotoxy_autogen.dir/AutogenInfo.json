@@ -69,6 +69,11 @@
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Network/Qt5Network_QGenericEnginePlugin.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Network/Qt5Network_QNetworkManagerEnginePlugin.cmake",
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/CMakeListsSpecific.txt",
+		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/FindIce.cmake",
+		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/SelectLibraryConfigurations.cmake",
+		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/SelectLibraryConfigurations.cmake",
+		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/FindPackageHandleStandardArgs.cmake",
+		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/FindPackageMessage.cmake",
 		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/FindThreads.cmake",
 		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/CheckLibraryExists.cmake",
 		"/snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/CheckIncludeFile.cmake",
@@ -119,6 +124,12 @@
 			null
 		],
 		[
+			"/opt/robocomp/classes/abstract_graphic_viewer/abstract_graphic_viewer.h",
+			"MU",
+			"WU3NUE3SBC/moc_abstract_graphic_viewer.cpp",
+			null
+		],
+		[
 			"/opt/robocomp/classes/qlog/qlog.h",
 			"MU",
 			"2FGXPJ7LXO/moc_qlog.cpp",
@@ -142,10 +153,10 @@
 	"MOC_COMPILATION_FILE" : "/home/alumno/robocomp/robotica/practica3/gotoxy/src/gotoxy_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
+		"ICE_CPP11_MAPPING",
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NETWORK_LIB",
-		"QT_NO_DEBUG",
 		"QT_OPENGL_LIB",
 		"QT_SQL_LIB",
 		"QT_WIDGETS_LIB",
@@ -206,7 +217,8 @@
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/CommonBehavior.cpp",
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/DifferentialRobot.cpp",
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/GenericBase.cpp",
-		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/Laser.cpp"
+		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/Laser.cpp",
+		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/ui_mainUI.h"
 	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 8,
@@ -259,7 +271,9 @@
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/CommonBehavior.cpp",
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/DifferentialRobot.cpp",
 		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/GenericBase.cpp",
-		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/Laser.cpp"
+		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/Laser.cpp",
+		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/mainUI.ui",
+		"/home/alumno/robocomp/robotica/practica3/gotoxy/src/ui_mainUI.h"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0

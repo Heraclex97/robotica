@@ -28,6 +28,9 @@ SET ( SOURCES
 
 
 
+ADD_DEFINITIONS ("-DICE_CPP11_MAPPING")
+FIND_PACKAGE( Ice REQUIRED COMPONENTS Ice++11 IceStorm++11)
+
 
 #ROBOCOMP
 ROBOCOMP_INITIALIZE( $ENV{ROBOCOMP}/ )
@@ -35,6 +38,7 @@ ROBOCOMP_IDSL_TO_ICE( CommonBehavior DifferentialRobot GenericBase Laser)
 ROBOCOMP_ICE_TO_SRC( CommonBehavior DifferentialRobot GenericBase Laser)
 SET (EXECUTABLE_OUTPUT_PATH ${RC_COMPONENT_DEVEL_PATH}/bin)
 
+QT_WRAP_UI( UI_HEADERS mainUI.ui )
 
 # no-char8_t to avoid a problem with ICE Connection lib.
 add_definitions(-g  -fmax-errors=1 -fno-char8_t)

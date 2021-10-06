@@ -21,7 +21,7 @@
 /**
 * \brief Default constructor
 */
-SpecificWorker::SpecificWorker(MapPrx& mprx, bool startup_check) : GenericWorker(mprx)
+SpecificWorker::SpecificWorker(TuplePrx tprx, bool startup_check) : GenericWorker(tprx)
 {
 	this->startup_check_flag = startup_check;
 }
@@ -57,6 +57,23 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 void SpecificWorker::initialize(int period)
 {
 	std::cout << "Initialize worker" << std::endl;
+    QRectF *dimensions = new QRectF(-5000,-2500,10000,5000);
+    viewer = new AbstractGraphicViewer(this, *dimensions);
+    this->resize(900,450);
+    robot_polygon = viewer->add_robot(ROBOT_LENGTH);
+    laser_in_robot_polygon = new QGraphicsRectItem(-10, 10, 20, 20, robot_polygon);
+    laser_in_robot_polygon->setPos(0, 190);     // move this to abstract
+    try
+    {
+        RoboCompGenericBase::TBaseState bState;
+        differentialrobot_proxy->getBaseState(bState);
+        last_point = QPointF(bState.x, bState.z);
+    }
+    catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
+    connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
+
+
+
 	this->Period = period;
 	if(this->startup_check_flag)
 	{
@@ -71,20 +88,35 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
-	//computeCODE
-	//QMutexLocker locker(mutex);
-	//try
-	//{
-	//  camera_proxy->getYImage(0,img, cState, bState);
-	//  memcpy(image_gray.data, &img[0], m_width*m_height*sizeof(uchar));
-	//  searchTags(image_gray);
-	//}
-	//catch(const Ice::Exception &e)
-	//{
-	//  std::cout << "Error reading from Camera" << e << std::endl;
-	//}
-	
-	
+    try
+    {
+        RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
+    }
+    catch(const Ice::Exception &ex)
+    {
+        std::cout << ex << std::endl;
+    }
+
+    try
+    {
+        RoboCompGenericBase::TBaseState baseState;
+        differentialrobot_proxy->getBaseState(baseState);
+        robot_polygon->setRotation(baseState.alpha*180/M_PI);
+        robot_polygon->setPos(baseState.x, baseState.z);
+        //qInfo()<<baseState.x<<baseState.z<<baseState.alpha;
+
+
+    }
+    catch(const Ice::Exception &ex)
+    {
+        std::cout << ex << std::endl;
+    }
+
+}
+
+void SpecificWorker::new_target_slot(QPointF c)
+{
+    qInfo()<<c;
 }
 
 int SpecificWorker::startup_check()

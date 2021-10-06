@@ -68,7 +68,7 @@ include src/CMakeFiles/gotoxy_autogen.dir/progress.make
 
 src/CMakeFiles/gotoxy_autogen:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target gotoxy"
-	cd /home/alumno/robocomp/robotica/practica3/gotoxy/src && /snap/clion/164/bin/cmake/linux/bin/cmake -E cmake_autogen /home/alumno/robocomp/robotica/practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json ""
+	cd /home/alumno/robocomp/robotica/practica3/gotoxy/src && /snap/clion/164/bin/cmake/linux/bin/cmake -E cmake_autogen /home/alumno/robocomp/robotica/practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json Debug
 
 gotoxy_autogen: src/CMakeFiles/gotoxy_autogen
 gotoxy_autogen: src/CMakeFiles/gotoxy_autogen.dir/build.make

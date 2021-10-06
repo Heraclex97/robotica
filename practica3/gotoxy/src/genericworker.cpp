@@ -20,14 +20,19 @@
 /**
 * \brief Default constructor
 */
-GenericWorker::GenericWorker(MapPrx& mprx) : QObject()
+GenericWorker::GenericWorker(TuplePrx tprx) : Ui_guiDlg()
 {
 
-	differentialrobot_proxy = (*(RoboCompDifferentialRobot::DifferentialRobotPrx*)mprx["DifferentialRobotProxy"]);
-	laser_proxy = (*(RoboCompLaser::LaserPrx*)mprx["LaserProxy"]);
+	differentialrobot_proxy = std::get<0>(tprx);
+	laser_proxy = std::get<1>(tprx);
 
 	mutex = new QMutex(QMutex::Recursive);
 
+
+	#ifdef USE_QTGUI
+		setupUi(this);
+		show();
+	#endif
 	Period = BASIC_PERIOD;
 	connect(&timer, SIGNAL(timeout()), this, SLOT(compute()));
 

@@ -27,10 +27,10 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # Preprocessor definitions for this target.
 set(CMAKE_TARGET_DEFINITIONS_CXX
+  "ICE_CPP11_MAPPING"
   "QT_CORE_LIB"
   "QT_GUI_LIB"
   "QT_NETWORK_LIB"
-  "QT_NO_DEBUG"
   "QT_OPENGL_LIB"
   "QT_SQL_LIB"
   "QT_WIDGETS_LIB"
