@@ -126,8 +126,19 @@ int SpecificWorker::startup_check()
 	return 0;
 }
 
+void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot coordinates
+{
+    static QGraphicsItem *laser_polygon = nullptr;
+    // code to delete any existing laser graphic element
 
+    QPolygonF poly;
+    // code to fill poly with the laser polar coordinates (angle, dist) transformed to cartesian coordinates (x,y), all in the robot's  // reference system
 
+    QColor color("LightGreen");
+    color.setAlpha(40);
+    laser_polygon = viewer->scene.addPolygon(laser_in_robot_polygon->mapToScene(poly), QPen(QColor("DarkGreen"), 30), QBrush(color));
+    laser_polygon->setZValue(3);
+}
 
 /**************************************/
 // From the RoboCompDifferentialRobot you can call this methods:

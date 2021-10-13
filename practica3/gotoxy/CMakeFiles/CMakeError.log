@@ -1,21 +1,81 @@
 Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/robocomp/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_c2d2b/fast && /usr/bin/make  -f CMakeFiles/cmTC_c2d2b.dir/build.make CMakeFiles/cmTC_c2d2b.dir/build
+make[1]: se entra en el directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_c2d2b.dir/src.c.o
+/usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_c2d2b.dir/src.c.o -c /home/robocomp/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_c2d2b
+/snap/clion/164/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c2d2b.dir/link.txt --verbose=1
+/usr/bin/cc CMakeFiles/cmTC_c2d2b.dir/src.c.o -o cmTC_c2d2b 
+/usr/bin/ld: CMakeFiles/cmTC_c2d2b.dir/src.c.o: en la función `main':
+src.c:(.text+0x46): referencia a `pthread_create' sin definir
+/usr/bin/ld: src.c:(.text+0x52): referencia a `pthread_detach' sin definir
+/usr/bin/ld: src.c:(.text+0x5e): referencia a `pthread_cancel' sin definir
+/usr/bin/ld: src.c:(.text+0x6f): referencia a `pthread_join' sin definir
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_c2d2b.dir/build.make:99: cmTC_c2d2b] Error 1
+make[1]: se sale del directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
+make: *** [Makefile:127: cmTC_c2d2b/fast] Error 2
+
+
+Source file was:
+#include <pthread.h>
+
+static void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_cancel(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/robocomp/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make -f Makefile cmTC_0fee8/fast && /usr/bin/make  -f CMakeFiles/cmTC_0fee8.dir/build.make CMakeFiles/cmTC_0fee8.dir/build
+make[1]: se entra en el directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0fee8.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create -o CMakeFiles/cmTC_0fee8.dir/CheckFunctionExists.c.o -c /snap/clion/164/bin/cmake/linux/share/cmake-3.20/Modules/CheckFunctionExists.c
+Linking C executable cmTC_0fee8
+/snap/clion/164/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0fee8.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create CMakeFiles/cmTC_0fee8.dir/CheckFunctionExists.c.o -o cmTC_0fee8  -lpthreads 
+/usr/bin/ld: no se puede encontrar -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_0fee8.dir/build.make:99: cmTC_0fee8] Error 1
+make[1]: se sale del directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
+make: *** [Makefile:127: cmTC_0fee8/fast] Error 2
+
+
+
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
 Change Dir: /home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_5ff8e/fast && /usr/bin/make -f CMakeFiles/cmTC_5ff8e.dir/build.make CMakeFiles/cmTC_5ff8e.dir/build
+Run Build Command(s):/usr/bin/make cmTC_fdce4/fast && /usr/bin/make -f CMakeFiles/cmTC_fdce4.dir/build.make CMakeFiles/cmTC_fdce4.dir/build
 make[1]: se entra en el directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_5ff8e.dir/src.c.o
-/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_5ff8e.dir/src.c.o   -c /home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp/src.c
-Linking C executable cmTC_5ff8e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5ff8e.dir/link.txt --verbose=1
-/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_5ff8e.dir/src.c.o  -o cmTC_5ff8e 
-/usr/bin/ld: CMakeFiles/cmTC_5ff8e.dir/src.c.o: en la función `main':
+Building C object CMakeFiles/cmTC_fdce4.dir/src.c.o
+/usr/bin/cc   -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_fdce4.dir/src.c.o   -c /home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_fdce4
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fdce4.dir/link.txt --verbose=1
+/usr/bin/cc  -DCMAKE_HAVE_LIBC_PTHREAD    CMakeFiles/cmTC_fdce4.dir/src.c.o  -o cmTC_fdce4 
+/usr/bin/ld: CMakeFiles/cmTC_fdce4.dir/src.c.o: en la función `main':
 src.c:(.text+0x46): referencia a `pthread_create' sin definir
 /usr/bin/ld: src.c:(.text+0x52): referencia a `pthread_detach' sin definir
 /usr/bin/ld: src.c:(.text+0x63): referencia a `pthread_join' sin definir
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_5ff8e.dir/build.make:87: cmTC_5ff8e] Error 1
+make[1]: *** [CMakeFiles/cmTC_fdce4.dir/build.make:87: cmTC_fdce4] Error 1
 make[1]: se sale del directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_5ff8e/fast] Error 2
+make: *** [Makefile:121: cmTC_fdce4/fast] Error 2
 
 
 Source file was:
@@ -41,18 +101,18 @@ int main(void)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp
 
-Run Build Command(s):/usr/bin/make cmTC_a1301/fast && /usr/bin/make -f CMakeFiles/cmTC_a1301.dir/build.make CMakeFiles/cmTC_a1301.dir/build
+Run Build Command(s):/usr/bin/make cmTC_0fe78/fast && /usr/bin/make -f CMakeFiles/cmTC_0fe78.dir/build.make CMakeFiles/cmTC_0fe78.dir/build
 make[1]: se entra en el directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_a1301.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_a1301.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
-Linking C executable cmTC_a1301
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1301.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_a1301.dir/CheckFunctionExists.c.o  -o cmTC_a1301  -lpthreads 
+Building C object CMakeFiles/cmTC_0fe78.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_0fe78.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_0fe78
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0fe78.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    CMakeFiles/cmTC_0fe78.dir/CheckFunctionExists.c.o  -o cmTC_0fe78  -lpthreads 
 /usr/bin/ld: no se puede encontrar -lpthreads
 collect2: error: ld returned 1 exit status
-make[1]: *** [CMakeFiles/cmTC_a1301.dir/build.make:87: cmTC_a1301] Error 1
+make[1]: *** [CMakeFiles/cmTC_0fe78.dir/build.make:87: cmTC_0fe78] Error 1
 make[1]: se sale del directorio '/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles/CMakeTmp'
-make: *** [Makefile:121: cmTC_a1301/fast] Error 2
+make: *** [Makefile:121: cmTC_0fe78/fast] Error 2
 
 
 

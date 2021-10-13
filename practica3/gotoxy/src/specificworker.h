@@ -38,8 +38,7 @@ public:
 	SpecificWorker(TuplePrx tprx, bool startup_check);
 	~SpecificWorker();
 	bool setParams(RoboCompCommonBehavior::ParameterList params);
-
-
+    void draw_laser(const RoboCompLaser::TLaserData &ldata);
 
 public slots:
     void compute();
