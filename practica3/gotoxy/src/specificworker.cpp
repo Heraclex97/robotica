@@ -18,6 +18,7 @@
  */
 #include "specificworker.h"
 
+
 /**
 * \brief Default constructor
 */
@@ -88,35 +89,52 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
+    RoboCompGenericBase::TBaseState baseState;
     try
     {
         RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
+        draw_laser(ldata);
     }
     catch(const Ice::Exception &ex)
     {
         std::cout << ex << std::endl;
     }
-
     try
     {
-        RoboCompGenericBase::TBaseState baseState;
         differentialrobot_proxy->getBaseState(baseState);
         robot_polygon->setRotation(baseState.alpha*180/M_PI);
         robot_polygon->setPos(baseState.x, baseState.z);
         //qInfo()<<baseState.x<<baseState.z<<baseState.alpha;
-
-
     }
     catch(const Ice::Exception &ex)
     {
         std::cout << ex << std::endl;
     }
-
+    if (target.active)
+    {
+//pasar target a coordenadas del robot (está en coordenadas del mundo)
+        QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
+//calcular el ang que forma el robot con el target deltaRot1
+        float beta = atan2(pr.y(),pr.x()); //velocidad de giro
+//calcular una velocidad de avance que depende de la distancia y si se esta girando
+        float adv = MAX_ADV_VEL * pr.manhattanLength() * beta /*distancia al objetivo * funcion de beta*/;
+//mandar tareas al robot
+        try
+        {
+            differentialrobot_proxy->setSpeedBase(adv, beta);
+        }
+        catch(const Ice::Exception &ex)
+        {
+            std::cout << ex << std::endl;
+        }
+    }
 }
 
 void SpecificWorker::new_target_slot(QPointF c)
 {
     qInfo()<<c;
+    target.pos = c;
+    target.active = true;
 }
 
 int SpecificWorker::startup_check()
@@ -129,15 +147,31 @@ int SpecificWorker::startup_check()
 void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot coordinates
 {
     static QGraphicsItem *laser_polygon = nullptr;
+    float x,y;
     // code to delete any existing laser graphic element
+    if(laser_polygon != nullptr)
+        viewer->scene.removeItem(laser_polygon);
 
     QPolygonF poly;
-    // code to fill poly with the laser polar coordinates (angle, dist) transformed to cartesian coordinates (x,y), all in the robot's  // reference system
+    poly << QPointF(0,0);
+    for(auto &p : ldata)
+    {
+        x = p.dist * sin(p.angle);
+        y = p.dist * cos(p.angle);
+        poly << QPointF(x,y);
+    }
 
+    // code to fill poly with the laser polar coordinates (angle, dist) transformed to cartesian coordinates (x,y), all in the robot's  // reference system
     QColor color("LightGreen");
     color.setAlpha(40);
     laser_polygon = viewer->scene.addPolygon(laser_in_robot_polygon->mapToScene(poly), QPen(QColor("DarkGreen"), 30), QBrush(color));
     laser_polygon->setZValue(3);
+}
+
+QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target)
+{
+//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
+    return QPointF();
 }
 
 /**************************************/

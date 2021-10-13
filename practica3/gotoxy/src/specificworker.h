@@ -30,6 +30,7 @@
 #include <genericworker.h>
 #include <innermodel/innermodel.h>
 #include <abstract_graphic_viewer/abstract_graphic_viewer.h>
+#include <eigen3/Eigen/Eigen>
 
 class SpecificWorker : public GenericWorker
 {
@@ -47,7 +48,7 @@ public slots:
     void new_target_slot(QPointF);
 
 private:
-
+    const float MAX_ADV_VEL = 1000;
     std::shared_ptr < InnerModel > innerModel;
     bool startup_check_flag;
     AbstractGraphicViewer *viewer;
@@ -55,8 +56,15 @@ private:
     QGraphicsPolygonItem *robot_polygon;
     QGraphicsRectItem *laser_in_robot_polygon;
     QPointF last_point;
+    float deltaRot1, deltaRot2, deltaTrans;
+    struct Target
+    {
+        QPointF pos;
+        bool active;
+    };
+    Target target;
 
-
+    QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
 };
 
 #endif
