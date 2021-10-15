@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/alumno/robocomp/robotica/practica3/gotoxy
+CMAKE_SOURCE_DIR = /home/robocomp/robocomp/robotica/practica3/gotoxy
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/alumno/robocomp/robotica/practica3/gotoxy
+CMAKE_BINARY_DIR = /home/ruben/robocomp/robotica/practica3/gotoxy
 
 # Utility rule file for gotoxy_autogen.
 
@@ -54,8 +54,8 @@ CMAKE_BINARY_DIR = /home/alumno/robocomp/robotica/practica3/gotoxy
 include src/CMakeFiles/gotoxy_autogen.dir/progress.make
 
 src/CMakeFiles/gotoxy_autogen:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/alumno/robocomp/robotica/practica3/gotoxy/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target gotoxy"
-	cd /home/alumno/robocomp/robotica/practica3/gotoxy/src && /usr/bin/cmake -E cmake_autogen /home/alumno/robocomp/robotica/practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/ruben/robocomp/robotica/practica3/gotoxy/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target gotoxy"
+	cd /home/ruben/robocomp/robotica/practica3/gotoxy/src && /usr/bin/cmake -E cmake_autogen /home/ruben/robocomp/robotica/practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json Debug
 
 gotoxy_autogen: src/CMakeFiles/gotoxy_autogen
 gotoxy_autogen: src/CMakeFiles/gotoxy_autogen.dir/build.make
@@ -68,10 +68,10 @@ src/CMakeFiles/gotoxy_autogen.dir/build: gotoxy_autogen
 .PHONY : src/CMakeFiles/gotoxy_autogen.dir/build
 
 src/CMakeFiles/gotoxy_autogen.dir/clean:
-	cd /home/alumno/robocomp/robotica/practica3/gotoxy/src && $(CMAKE_COMMAND) -P CMakeFiles/gotoxy_autogen.dir/cmake_clean.cmake
+	cd /home/ruben/robocomp/robotica/practica3/gotoxy/src && $(CMAKE_COMMAND) -P CMakeFiles/gotoxy_autogen.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/gotoxy_autogen.dir/clean
 
 src/CMakeFiles/gotoxy_autogen.dir/depend:
-	cd /home/alumno/robocomp/robotica/practica3/gotoxy && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/alumno/robocomp/robotica/practica3/gotoxy /home/alumno/robocomp/robotica/practica3/gotoxy/src /home/alumno/robocomp/robotica/practica3/gotoxy /home/alumno/robocomp/robotica/practica3/gotoxy/src /home/alumno/robocomp/robotica/practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/ruben/robocomp/robotica/practica3/gotoxy && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/robocomp/robocomp/robotica/practica3/gotoxy /home/robocomp/robocomp/robotica/practica3/gotoxy/src /home/ruben/robocomp/robotica/practica3/gotoxy /home/ruben/robocomp/robotica/practica3/gotoxy/src /home/ruben/robocomp/robotica/practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/gotoxy_autogen.dir/depend
 

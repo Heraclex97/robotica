@@ -56,6 +56,7 @@ private:
     QGraphicsPolygonItem *robot_polygon;
     QGraphicsRectItem *laser_in_robot_polygon;
     QPointF last_point;
+    QPointF actual_point;
     float deltaRot1, deltaRot2, deltaTrans;
     struct Target
     {
