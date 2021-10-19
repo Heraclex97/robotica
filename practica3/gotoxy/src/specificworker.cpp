@@ -46,12 +46,6 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 //		innerModel = std::make_shared(innermodel_path);
 //	}
 //	catch(const std::exception &e) { qFatal("Error reading config params"); }
-
-
-
-
-
-
 	return true;
 }
 
@@ -72,8 +66,6 @@ void SpecificWorker::initialize(int period)
     }
     catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
     connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
-
-
 
 	this->Period = period;
 	if(this->startup_check_flag)
@@ -113,16 +105,19 @@ void SpecificWorker::compute()
     {
 //pasar target a coordenadas del robot (está en coordenadas del mundo)
         QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
+        float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
 //calcular el ang que forma el robot con el target deltaRot1
-        float beta = atan2(pr.y(),pr.x()); //velocidad de giro
+        float beta = atan2(pr.x(),pr.y()); //velocidad de giro
         qInfo() << "Esto es beta: " <<beta;
 //calcular una velocidad de avance que depende de la distancia y si se esta girando
         float s = 0.1;
         float reduce_speed_if_turning = exp(-pow(beta,2)/s);
-        float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(pr); /*distancia al objetivo * funcion de beta*/;
+        float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod); /*distancia al objetivo * funcion de beta*/;
 //mandar tareas al robot
         try
         {
+            if(mod<=150)
+                beta=0;
             differentialrobot_proxy->setSpeedBase(adv, beta);
         }
         catch(const Ice::Exception &ex)
@@ -170,39 +165,35 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
     laser_polygon->setZValue(3);
 }
 
-
-
-QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target){
-
+QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target)
+{
 //    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
-    //float alfa = M_PI/2;
     float alfa = state.alpha;
     Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
     Eigen::Vector2f RW(state.x,state.z); //robot
 
     Eigen::Matrix2f R(2,2);
     R(0,0) = cos(alfa);
-    R(0,1) =-sin(alfa);
-    R(1,0) = sin(alfa);
+    R(0,1) = sin(alfa);
+    R(1,0) = -sin(alfa);
     R(1,1) = cos(alfa);
 
     auto TR = R * (TW-RW);
 
     actual_point = QPointF(TR.x(),TR.y());
 
-
     return actual_point;
 }
 
-float SpecificWorker::reduce_speed_if_close_to_target(QPointF pr) {
+float SpecificWorker::reduce_speed_if_close_to_target(float mod)
+{
 
-    float dist = sqrt(pow(pr.x(),2) + pow(pr.y(),2));
-    if ( dist==0){
+    if ( mod<=150){
         return 0;
-    }else if ( dist >1000){
+    }else if ( mod >1000){
         return 1;
     }
-    return 0;
+    return 0.5;
 }
 
 /**************************************/

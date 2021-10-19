@@ -7,14 +7,14 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/home/robocomp/robocomp/robotica/practica3/gotoxy/CMakeLists.txt"
-  "/home/robocomp/robocomp/robotica/practica3/gotoxy/src/CMakeLists.txt"
-  "/home/robocomp/robocomp/robotica/practica3/gotoxy/src/CMakeListsSpecific.txt"
-  "/home/ruben/robocomp/cmake/modules/qt.cmake"
-  "/home/ruben/robocomp/cmake/robocomp.cmake"
+  "/home/alumno/robocomp/cmake/modules/qt.cmake"
+  "/home/alumno/robocomp/cmake/robocomp.cmake"
   "CMakeFiles/3.16.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.16.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.16.3/CMakeSystem.cmake"
+  "CMakeLists.txt"
+  "src/CMakeLists.txt"
+  "src/CMakeListsSpecific.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5Config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ConfigVersion.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ModuleLocation.cmake"
@@ -71,8 +71,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.16/Modules/CMakeCXXInformation.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeCommonLanguageInclude.cmake"
-  "/usr/share/cmake-3.16/Modules/CMakeExtraGeneratorDetermineCompilerMacrosAndIncludeDirs.cmake"
-  "/usr/share/cmake-3.16/Modules/CMakeFindCodeBlocks.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeGenericSystem.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeInitializeConfigs.cmake"
   "/usr/share/cmake-3.16/Modules/CMakeLanguageInformation.cmake"
@@ -96,7 +94,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/usr/share/cmake-3.16/Modules/Platform/Linux-GNU.cmake"
   "/usr/share/cmake-3.16/Modules/Platform/Linux.cmake"
   "/usr/share/cmake-3.16/Modules/Platform/UnixPaths.cmake"
-  "/usr/share/cmake-3.16/Modules/ProcessorCount.cmake"
   "/usr/share/cmake-3.16/Modules/SelectLibraryConfigurations.cmake"
   )
 
@@ -115,6 +112,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/gotoxy.dir/DependInfo.cmake"
-  "src/CMakeFiles/ICES__home_robocomp_robocomp_robotica_practica3_gotoxy_src.dir/DependInfo.cmake"
+  "src/CMakeFiles/ICES__home_alumno_robocomp_robotica_practica3_gotoxy_src.dir/DependInfo.cmake"
   "src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake"
   )
