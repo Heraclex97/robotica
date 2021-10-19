@@ -101,32 +101,52 @@ void SpecificWorker::compute()
     {
         std::cout << ex << std::endl;
     }
-
-    if (target.active)
+    //p4
+    //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
+    switch (currentS)
     {
-//pasar target a coordenadas del robot (está en coordenadas del mundo)
-        QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
-        float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
-//calcular el ang que forma el robot con el target deltaRot1
-        float beta = atan2(pr.x(),pr.y()); //velocidad de giro
-//calcular una velocidad de avance que depende de la distancia y si se esta girando
-        float s = 0.1;
-        float reduce_speed_if_turning = exp(-pow(beta,2)/s);
-        float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod); /*distancia al objetivo * funcion de beta*/;
-//mandar tareas al robot
-        try
-        {
-            if(mod<=150) {
-                beta = 0;
-                target.active = false;
+        case State::IDLE:
+            differentialrobot_proxy->setSpeedBase(0, 0);
+            if (target.active)
+                currentS = State::GOTO;
+            break;
+        case State::GOTO:
+            if (target.active)
+            {
+                 //pasar target a coordenadas del robot (está en coordenadas del mundo)
+                QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
+                float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
+                //calcular el ang que forma el robot con el target deltaRot1
+                float beta = atan2(pr.x(),pr.y()); //velocidad de giro
+                //calcular una velocidad de avance que depende de la distancia y si se esta girando
+                float s = 0.1;
+                float reduce_speed_if_turning = exp(-pow(beta,2)/s);
+                float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod); /*distancia al objetivo * funcion de beta*/;
+                //mandar tareas al robot
+
+                try
+                {
+                    if(mod<=150)
+                    {
+                        beta = 0;
+                        target.active = false;
+                    }
+                    differentialrobot_proxy->setSpeedBase(adv, beta);
+                }
+                catch(const Ice::Exception &ex)
+                {
+                    std::cout << ex << std::endl;
+                }
             }
-            differentialrobot_proxy->setSpeedBase(adv, beta);
-        }
-        //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
-        catch(const Ice::Exception &ex)
-        {
-            std::cout << ex << std::endl;
-        }
+            break;
+
+        case State::SHOCK:
+
+            break;
+        case State::DODGE:
+
+            break;
+
     }
 }
 

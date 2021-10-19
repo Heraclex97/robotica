@@ -66,6 +66,8 @@ private:
     Target target;
 
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
+    enum class State {IDLE, GOTO, SHOCK, DODGE};
+    State currentS = State::IDLE;
     float reduce_speed_if_close_to_target(float mod);
 };
 
