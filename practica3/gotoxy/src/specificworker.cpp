@@ -104,7 +104,6 @@ void SpecificWorker::compute()
         differentialrobot_proxy->getBaseState(baseState);
         robot_polygon->setRotation(baseState.alpha*180/M_PI);
         robot_polygon->setPos(baseState.x, baseState.z);
-        //qInfo()<<baseState.x<<baseState.z<<baseState.alpha;
     }
     catch(const Ice::Exception &ex)
     {
@@ -116,9 +115,11 @@ void SpecificWorker::compute()
         QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
 //calcular el ang que forma el robot con el target deltaRot1
         float beta = atan2(pr.y(),pr.x()); //velocidad de giro
-        qInfo()<<pr.x()<<"   "<<pr.y();
+        qInfo() << "Esto es beta: " <<beta;
 //calcular una velocidad de avance que depende de la distancia y si se esta girando
-        float adv = MAX_ADV_VEL * pr.manhattanLength() * beta /*distancia al objetivo * funcion de beta*/;
+        float s = 0.1;
+        float reduce_speed_if_turning = exp(-pow(beta,2)/s);
+        float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(pr); /*distancia al objetivo * funcion de beta*/;
 //mandar tareas al robot
         try
         {
@@ -169,17 +170,20 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
     laser_polygon->setZValue(3);
 }
 
+
+
 QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target){
 
 //    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
-    float alfa = M_PI/2;
-    Eigen::Vector2f TW(target.pos.x(),target.pos.y());
-    Eigen::Vector2f RW(state.x,state.z);
+    //float alfa = M_PI/2;
+    float alfa = state.alpha;
+    Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
+    Eigen::Vector2f RW(state.x,state.z); //robot
 
     Eigen::Matrix2f R(2,2);
     R(0,0) = cos(alfa);
-    R(0,1) = sin(alfa);
-    R(1,0) = -sin(alfa);
+    R(0,1) =-sin(alfa);
+    R(1,0) = sin(alfa);
     R(1,1) = cos(alfa);
 
     auto TR = R * (TW-RW);
@@ -188,6 +192,17 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
 
 
     return actual_point;
+}
+
+float SpecificWorker::reduce_speed_if_close_to_target(QPointF pr) {
+
+    float dist = sqrt(pow(pr.x(),2) + pow(pr.y(),2));
+    if ( dist==0){
+        return 0;
+    }else if ( dist >1000){
+        return 1;
+    }
+    return 0;
 }
 
 /**************************************/
