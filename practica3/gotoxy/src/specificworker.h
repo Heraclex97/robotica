@@ -66,7 +66,6 @@ private:
     Target target;
 
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
-
     float reduce_speed_if_close_to_target(float mod);
 };
 

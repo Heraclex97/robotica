@@ -101,6 +101,7 @@ void SpecificWorker::compute()
     {
         std::cout << ex << std::endl;
     }
+
     if (target.active)
     {
 //pasar target a coordenadas del robot (está en coordenadas del mundo)
@@ -108,7 +109,6 @@ void SpecificWorker::compute()
         float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
 //calcular el ang que forma el robot con el target deltaRot1
         float beta = atan2(pr.x(),pr.y()); //velocidad de giro
-        qInfo() << "Esto es beta: " <<beta;
 //calcular una velocidad de avance que depende de la distancia y si se esta girando
         float s = 0.1;
         float reduce_speed_if_turning = exp(-pow(beta,2)/s);
@@ -116,10 +116,13 @@ void SpecificWorker::compute()
 //mandar tareas al robot
         try
         {
-            if(mod<=150)
-                beta=0;
+            if(mod<=150) {
+                beta = 0;
+                target.active = false;
+            }
             differentialrobot_proxy->setSpeedBase(adv, beta);
         }
+        //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
         catch(const Ice::Exception &ex)
         {
             std::cout << ex << std::endl;
