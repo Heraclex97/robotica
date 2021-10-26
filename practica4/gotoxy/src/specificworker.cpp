@@ -82,9 +82,10 @@ void SpecificWorker::initialize(int period)
 void SpecificWorker::compute()
 {
     RoboCompGenericBase::TBaseState baseState;
+    RoboCompLaser::TLaserData ldata;
     try
     {
-        RoboCompLaser::TLaserData ldata = laser_proxy->getLaserData();
+        ldata = laser_proxy->getLaserData();
         draw_laser(ldata);
     }
     catch(const Ice::Exception &ex)
@@ -103,58 +104,78 @@ void SpecificWorker::compute()
     }
     //p4
     //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
+    QPointF pr;
+    float mod;
+    float beta;
+    float s;
+    float d;
+    float reduce_speed_if_turning;
+    float adv;
+
+    if (ldata[10].dist < 300 )
+        currentS = State::SHOCK;
+
     switch (currentS)
     {
         case State::IDLE:
             differentialrobot_proxy->setSpeedBase(0, 0);
+
             if (target.active)
                 currentS = State::GOTO;
             break;
-        case State::GOTO:
-            if (target.active)
-            {
-                 //pasar target a coordenadas del robot (está en coordenadas del mundo)
-                QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
-                float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
-                //calcular el ang que forma el robot con el target deltaRot1
-                float beta = atan2(pr.x(),pr.y()); //velocidad de giro
-                //calcular una velocidad de avance que depende de la distancia y si se esta girando
-                float s = 0.1;
-                float reduce_speed_if_turning = exp(-pow(beta,2)/s);
-                float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod); /*distancia al objetivo * funcion de beta*/;
-                //mandar tareas al robot
 
-                try
+        case State::GOTO:
+             //pasar target a coordenadas del robot (está en coordenadas del mundo)
+            pr = world_to_robot(baseState, target);//devuelve un QPointF
+            mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
+            //calcular el ang que forma el robot con el target deltaRot1
+            beta = atan2(pr.x(),pr.y()); //velocidad de giro
+            //calcular una velocidad de avance que depende de la distancia y si se esta girando
+            s = 0.1;
+            reduce_speed_if_turning = exp(-pow(beta,2)/s);
+            adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
+
+            try
+            {
+                if(mod<=150)
                 {
-                    if(mod<=150)
-                    {
-                        beta = 0;
-                        target.active = false;
-                    }
-                    differentialrobot_proxy->setSpeedBase(adv, beta);
+                    beta = 0;
+                    target.active = false;
+                    currentS = State::IDLE;
                 }
-                catch(const Ice::Exception &ex)
-                {
-                    std::cout << ex << std::endl;
-                }
+                differentialrobot_proxy->setSpeedBase(adv, beta);
+            }
+            catch(const Ice::Exception &ex)
+            {
+                std::cout << ex << std::endl;
             }
             break;
 
         case State::SHOCK:
-
+            std::cout << "Shock " << std::endl;
+            differentialrobot_proxy->setSpeedBase(5, 0.6);
+            usleep(rand() % (1500000 - 100000 + 1) + 100000);
+            currentS = State::DODGE;
             break;
+
         case State::DODGE:
-
+            std::cout << "Dodge " << std::endl;
+//            d = abs(line.A*posx+line.B*posy+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
+//            if (d < umbral) currentS = State::GOTO;
+            currentS = State::IDLE;
             break;
-
     }
 }
 
-void SpecificWorker::new_target_slot(QPointF c)
+void SpecificWorker::new_target_slot(QPointF t, QPointF r)
 {
-    qInfo()<<c;
-    target.pos = c;
+    qInfo()<<t;
+    target.pos = t;
     target.active = true;
+//    Cada vez que se pulse la pantalla, se crea la ecuación general de la recta
+    line.A=r.y()-t.y();
+    line.B=t.x()-r.x();
+    line.C=(r.x()-t.x())*r.y()+(t.y()-r.y())*r.x();
 }
 
 int SpecificWorker::startup_check()

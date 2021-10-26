@@ -45,7 +45,7 @@ public slots:
     void compute();
     int startup_check();
     void initialize(int period);
-    void new_target_slot(QPointF);
+    void new_target_slot(QPointF, QPointF);
 
 private:
     const float MAX_ADV_VEL = 1000;
@@ -65,6 +65,13 @@ private:
     };
     Target target;
 
+    struct Line
+    {
+        float A;
+        float B;
+        float C;
+    };
+    Line line;
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
     State currentS = State::IDLE;
