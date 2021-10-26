@@ -101,39 +101,29 @@ void SpecificWorker::compute()
     {
         std::cout << ex << std::endl;
     }
-    //p4
-    //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
 
     differentialrobot_proxy->setSpeedBase(0, 0);
 
-         //pasar target a coordenadas del robot (está en coordenadas del mundo)
-        QPointF pr = world_to_robot(baseState, target);//devuelve un QPointF
-        float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
-        //calcular el ang que forma el robot con el target deltaRot1
-        float beta = atan2(pr.x(),pr.y()); //velocidad de giro
-        //calcular una velocidad de avance que depende de la distancia y si se esta girando
-        float s = 0.1;
-        float reduce_speed_if_turning = exp(-pow(beta,2)/s);
-        float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod); /*distancia al objetivo * funcion de beta*/;
-        //mandar tareas al robot
+    QPointF pr = world_to_robot(baseState, target);
+    float mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
+    float beta = atan2(pr.x(),pr.y());
+    float s = 0.1;
+    float reduce_speed_if_turning = exp(-pow(beta,2)/s);
+    float adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
 
-        try
+    try
+    {
+        if(mod<=150)
         {
-            if(mod<=150)
-            {
-                beta = 0;
-                target.active = false;
-            }
-            differentialrobot_proxy->setSpeedBase(adv, beta);
+            beta = 0;
+            target.active = false;
         }
-        catch(const Ice::Exception &ex)
-        {
-            std::cout << ex << std::endl;
-        }
-
-
-
-
+        differentialrobot_proxy->setSpeedBase(adv, beta);
+    }
+    catch(const Ice::Exception &ex)
+    {
+        std::cout << ex << std::endl;
+    }
 }
 
 void SpecificWorker::new_target_slot(QPointF c)
@@ -167,7 +157,7 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
         poly << QPointF(x,y);
     }
 
-    // code to fill poly with the laser polar coordinates (angle, dist) transformed to cartesian coordinates (x,y), all in the robot's  // reference system
+    // code to fill poly with the laser polar coordinates (angle, dist) transformed to cartesian coordinates (x,y), all in the robot's reference system
     QColor color("LightGreen");
     color.setAlpha(40);
     laser_polygon = viewer->scene.addPolygon(laser_in_robot_polygon->mapToScene(poly), QPen(QColor("DarkGreen"), 30), QBrush(color));
@@ -176,7 +166,6 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
 
 QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target)
 {
-//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
     float alfa = state.alpha;
     Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
     Eigen::Vector2f RW(state.x,state.z); //robot
