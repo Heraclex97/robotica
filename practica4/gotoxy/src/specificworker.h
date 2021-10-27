@@ -45,7 +45,7 @@ public slots:
     void compute();
     int startup_check();
     void initialize(int period);
-    void new_target_slot(QPointF, QPointF);
+    void new_target_slot(QPointF);
 
 private:
     const float MAX_ADV_VEL = 1000;
@@ -72,6 +72,9 @@ private:
         float C;
     };
     Line line;
+
+    void gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr,RoboCompLaser::TLaserData ldata);
+    void doShock(RoboCompLaser::TLaserData ldata);
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
     State currentS = State::IDLE;

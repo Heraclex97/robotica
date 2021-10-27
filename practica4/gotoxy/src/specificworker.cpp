@@ -58,14 +58,19 @@ void SpecificWorker::initialize(int period)
     robot_polygon = viewer->add_robot(ROBOT_LENGTH);
     laser_in_robot_polygon = new QGraphicsRectItem(-10, 10, 20, 20, robot_polygon);
     laser_in_robot_polygon->setPos(0, 190);     // move this to abstract
+    RoboCompGenericBase::TBaseState bState;
     try
     {
-        RoboCompGenericBase::TBaseState bState;
         differentialrobot_proxy->getBaseState(bState);
         last_point = QPointF(bState.x, bState.z);
     }
     catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
     connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
+    //    Cada vez que se pulse la pantalla, se crea la ecuación general de la recta
+    line.A=bState.z-target.pos.y();
+    line.B=target.pos.x()-bState.x;
+    line.C=(bState.x-target.pos.x())*bState.z+(target.pos.y()-bState.z)*bState.x;
+
 
 	this->Period = period;
 	if(this->startup_check_flag)
@@ -87,6 +92,8 @@ void SpecificWorker::compute()
     {
         ldata = laser_proxy->getLaserData();
         draw_laser(ldata);
+        std::sort(ldata.begin()+10, ldata.end()-10,
+                  [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
     }
     catch(const Ice::Exception &ex)
     {
@@ -104,58 +111,25 @@ void SpecificWorker::compute()
     }
     //p4
     //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
-    QPointF pr;
-    float mod;
-    float beta;
-    float s;
+    QPointF ppr;
     float d;
-    float reduce_speed_if_turning;
-    float adv;
-
-    if (ldata[10].dist < 300 )
-        currentS = State::SHOCK;
-
+    float min = std::min_element(ldata.begin()+10, ldata.end()-10,
+                     [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
     switch (currentS)
     {
         case State::IDLE:
             differentialrobot_proxy->setSpeedBase(0, 0);
 
-            if (target.active)
+            if (target.active && currentS != State::SHOCK)
                 currentS = State::GOTO;
             break;
 
         case State::GOTO:
-             //pasar target a coordenadas del robot (está en coordenadas del mundo)
-            pr = world_to_robot(baseState, target);//devuelve un QPointF
-            mod= sqrt(pow(pr.x(),2)+pow(pr.y(),2));
-            //calcular el ang que forma el robot con el target deltaRot1
-            beta = atan2(pr.x(),pr.y()); //velocidad de giro
-            //calcular una velocidad de avance que depende de la distancia y si se esta girando
-            s = 0.1;
-            reduce_speed_if_turning = exp(-pow(beta,2)/s);
-            adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
-
-            try
-            {
-                if(mod<=150)
-                {
-                    beta = 0;
-                    target.active = false;
-                    currentS = State::IDLE;
-                }
-                differentialrobot_proxy->setSpeedBase(adv, beta);
-            }
-            catch(const Ice::Exception &ex)
-            {
-                std::cout << ex << std::endl;
-            }
+            gotoTarget(baseState,ppr,ldata);
             break;
 
         case State::SHOCK:
-            std::cout << "Shock " << std::endl;
-            differentialrobot_proxy->setSpeedBase(5, 0.6);
-            usleep(rand() % (1500000 - 100000 + 1) + 100000);
-            currentS = State::DODGE;
+            doShock(ldata);
             break;
 
         case State::DODGE:
@@ -167,15 +141,60 @@ void SpecificWorker::compute()
     }
 }
 
-void SpecificWorker::new_target_slot(QPointF t, QPointF r)
+void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr,RoboCompLaser::TLaserData ldata)
+{
+    float mod;
+    float s;
+    float reduce_speed_if_turning;
+    float adv;
+    float beta;
+
+    //pasar target a coordenadas del robot (está en coordenadas del mundo)
+    pr = world_to_robot(baseState, target);//devuelve un QPointF
+    mod = sqrt(pow(pr.x(),2)+pow(pr.y(),2));
+    //calcular el ang que forma el robot con el target deltaRot1
+    beta = atan2(pr.x(),pr.y()); //velocidad de giro
+    //calcular una velocidad de avance que depende de la distancia y si se esta girando
+    s = 0.1;
+    reduce_speed_if_turning = exp(-pow(beta,2)/s);
+    adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
+
+    if (ldata[10].dist < 500)
+    {
+        differentialrobot_proxy->setSpeedBase(0, beta);
+        currentS = State::SHOCK;
+    }
+
+    try
+    {
+        if(mod<=150)
+        {
+            beta = 0;
+            target.active = false;
+            currentS = State::IDLE;
+        }
+        differentialrobot_proxy->setSpeedBase(adv, beta);
+    }
+    catch(const Ice::Exception &ex)
+    {
+        std::cout << ex << std::endl;
+    }
+}
+
+void SpecificWorker::doShock(RoboCompLaser::TLaserData ldata)
+{
+    std::cout << "Shock " << std::endl;
+    differentialrobot_proxy->setSpeedBase(0, 0.6);
+    usleep(rand() % (1500000 - 100000 + 1) + 100000);
+    if (ldata[10].dist > 300)
+        currentS = State::DODGE;
+}
+
+void SpecificWorker::new_target_slot(QPointF t)
 {
     qInfo()<<t;
     target.pos = t;
     target.active = true;
-//    Cada vez que se pulse la pantalla, se crea la ecuación general de la recta
-    line.A=r.y()-t.y();
-    line.B=t.x()-r.x();
-    line.C=(r.x()-t.x())*r.y()+(t.y()-r.y())*r.x();
 }
 
 int SpecificWorker::startup_check()
