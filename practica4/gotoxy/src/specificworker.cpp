@@ -88,6 +88,8 @@ void SpecificWorker::compute()
 {
     RoboCompGenericBase::TBaseState baseState;
     RoboCompLaser::TLaserData ldata;
+    float adv = 200;
+    static float beta = 2;
     try
     {
         ldata = laser_proxy->getLaserData();
@@ -112,42 +114,38 @@ void SpecificWorker::compute()
     //p4
     //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
     QPointF ppr;
-    float d;
-    float min = std::min_element(ldata.begin()+10, ldata.end()-10,
-                     [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
+    min = std::min_element(ldata.begin() + 10, ldata.end() - 10, [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
+
     switch (currentS)
     {
         case State::IDLE:
-            differentialrobot_proxy->setSpeedBase(0, 0);
-
-            if (target.active && currentS != State::SHOCK)
+            std::cout << "Idle " << std::endl;
+//            differentialrobot_proxy->setSpeedBase(0, 0);
+            if (target.active)
                 currentS = State::GOTO;
             break;
 
         case State::GOTO:
-            gotoTarget(baseState,ppr,ldata);
+            std::cout << "Goto " << std::endl;
+            gotoTarget(baseState,ppr,adv,beta);
             break;
 
         case State::SHOCK:
-            doShock(ldata);
+            doShock();
             break;
 
         case State::DODGE:
             std::cout << "Dodge " << std::endl;
-//            d = abs(line.A*posx+line.B*posy+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
-//            if (d < umbral) currentS = State::GOTO;
-            currentS = State::IDLE;
+            doDodge(adv, beta);
             break;
     }
 }
 
-void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr,RoboCompLaser::TLaserData ldata)
+void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta)
 {
     float mod;
     float s;
     float reduce_speed_if_turning;
-    float adv;
-    float beta;
 
     //pasar target a coordenadas del robot (está en coordenadas del mundo)
     pr = world_to_robot(baseState, target);//devuelve un QPointF
@@ -159,7 +157,7 @@ void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPoint
     reduce_speed_if_turning = exp(-pow(beta,2)/s);
     adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
 
-    if (ldata[10].dist < 500)
+    if (min->dist < 400)
     {
         differentialrobot_proxy->setSpeedBase(0, beta);
         currentS = State::SHOCK;
@@ -181,13 +179,34 @@ void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPoint
     }
 }
 
-void SpecificWorker::doShock(RoboCompLaser::TLaserData ldata)
+void SpecificWorker::doShock()
 {
     std::cout << "Shock " << std::endl;
-    differentialrobot_proxy->setSpeedBase(0, 0.6);
+    differentialrobot_proxy->setSpeedBase(0,0.6);
     usleep(rand() % (1500000 - 100000 + 1) + 100000);
-    if (ldata[10].dist > 300)
+    differentialrobot_proxy->setSpeedBase(5,0);
+    usleep(500);
+//    if (min->dist >= 300)
         currentS = State::DODGE;
+}
+
+void SpecificWorker::doDodge(float speed, float rot)
+{
+    if (rot > 1) {
+        speed = 300;
+        rot -= 0.005;
+    }
+    if (rot < 1) {
+        rot -= rot / 200;
+        speed = 500;
+    }
+    differentialrobot_proxy->setSpeedBase(speed, rot);
+
+//    d = abs(line.A*posx+line.B*posy+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
+//    if (d < umbral) currentS = State::GOTO;
+    if (min->dist >= 400)
+        currentS = State::GOTO;
+
 }
 
 void SpecificWorker::new_target_slot(QPointF t)

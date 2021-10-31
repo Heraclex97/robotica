@@ -6,21 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/robocomp/robocomp/robotica/practica4/gotoxy/src/specificworker.cpp
-specificworker.h
-/home/robocomp/robocomp/robotica/practica4/gotoxy/src/specificworker.h
-
-/home/robocomp/robocomp/robotica/practica4/gotoxy/src/specificworker.h
-genericworker.h
--
-innermodel/innermodel.h
--
-abstract_graphic_viewer/abstract_graphic_viewer.h
--
-eigen3/Eigen/Eigen
--
-
-/opt/robocomp/classes/abstract_graphic_viewer/abstract_graphic_viewer.h
+/home/celia/robocomp/classes/abstract_graphic_viewer/abstract_graphic_viewer.h
 QWidget
 -
 QGraphicsScene
@@ -44,9 +30,9 @@ QGraphicsPolygonItem
 iostream
 -
 
-/opt/robocomp/classes/qlog/qlog.h
+/home/celia/robocomp/classes/qlog/qlog.h
 config.h
-/opt/robocomp/classes/qlog/config.h
+/home/celia/robocomp/classes/qlog/config.h
 QtCore
 -
 iostream
@@ -56,6 +42,20 @@ Logger.h
 boost/format.hpp
 -
 boost/format.hpp
+-
+
+/home/celia/robocomp/robotica/practica4/gotoxy/src/specificworker.cpp
+specificworker.h
+/home/celia/robocomp/robotica/practica4/gotoxy/src/specificworker.h
+
+/home/celia/robocomp/robotica/practica4/gotoxy/src/specificworker.h
+genericworker.h
+-
+innermodel/innermodel.h
+-
+abstract_graphic_viewer/abstract_graphic_viewer.h
+-
+eigen3/Eigen/Eigen
 -
 
 /usr/include/x86_64-linux-gnu/qt5/QtCore/QEvent

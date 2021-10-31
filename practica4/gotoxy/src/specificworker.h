@@ -58,6 +58,7 @@ private:
     QPointF last_point;
     QPointF actual_point;
     float deltaRot1, deltaRot2, deltaTrans;
+    __gnu_cxx::__normal_iterator<RoboCompLaser::TData *, vector<RoboCompLaser::TData>> min;
     struct Target
     {
         QPointF pos;
@@ -73,8 +74,9 @@ private:
     };
     Line line;
 
-    void gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr,RoboCompLaser::TLaserData ldata);
-    void doShock(RoboCompLaser::TLaserData ldata);
+    void gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta);
+    void doShock();
+    void doDodge(float speed, float rot);
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
     State currentS = State::IDLE;
