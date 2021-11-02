@@ -94,8 +94,6 @@ void SpecificWorker::compute()
     {
         ldata = laser_proxy->getLaserData();
         draw_laser(ldata);
-        std::sort(ldata.begin()+10, ldata.end()-10,
-                  [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
     }
     catch(const Ice::Exception &ex)
     {
@@ -114,7 +112,6 @@ void SpecificWorker::compute()
     //p4
     //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
     QPointF ppr;
-    min = std::min_element(ldata.begin() + 10, ldata.end() - 10, [](RoboCompLaser::TData a, RoboCompLaser::TData b) { return a.dist < b.dist; });
 
     switch (currentS)
     {
@@ -127,7 +124,7 @@ void SpecificWorker::compute()
 
         case State::GOTO:
             std::cout << "Goto " << std::endl;
-            gotoTarget(baseState,ppr,adv,beta);
+            gotoTarget(ldata,baseState,ppr,adv,beta);
             break;
 
         case State::SHOCK:
@@ -136,12 +133,12 @@ void SpecificWorker::compute()
 
         case State::DODGE:
             std::cout << "Dodge " << std::endl;
-            doDodge(adv, beta);
+            doDodge(ldata, adv, beta);
             break;
     }
 }
 
-void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta)
+void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta)
 {
     float mod;
     float s;
@@ -157,25 +154,24 @@ void SpecificWorker::gotoTarget(RoboCompGenericBase::TBaseState baseState,QPoint
     reduce_speed_if_turning = exp(-pow(beta,2)/s);
     adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
 
-    if (min->dist < 400)
+    if (obstacle_ahead(ldata, 700))
     {
         differentialrobot_proxy->setSpeedBase(0, beta);
         currentS = State::SHOCK;
     }
+    else {
 
-    try
-    {
-        if(mod<=150)
-        {
-            beta = 0;
-            target.active = false;
-            currentS = State::IDLE;
+        try {
+            if (mod <= 150) {
+                beta = 0;
+                target.active = false;
+                currentS = State::IDLE;
+            }
+            differentialrobot_proxy->setSpeedBase(adv, beta);
         }
-        differentialrobot_proxy->setSpeedBase(adv, beta);
-    }
-    catch(const Ice::Exception &ex)
-    {
-        std::cout << ex << std::endl;
+        catch (const Ice::Exception &ex) {
+            std::cout << ex << std::endl;
+        }
     }
 }
 
@@ -184,29 +180,43 @@ void SpecificWorker::doShock()
     std::cout << "Shock " << std::endl;
     differentialrobot_proxy->setSpeedBase(0,0.6);
     usleep(rand() % (1500000 - 100000 + 1) + 100000);
-    differentialrobot_proxy->setSpeedBase(5,0);
-    usleep(500);
+
 //    if (min->dist >= 300)
         currentS = State::DODGE;
 }
 
-void SpecificWorker::doDodge(float speed, float rot)
+void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
 {
-    if (rot > 1) {
-        speed = 300;
-        rot -= 0.005;
-    }
-    if (rot < 1) {
-        rot -= rot / 200;
-        speed = 500;
-    }
-    differentialrobot_proxy->setSpeedBase(speed, rot);
+    differentialrobot_proxy->setSpeedBase(0, ldata.front().angle + 0.5);
+    usleep(rand() % (1500000 - 100000 + 1) + 100000);
+    differentialrobot_proxy->setSpeedBase(5, 0);
+
+
+//    currentS = State::GOTO;
 
 //    d = abs(line.A*posx+line.B*posy+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
 //    if (d < umbral) currentS = State::GOTO;
-    if (min->dist >= 400)
-        currentS = State::GOTO;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////
+bool SpecificWorker::obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth)
+{
+    auto min = std::min_element(ldata.begin()+(ldata.size()/2 - semiwidth), ldata.end()-(ldata.size()/2 + semiwidth), [](auto a, auto b) { return a.dist < b.dist; });
+    return (*min).dist < dist;
+}
 
+bool SpecificWorker::lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left)
+{
+    __gnu_cxx::__normal_iterator<const RoboCompLaser::TData *, vector<RoboCompLaser::TData>> min;
+    if (left)
+        min = std::min_element(ldata.begin() + 10, ldata.begin() + 30, [](auto a, auto b) { return a.dist < b.dist; });
+    else
+        min = std::min_element(ldata.end()-10, ldata.end()-30, [](auto a, auto b) { return a.dist < b.dist; });
+    return (*min).dist < dist;
+}
+
+bool SpecificWorker::target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar)
+{
+    return false;
 }
 
 void SpecificWorker::new_target_slot(QPointF t)

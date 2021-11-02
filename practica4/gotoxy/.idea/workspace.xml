@@ -6,8 +6,8 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="gotoxy" targetName="gotoxy_autogen" />
-      <config projectName="gotoxy" targetName="ICES__home_celia_robocomp_robotica_practica4_gotoxy_src" />
       <config projectName="gotoxy" targetName="gotoxy" />
+      <config projectName="gotoxy" targetName="ICES__home_robocomp_robocomp_robotica_practica4_gotoxy_src" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -17,7 +17,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8eab308-5981-4ff3-9ba7-07f3f551d68f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../practica3/gotoxy/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../practica3/gotoxy/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/3.20.2/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/3.20.2/CMakeCCompiler.cmake" afterDir="false" />
@@ -53,13 +52,15 @@
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericmonitor.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericmonitor.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericworker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericworker.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/link.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/main.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificmonitor.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificmonitor.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenUsed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenUsed.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/build.make" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CommonBehavior.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommonBehavior.cpp" afterDir="false" />
@@ -72,11 +73,6 @@
       <change beforePath="$PROJECT_DIR$/src/Laser.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laser.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericmonitor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericmonitor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericworker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericworker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificmonitor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificmonitor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificworker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificworker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/include/moc_sigwatch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/include/moc_sigwatch.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/moc_predefs.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/moc_predefs.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/mocs_compilation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/mocs_compilation.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specificworker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/specificworker.cpp" afterDir="false" />
@@ -94,6 +90,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1zimfpRMPNZ4X9t3MhYZXAM8dmb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -107,7 +111,7 @@
     <property name="cf.first.check.clang-format" value="false" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/robocomp/robotica/practica4/gotoxy" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -115,12 +119,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunManager" selected="CMake Application.gotoxy">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="ICES__home_robocomp_robocomp_robotica_practica4_gotoxy_src" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="ICES__home_robocomp_robocomp_robotica_practica4_gotoxy_src" CONFIG_NAME="Debug">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ICES__home_celia_robocomp_robotica_practica4_gotoxy_src" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="ICES__home_celia_robocomp_robotica_practica4_gotoxy_src" CONFIG_NAME="Debug">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -143,7 +147,7 @@
     <list>
       <item itemvalue="CMake Application.gotoxy" />
       <item itemvalue="CMake Application.gotoxy_autogen" />
-      <item itemvalue="CMake Application.ICES__home_celia_robocomp_robotica_practica4_gotoxy_src" />
+      <item itemvalue="CMake Application.ICES__home_robocomp_robocomp_robotica_practica4_gotoxy_src" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -158,6 +162,7 @@
       <workItem from="1635256210601" duration="5147000" />
       <workItem from="1635342060618" duration="5434000" />
       <workItem from="1635694367101" duration="4200000" />
+      <workItem from="1635864464289" duration="5861000" />
     </task>
     <servers />
   </component>

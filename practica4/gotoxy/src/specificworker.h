@@ -58,7 +58,6 @@ private:
     QPointF last_point;
     QPointF actual_point;
     float deltaRot1, deltaRot2, deltaTrans;
-    __gnu_cxx::__normal_iterator<RoboCompLaser::TData *, vector<RoboCompLaser::TData>> min;
     struct Target
     {
         QPointF pos;
@@ -74,13 +73,19 @@ private:
     };
     Line line;
 
-    void gotoTarget(RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta);
+    void gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta);
     void doShock();
-    void doDodge(float speed, float rot);
+    void doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot);
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
     State currentS = State::IDLE;
     float reduce_speed_if_close_to_target(float mod);
+
+    bool obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth=10);
+
+    bool target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar);
+
+    bool lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left);
 };
 
 #endif

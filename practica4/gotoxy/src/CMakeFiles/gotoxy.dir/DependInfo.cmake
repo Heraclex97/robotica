@@ -4,20 +4,20 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/CommonBehavior.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/DifferentialRobot.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/GenericBase.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/Laser.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/Laser.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/commonbehaviorI.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/commonbehaviorI.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/genericmonitor.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/genericmonitor.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/genericworker.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/genericworker.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/mocs_compilation.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o"
-  "/home/celia/robocomp/classes/qlog/qlog.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/home/celia/robocomp/classes/qlog/qlog.cpp.o"
-  "/home/celia/robocomp/classes/rapplication/rapplication.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/home/celia/robocomp/classes/rapplication/rapplication.cpp.o"
-  "/home/celia/robocomp/classes/sigwatch/sigwatch.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/home/celia/robocomp/classes/sigwatch/sigwatch.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/main.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/main.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/specificmonitor.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/specificmonitor.cpp.o"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/specificworker.cpp" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/CommonBehavior.cpp.o"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/DifferentialRobot.cpp.o"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/GenericBase.cpp.o"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/Laser.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/Laser.cpp.o"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/commonbehaviorI.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/commonbehaviorI.cpp.o"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/genericmonitor.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/genericmonitor.cpp.o"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/genericworker.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/genericworker.cpp.o"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/mocs_compilation.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o"
+  "/home/alumno/robocomp/classes/qlog/qlog.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/qlog/qlog.cpp.o"
+  "/home/alumno/robocomp/classes/rapplication/rapplication.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/rapplication/rapplication.cpp.o"
+  "/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/home/alumno/robocomp/classes/sigwatch/sigwatch.cpp.o"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/main.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/main.cpp.o"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/specificmonitor.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/specificmonitor.cpp.o"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/specificworker.cpp" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -38,13 +38,13 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "src/gotoxy_autogen/include"
   "src"
-  "src/."
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/."
   "/opt/robocomp/include"
   "/classes"
   "."
-  "/home/celia/robocomp/classes"
-  "/home/celia/robocomp/libs"
-  "/home/celia/robocomp/interfaces"
+  "/home/alumno/robocomp/classes"
+  "/home/alumno/robocomp/libs"
+  "/home/alumno/robocomp/interfaces"
   "/include"
   "/usr/include/x86_64-linux-gnu/qt5"
   "/usr/include/x86_64-linux-gnu/qt5/QtGui"
@@ -60,10 +60,10 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Pairs of files generated by the same build rule.
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.h" "/home/celia/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.h" "/home/celia/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/GenericBase.h" "/home/celia/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp"
-  "/home/celia/robocomp/robotica/practica4/gotoxy/src/Laser.h" "/home/celia/robocomp/robotica/practica4/gotoxy/src/Laser.cpp"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.h" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.h" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/GenericBase.h" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp"
+  "/home/alumno/robocomp/robotica/practica4/gotoxy/src/Laser.h" "/home/alumno/robocomp/robotica/practica4/gotoxy/src/Laser.cpp"
   )
 
 

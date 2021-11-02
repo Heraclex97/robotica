@@ -7,14 +7,14 @@ set(CMAKE_DEPENDS_GENERATOR "Unix Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "/home/celia/robocomp/cmake/modules/qt.cmake"
-  "/home/celia/robocomp/cmake/robocomp.cmake"
+  "/home/alumno/robocomp/cmake/modules/qt.cmake"
+  "/home/alumno/robocomp/cmake/robocomp.cmake"
   "CMakeFiles/3.16.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.16.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.16.3/CMakeSystem.cmake"
-  "CMakeLists.txt"
-  "src/CMakeLists.txt"
-  "src/CMakeListsSpecific.txt"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/CMakeLists.txt"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/CMakeLists.txt"
+  "/home/robocomp/robocomp/robotica/practica4/gotoxy/src/CMakeListsSpecific.txt"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5Config.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ConfigVersion.cmake"
   "/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5ModuleLocation.cmake"
@@ -185,6 +185,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "src/CMakeFiles/gotoxy.dir/DependInfo.cmake"
-  "src/CMakeFiles/ICES__home_celia_robocomp_robotica_practica4_gotoxy_src.dir/DependInfo.cmake"
+  "src/CMakeFiles/ICES__home_robocomp_robocomp_robotica_practica4_gotoxy_src.dir/DependInfo.cmake"
   "src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake"
   )
