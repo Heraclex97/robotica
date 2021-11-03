@@ -187,10 +187,15 @@ void SpecificWorker::doShock()
 
 void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
 {
-    differentialrobot_proxy->setSpeedBase(0, ldata.front().angle + 0.5);
-    usleep(rand() % (1500000 - 100000 + 1) + 100000);
-    differentialrobot_proxy->setSpeedBase(5, 0);
 
+    std::cout << "Valor: " << ldata[10].angle << std::endl;
+    if(ldata[10].angle >= 1.45 && ldata[10].angle <= 1.60){
+        currentS = State::GOTO;
+    }else {
+        differentialrobot_proxy->setSpeedBase(0, 0.3);
+        usleep(rand() % (1500000 - 100000 + 1) + 100000);
+        differentialrobot_proxy->setSpeedBase(5, 0);
+    }
 
 //    currentS = State::GOTO;
 
