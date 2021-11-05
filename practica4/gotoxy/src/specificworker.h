@@ -86,6 +86,10 @@ private:
     bool target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar);
 
     bool lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left);
+
+    bool check_free_path_to_target(const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/);
+
+    QPointF world_to_robotTest(Eigen::Vector2f RW, Target target);
 };
 
 #endif

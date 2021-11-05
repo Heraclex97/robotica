@@ -117,7 +117,6 @@ void SpecificWorker::compute()
     {
         case State::IDLE:
             std::cout << "Idle " << std::endl;
-//            differentialrobot_proxy->setSpeedBase(0, 0);
             if (target.active)
                 currentS = State::GOTO;
             break;
@@ -128,6 +127,7 @@ void SpecificWorker::compute()
             break;
 
         case State::SHOCK:
+            std::cout << "Shock " << std::endl;
             doShock();
             break;
 
@@ -156,7 +156,7 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
 
     if (obstacle_ahead(ldata, 700))
     {
-        differentialrobot_proxy->setSpeedBase(0, beta);
+//        differentialrobot_proxy->setSpeedBase(0, beta);
         currentS = State::SHOCK;
     }
     else {
@@ -177,7 +177,6 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
 
 void SpecificWorker::doShock()
 {
-    std::cout << "Shock " << std::endl;
     differentialrobot_proxy->setSpeedBase(0,0.6);
     usleep(rand() % (1500000 - 100000 + 1) + 100000);
 
@@ -187,14 +186,15 @@ void SpecificWorker::doShock()
 
 void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
 {
-
-    std::cout << "Valor: " << ldata[10].angle << std::endl;
-    if(ldata[10].angle >= 1.45 && ldata[10].angle <= 1.60){
+    if(check_free_path_to_target(ldata)){
         currentS = State::GOTO;
     }else {
-        differentialrobot_proxy->setSpeedBase(0, 0.3);
         usleep(rand() % (1500000 - 100000 + 1) + 100000);
-        differentialrobot_proxy->setSpeedBase(5, 0);
+        differentialrobot_proxy->setSpeedBase(50, 0);
+        std::cout << "Adv " << ldata[10].angle << std::endl;
+        differentialrobot_proxy->setSpeedBase(0, 0.3);
+        std::cout << "Girando " << ldata[10].angle << std::endl;
+        sleep(1);
     }
 
 //    currentS = State::GOTO;
@@ -219,10 +219,75 @@ bool SpecificWorker::lateral_distance(const RoboCompLaser::TLaserData &ldata, in
     return (*min).dist < dist;
 }
 
-bool SpecificWorker::target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar)
+bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/)
 {
-    return false;
+    // lambda to convert from Eigen to QPointF
+    auto toQPointF = [](const Eigen::Vector2f &p){ return QPointF(p.x(),p.y());};
+    bool reachable = true;
+    RoboCompGenericBase::TBaseState baseState;
+    differentialrobot_proxy->getBaseState(baseState);
+    // create polyggon
+    QPolygonF pol;
+    pol << QPointF(0,0);
+    for(const auto &l: ldata)
+        pol << QPointF(l.dist*sin(l.angle), l.dist*cos(l.angle));
+
+    // create tube lines
+    Eigen::Vector2f robot(baseState.x,baseState.z);
+    Eigen::Vector2f robot2(0.0,0.0);
+     QPointF tar = world_to_robotTest(robot,target);
+    Eigen::Vector2f goal_r(tar.x(),tar.y());
+    // number of parts the target vector is divided into
+    float parts = (goal_r).norm()/(ROBOT_LENGTH/4);
+    Eigen::Vector2f rside(220, 200);
+    Eigen::Vector2f lside(-220, 200);
+    if(parts < 1) return false;
+
+    QPointF p,q,r;
+    for(float l=0.0; l <= 1.0; l+=1.0/parts)
+//    for(auto l :  iter::range(0.0, 1.0, 1.0/parts))
+    {
+        p = toQPointF(robot2*(1-l) + goal_r*l);
+        q = toQPointF((robot2+rside)*(1-l) + (goal_r+rside)*l);
+        r = toQPointF((robot2+lside)*(1-l) + (goal_r+lside)*l);
+        if( not pol.containsPoint(p, Qt::OddEvenFill) or
+            not pol.containsPoint(q, Qt::OddEvenFill) or
+            not pol.containsPoint(r, Qt::OddEvenFill)) {
+            std::cout << "False if del for " << ldata[10].angle << std::endl;
+            reachable = false;
+            break;
+        }
+    }
+
+    // draw
+//    QLineFline_center(toQPointF(from_robot_to_world(robot)), toQPointF(from_robot_to_world(Eigen::Vector2f(p.x(),p.y()))));
+//    QLineF line_right(toQPointF(from_robot_to_world(robot+rside)), toQPointF(from_robot_to_world(Eigen::Vector2f(q.x(),q.y()))));
+//    QLineF line_left(toQPointF(from_robot_to_world(robot+lside)), toQPointF(from_robot_to_world(Eigen::Vector2f(r.x(),q.y()))));
+
+    QLineF line_center(toQPointF(robot), world_to_robotTest(robot2,target));
+    QLineF line_right(toQPointF(robot+rside), world_to_robotTest(robot2,target));
+    QLineF line_left(toQPointF(robot+lside), world_to_robotTest(robot2,target));
+    static QGraphicsItem *graphics_line_center = nullptr;
+    static QGraphicsItem *graphics_line_right = nullptr;
+    static QGraphicsItem *graphics_line_left = nullptr;
+    static QGraphicsItem *graphics_target = nullptr;
+    if (graphics_line_center != nullptr)
+        viewer->scene.removeItem(graphics_line_center);
+    if (graphics_line_right != nullptr)
+        viewer->scene.removeItem(graphics_line_right);
+    if (graphics_line_left != nullptr)
+        viewer->scene.removeItem(graphics_line_left);
+    if (graphics_target != nullptr)
+        viewer->scene.removeItem(graphics_target);
+    graphics_line_center = viewer->scene.addLine(line_center, QPen(QColor("Blue"), 30));
+    graphics_line_right = viewer->scene.addLine(line_right, QPen(QColor("Orange"), 30));
+    graphics_line_left = viewer->scene.addLine(line_left, QPen(QColor("Magenta"), 30));
+    graphics_target = viewer->scene.addEllipse(-100, -100, 200, 200, QPen(QColor("Blue")), QBrush(QColor("Blue")));
+    graphics_target->setPos(target.pos.x(), target.pos.y());
+
+    return reachable;
 }
+
 
 void SpecificWorker::new_target_slot(QPointF t)
 {
@@ -268,6 +333,27 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
     float alfa = state.alpha;
     Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
     Eigen::Vector2f RW(state.x,state.z); //robot
+
+    Eigen::Matrix2f R(2,2);
+    R(0,0) = cos(alfa);
+    R(0,1) = sin(alfa);
+    R(1,0) = -sin(alfa);
+    R(1,1) = cos(alfa);
+
+    auto TR = R * (TW-RW);
+
+    actual_point = QPointF(TR.x(),TR.y());
+
+    return actual_point;
+}
+
+QPointF SpecificWorker::world_to_robotTest(Eigen::Vector2f RW, SpecificWorker::Target target)
+{
+//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
+    float alfa = atan2(RW.x(),RW.y());
+//            state.alpha;
+    Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
+//    Eigen::Vector2f RW(state.x,state.z); //robot
 
     Eigen::Matrix2f R(2,2);
     R(0,0) = cos(alfa);
