@@ -18,60 +18,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d8eab308-5981-4ff3-9ba7-07f3f551d68f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeError.log" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeError.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeRuleHashes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeRuleHashes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/Makefile2" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Makefile2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/TargetDirectories.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/gotoxy" beforeDir="false" afterPath="$PROJECT_DIR$/bin/gotoxy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/CommonBehavior.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/CommonBehavior.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/DependInfo.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/DifferentialRobot.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/DifferentialRobot.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/GenericBase.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/GenericBase.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/Laser.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/Laser.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/cmake_clean.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/cmake_clean.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/commonbehaviorI.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/commonbehaviorI.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/depend.internal" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/depend.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/flags.make" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/flags.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericmonitor.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericmonitor.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericworker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/genericworker.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/link.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificmonitor.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificmonitor.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenInfo.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenUsed.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/AutogenUsed.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/DependInfo.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy_autogen.dir/build.make" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommonBehavior.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommonBehavior.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CommonBehavior.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/CommonBehavior.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DifferentialRobot.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifferentialRobot.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DifferentialRobot.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/DifferentialRobot.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenericBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericBase.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GenericBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/GenericBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Laser.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Laser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/src/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/cmake_install.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericmonitor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericmonitor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericworker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_genericworker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificmonitor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificmonitor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificworker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/EWIEGA46WW/moc_specificworker.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/include/moc_sigwatch.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/include/moc_sigwatch.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/moc_predefs.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/moc_predefs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gotoxy_autogen/mocs_compilation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/gotoxy_autogen/mocs_compilation.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specificworker.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/specificworker.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/specificworker.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/specificworker.h" afterDir="false" />
     </list>
@@ -121,11 +72,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="gotoxy" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="gotoxy" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="gotoxy" RUN_TARGET_NAME="gotoxy">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -162,6 +108,7 @@
       <workItem from="1635864464289" duration="5861000" />
       <workItem from="1635951349691" duration="1815000" />
       <workItem from="1636105687800" duration="10387000" />
+      <workItem from="1636200323393" duration="5020000" />
     </task>
     <servers />
   </component>

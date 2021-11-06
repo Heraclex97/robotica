@@ -128,7 +128,7 @@ void SpecificWorker::compute()
 
         case State::SHOCK:
             std::cout << "Shock " << std::endl;
-            doShock();
+            doShock(ldata);
             break;
 
         case State::DODGE:
@@ -156,7 +156,6 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
 
     if (obstacle_ahead(ldata, 700))
     {
-//        differentialrobot_proxy->setSpeedBase(0, beta);
         currentS = State::SHOCK;
     }
     else {
@@ -175,26 +174,30 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
     }
 }
 
-void SpecificWorker::doShock()
+void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
 {
-    differentialrobot_proxy->setSpeedBase(0,0.6);
-    usleep(rand() % (1500000 - 100000 + 1) + 100000);
-
-//    if (min->dist >= 300)
+//    usleep(rand() % (1500000 - 100000 + 1) + 100000);
+    if (!obstacle_ahead(ldata,1000,10))
         currentS = State::DODGE;
+    else
+        differentialrobot_proxy->setSpeedBase(0,0.6);
 }
 
 void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
 {
     if(check_free_path_to_target(ldata)){
         currentS = State::GOTO;
-    }else {
-        usleep(rand() % (1500000 - 100000 + 1) + 100000);
-        differentialrobot_proxy->setSpeedBase(50, 0);
-        std::cout << "Adv " << ldata[10].angle << std::endl;
-        differentialrobot_proxy->setSpeedBase(0, 0.3);
-        std::cout << "Girando " << ldata[10].angle << std::endl;
-        sleep(1);
+    } else {
+//        usleep(rand() % (1500000 - 100000 + 1) + 100000);
+        if (lateral_distance(ldata,450,true)) {
+            differentialrobot_proxy->setSpeedBase(300, 0.7);
+//            std::cout << "Adv " << ldata[10].angle << std::endl;
+//            differentialrobot_proxy->setSpeedBase(0, 0.3);
+//            std::cout << "Girando " << ldata[10].angle << std::endl;
+        }
+        else
+            differentialrobot_proxy->setSpeedBase(300, -0.7);
+//        sleep(1);
     }
 
 //    currentS = State::GOTO;
@@ -211,12 +214,11 @@ bool SpecificWorker::obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int 
 
 bool SpecificWorker::lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left)
 {
-    __gnu_cxx::__normal_iterator<const RoboCompLaser::TData *, vector<RoboCompLaser::TData>> min;
+//    auto min;
     if (left)
-        min = std::min_element(ldata.begin() + 10, ldata.begin() + 30, [](auto a, auto b) { return a.dist < b.dist; });
+        return (std::min_element(ldata.begin()+55, ldata.begin()+65, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
     else
-        min = std::min_element(ldata.end()-10, ldata.end()-30, [](auto a, auto b) { return a.dist < b.dist; });
-    return (*min).dist < dist;
+        return (std::min_element(ldata.end()-50, ldata.end()-90, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
 }
 
 bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/)
@@ -235,7 +237,7 @@ bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData 
     // create tube lines
     Eigen::Vector2f robot(baseState.x,baseState.z);
     Eigen::Vector2f robot2(0.0,0.0);
-     QPointF tar = world_to_robotTest(robot,target);
+    QPointF tar = world_to_robotTest(robot,target);
     Eigen::Vector2f goal_r(tar.x(),tar.y());
     // number of parts the target vector is divided into
     float parts = (goal_r).norm()/(ROBOT_LENGTH/4);
@@ -253,17 +255,14 @@ bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData 
         if( not pol.containsPoint(p, Qt::OddEvenFill) or
             not pol.containsPoint(q, Qt::OddEvenFill) or
             not pol.containsPoint(r, Qt::OddEvenFill)) {
-            std::cout << "False if del for " << ldata[10].angle << std::endl;
             reachable = false;
             break;
         }
+        else
+            reachable = true;
     }
 
     // draw
-//    QLineFline_center(toQPointF(from_robot_to_world(robot)), toQPointF(from_robot_to_world(Eigen::Vector2f(p.x(),p.y()))));
-//    QLineF line_right(toQPointF(from_robot_to_world(robot+rside)), toQPointF(from_robot_to_world(Eigen::Vector2f(q.x(),q.y()))));
-//    QLineF line_left(toQPointF(from_robot_to_world(robot+lside)), toQPointF(from_robot_to_world(Eigen::Vector2f(r.x(),q.y()))));
-
     QLineF line_center(toQPointF(robot), world_to_robotTest(robot2,target));
     QLineF line_right(toQPointF(robot+rside), world_to_robotTest(robot2,target));
     QLineF line_left(toQPointF(robot+lside), world_to_robotTest(robot2,target));
@@ -287,7 +286,6 @@ bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData 
 
     return reachable;
 }
-
 
 void SpecificWorker::new_target_slot(QPointF t)
 {
@@ -341,7 +339,6 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
     R(1,1) = cos(alfa);
 
     auto TR = R * (TW-RW);
-
     actual_point = QPointF(TR.x(),TR.y());
 
     return actual_point;
@@ -349,11 +346,8 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
 
 QPointF SpecificWorker::world_to_robotTest(Eigen::Vector2f RW, SpecificWorker::Target target)
 {
-//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
     float alfa = atan2(RW.x(),RW.y());
-//            state.alpha;
     Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
-//    Eigen::Vector2f RW(state.x,state.z); //robot
 
     Eigen::Matrix2f R(2,2);
     R(0,0) = cos(alfa);
@@ -362,7 +356,6 @@ QPointF SpecificWorker::world_to_robotTest(Eigen::Vector2f RW, SpecificWorker::T
     R(1,1) = cos(alfa);
 
     auto TR = R * (TW-RW);
-
     actual_point = QPointF(TR.x(),TR.y());
 
     return actual_point;

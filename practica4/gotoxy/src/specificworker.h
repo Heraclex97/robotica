@@ -74,7 +74,7 @@ private:
     Line line;
 
     void gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta);
-    void doShock();
+    void doShock(const RoboCompLaser::TLaserData &ldata);
     void doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot);
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
