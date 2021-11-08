@@ -67,9 +67,6 @@ void SpecificWorker::initialize(int period)
     catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
     connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
     //    Cada vez que se pulse la pantalla, se crea la ecuación general de la recta
-    line.A=bState.z-target.pos.y();
-    line.B=target.pos.x()-bState.x;
-    line.C=(bState.x-target.pos.x())*bState.z+(target.pos.y()-bState.z)*bState.x;
 
 
 	this->Period = period;
@@ -116,7 +113,7 @@ void SpecificWorker::compute()
     switch (currentS)
     {
         case State::IDLE:
-            std::cout << "Idle " << std::endl;
+//            std::cout << "Idle " << std::endl;
             if (target.active)
                 currentS = State::GOTO;
             break;
@@ -127,13 +124,13 @@ void SpecificWorker::compute()
             break;
 
         case State::SHOCK:
-            std::cout << "Shock " << std::endl;
+//            std::cout << "Shock " << std::endl;
             doShock(ldata);
             break;
 
         case State::DODGE:
             std::cout << "Dodge " << std::endl;
-            doDodge(ldata, adv, beta);
+            doDodge(ldata, 300, 0.7);
             break;
     }
 }
@@ -176,7 +173,6 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
 
 void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
 {
-//    usleep(rand() % (1500000 - 100000 + 1) + 100000);
     if (!obstacle_ahead(ldata,1000,10))
         currentS = State::DODGE;
     else
@@ -185,35 +181,22 @@ void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
 
 void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
 {
-    if(check_free_path_to_target(ldata) || line_dist(100)){
+    if(check_free_path_to_target(ldata) || (mehemovio>200 && line_dist(10))) {
         currentS = State::GOTO;
     } else {
-//        usleep(rand() % (1500000 - 100000 + 1) + 100000);
-        if (lateral_distance(ldata,450,true)) {
-            differentialrobot_proxy->setSpeedBase(300, 0.7);
-//            std::cout << "Adv " << ldata[10].angle << std::endl;
-//            differentialrobot_proxy->setSpeedBase(0, 0.3);
-//            std::cout << "Girando " << ldata[10].angle << std::endl;
-        }
+        mehemovio++;
+        if (lateral_distance(ldata,450,true))
+            differentialrobot_proxy->setSpeedBase(speed, rot);
         else
-            differentialrobot_proxy->setSpeedBase(300, -0.7);
-//        sleep(1);
+            differentialrobot_proxy->setSpeedBase(speed, -rot);
     }
-
-//    currentS = State::GOTO;
-
-//    d = abs(line.A*posx+line.B*posy+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
-//    if (d < umbral) currentS = State::GOTO;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
 bool SpecificWorker::line_dist(int threshold)
 {
-    auto d = abs(line.A*actual_point.x()+line.B*actual_point.y()+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
-  if (d < threshold)
-  {
-    return true;
-  }
-  return false;
+    auto d = abs(line.A*last_point.x()+line.B*last_point.y()+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
+    if (d < threshold)    return true;
+    else    return false;
 }
 
 bool SpecificWorker::obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth)
@@ -224,11 +207,10 @@ bool SpecificWorker::obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int 
 
 bool SpecificWorker::lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left)
 {
-//    auto min;
     if (left)
-        return (std::min_element(ldata.begin()+55, ldata.begin()+65, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
+        return (std::min_element(ldata.begin()+45, ldata.begin()+60, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
     else
-        return (std::min_element(ldata.end()-50, ldata.end()-90, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
+        return (std::min_element(ldata.end()-60, ldata.end()-45, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
 }
 
 bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/)
@@ -302,6 +284,11 @@ void SpecificWorker::new_target_slot(QPointF t)
     qInfo()<<t;
     target.pos = t;
     target.active = true;
+    line.A=last_point.y()-target.pos.y();
+    line.B=target.pos.x()-last_point.x();
+    line.C=(last_point.x()-target.pos.x())*last_point.y()+(target.pos.y()-last_point.y())*last_point.x();
+    mehemovio=0;
+
 }
 
 int SpecificWorker::startup_check()
@@ -311,8 +298,8 @@ int SpecificWorker::startup_check()
 	return 0;
 }
 
-void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot coordinates
-{
+void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata)
+{ // robot coordinates
     static QGraphicsItem *laser_polygon = nullptr;
     float x,y;
     // code to delete any existing laser graphic element

@@ -17,11 +17,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d8eab308-5981-4ff3-9ba7-07f3f551d68f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../practica3/gotoxy/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/../../practica3/gotoxy/CMakeFiles/Makefile.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../practica3/gotoxy/bin/gotoxy" beforeDir="false" afterPath="$PROJECT_DIR$/../../practica3/gotoxy/bin/gotoxy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../practica3/gotoxy/src/CMakeFiles/gotoxy.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/../../practica3/gotoxy/src/CMakeFiles/gotoxy.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../practica3/gotoxy/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/../../practica3/gotoxy/src/CMakeFiles/gotoxy.dir/specificworker.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../../practica3/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeCache.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeDirectoryInformation.cmake" afterDir="false" />
@@ -111,11 +106,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="gotoxy" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="gotoxy" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="gotoxy" RUN_TARGET_NAME="gotoxy">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -124,6 +114,11 @@
     <configuration name="gotoxy_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="gotoxy_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>

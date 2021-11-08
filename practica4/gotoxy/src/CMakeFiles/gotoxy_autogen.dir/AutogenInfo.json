@@ -1,61 +1,61 @@
 {
-	"BUILD_DIR" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen",
-	"CMAKE_BINARY_DIR" : "/home/ruben/robocomp/robotica/practica4/gotoxy",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src",
+	"BUILD_DIR" : "/home/celia/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen",
+	"CMAKE_BINARY_DIR" : "/home/celia/robocomp/robotica/practica4/gotoxy",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/celia/robocomp/robotica/practica4/gotoxy/src",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/celia/robocomp/robotica/practica4/gotoxy/src",
 	"CMAKE_EXECUTABLE" : "/usr/bin/cmake",
-	"CMAKE_SOURCE_DIR" : "/home/ruben/robocomp/robotica/practica4/gotoxy",
+	"CMAKE_SOURCE_DIR" : "/home/celia/robocomp/robotica/practica4/gotoxy",
 	"HEADERS" : 
 	[
 		[
-			"/home/ruben/robocomp/classes/abstract_graphic_viewer/abstract_graphic_viewer.h",
+			"/home/celia/robocomp/classes/abstract_graphic_viewer/abstract_graphic_viewer.h",
 			"MU",
-			"M6JJUDFZNR/moc_abstract_graphic_viewer.cpp"
+			"7MJOFWRSNX/moc_abstract_graphic_viewer.cpp"
 		],
 		[
-			"/home/ruben/robocomp/classes/qlog/qlog.h",
+			"/home/celia/robocomp/classes/qlog/qlog.h",
 			"MU",
-			"FKEF6O2Q42/moc_qlog.cpp"
+			"EZB72ZHE37/moc_qlog.cpp"
 		],
 		[
-			"/home/ruben/robocomp/classes/rapplication/rapplication.h",
+			"/home/celia/robocomp/classes/rapplication/rapplication.h",
 			"MU",
-			"NHS33HOIHE/moc_rapplication.cpp"
+			"RYOOJZUFWZ/moc_rapplication.cpp"
 		],
 		[
-			"/home/ruben/robocomp/classes/sigwatch/sigwatch.h",
+			"/home/celia/robocomp/classes/sigwatch/sigwatch.h",
 			"MU",
-			"QW65DIT4T2/moc_sigwatch.cpp"
+			"MKPH3C7EQ6/moc_sigwatch.cpp"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/commonbehaviorI.h",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/commonbehaviorI.h",
 			"MU",
 			"EWIEGA46WW/moc_commonbehaviorI.cpp"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/genericmonitor.h",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/genericmonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_genericmonitor.cpp"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/genericworker.h",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/genericworker.h",
 			"MU",
 			"EWIEGA46WW/moc_genericworker.cpp"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/specificmonitor.h",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/specificmonitor.h",
 			"MU",
 			"EWIEGA46WW/moc_specificmonitor.cpp"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/specificworker.h",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/specificworker.h",
 			"MU",
 			"EWIEGA46WW/moc_specificworker.cpp"
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/celia/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/celia/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : 
 	[
 		"ICE_CPP11_MAPPING",
@@ -78,14 +78,14 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src",
 		"/opt/robocomp/include",
 		"/classes",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy",
-		"/home/ruben/robocomp/classes",
-		"/home/ruben/robocomp/libs",
-		"/home/ruben/robocomp/interfaces",
+		"/home/celia/robocomp/robotica/practica4/gotoxy",
+		"/home/celia/robocomp/classes",
+		"/home/celia/robocomp/libs",
+		"/home/celia/robocomp/interfaces",
 		"/include",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",
@@ -116,47 +116,47 @@
 		"-c",
 		"/usr/share/cmake-3.16/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/celia/robocomp/robotica/practica4/gotoxy/src/gotoxy_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
 	"MOC_SKIP" : 
 	[
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/Laser.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/ui_mainUI.h"
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/Laser.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/ui_mainUI.h"
 	],
 	"MULTI_CONFIG" : false,
-	"PARALLEL" : 4,
-	"PARSE_CACHE_FILE" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt",
+	"PARALLEL" : 6,
+	"PARSE_CACHE_FILE" : "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/usr/lib/qt5/bin/moc",
 	"QT_UIC_EXECUTABLE" : "/usr/lib/qt5/bin/uic",
 	"QT_VERSION_MAJOR" : 5,
-	"SETTINGS_FILE" : "/home/ruben/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/celia/robocomp/robotica/practica4/gotoxy/src/CMakeFiles/gotoxy_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/ruben/robocomp/classes/qlog/qlog.cpp", "MU" ],
-		[ "/home/ruben/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
-		[ "/home/ruben/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
+		[ "/home/celia/robocomp/classes/qlog/qlog.cpp", "MU" ],
+		[ "/home/celia/robocomp/classes/rapplication/rapplication.cpp", "MU" ],
+		[ "/home/celia/robocomp/classes/sigwatch/sigwatch.cpp", "MU" ],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/commonbehaviorI.cpp",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/commonbehaviorI.cpp",
 			"MU"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/genericmonitor.cpp",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/genericmonitor.cpp",
 			"MU"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/genericworker.cpp",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/genericworker.cpp",
 			"MU"
 		],
-		[ "/home/ruben/robocomp/robotica/practica4/gotoxy/src/main.cpp", "MU" ],
+		[ "/home/celia/robocomp/robotica/practica4/gotoxy/src/main.cpp", "MU" ],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/specificmonitor.cpp",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/specificmonitor.cpp",
 			"MU"
 		],
 		[
-			"/home/ruben/robocomp/robotica/practica4/gotoxy/src/specificworker.cpp",
+			"/home/celia/robocomp/robotica/practica4/gotoxy/src/specificworker.cpp",
 			"MU"
 		]
 	],
@@ -164,12 +164,12 @@
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : 
 	[
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/Laser.cpp",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/mainUI.ui",
-		"/home/ruben/robocomp/robotica/practica4/gotoxy/src/ui_mainUI.h"
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/CommonBehavior.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/DifferentialRobot.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/GenericBase.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/Laser.cpp",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/mainUI.ui",
+		"/home/celia/robocomp/robotica/practica4/gotoxy/src/ui_mainUI.h"
 	],
 	"UIC_UI_FILES" : [],
 	"VERBOSITY" : 0
