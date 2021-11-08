@@ -130,7 +130,7 @@ void SpecificWorker::compute()
 
         case State::DODGE:
             std::cout << "Dodge " << std::endl;
-            doDodge(ldata, 300, 0.7);
+            doDodge(ldata, baseState,300, 0.7);
             break;
     }
 }
@@ -153,6 +153,7 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
 
     if (obstacle_ahead(ldata, 700))
     {
+        differentialrobot_proxy->setSpeedBase(adv-200, beta);
         currentS = State::SHOCK;
     }
     else {
@@ -179,22 +180,21 @@ void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
         differentialrobot_proxy->setSpeedBase(0,0.6);
 }
 
-void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
+void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState &base, float speed, float rot)
 {
-    if(check_free_path_to_target(ldata) || (mehemovio>200 && line_dist(10))) {
+    if(check_free_path_to_target(ldata) || line_dist(base,10)) {
         currentS = State::GOTO;
     } else {
-        mehemovio++;
-        if (lateral_distance(ldata,450,true))
+        if (lateral_distance(ldata,500,true))
             differentialrobot_proxy->setSpeedBase(speed, rot);
         else
             differentialrobot_proxy->setSpeedBase(speed, -rot);
     }
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
-bool SpecificWorker::line_dist(int threshold)
+bool SpecificWorker::line_dist(RoboCompGenericBase::TBaseState &base, int threshold)
 {
-    auto d = abs(line.A*last_point.x()+line.B*last_point.y()+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
+    auto d = abs(line.A*base.x+line.B*base.z+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
     if (d < threshold)    return true;
     else    return false;
 }
@@ -208,12 +208,12 @@ bool SpecificWorker::obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int 
 bool SpecificWorker::lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left)
 {
     if (left)
-        return (std::min_element(ldata.begin()+45, ldata.begin()+60, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
+        return (std::min_element(ldata.begin()+45, ldata.begin()+65, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
     else
-        return (std::min_element(ldata.end()-60, ldata.end()-45, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
+        return (std::min_element(ldata.end()-65, ldata.end()-45, [](auto a, auto b) { return a.dist < b.dist; }))->dist < dist;
 }
 
-bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/)
+bool SpecificWorker::check_free_path_to_target( const RoboCompLaser::TLaserData &ldata)
 {
     // lambda to convert from Eigen to QPointF
     auto toQPointF = [](const Eigen::Vector2f &p){ return QPointF(p.x(),p.y());};
@@ -284,11 +284,14 @@ void SpecificWorker::new_target_slot(QPointF t)
     qInfo()<<t;
     target.pos = t;
     target.active = true;
-    line.A=last_point.y()-target.pos.y();
-    line.B=target.pos.x()-last_point.x();
-    line.C=(last_point.x()-target.pos.x())*last_point.y()+(target.pos.y()-last_point.y())*last_point.x();
-    mehemovio=0;
 
+    RoboCompGenericBase::TBaseState bState;
+    differentialrobot_proxy->getBaseState(bState);
+    QPointF origin = QPointF(bState.x, bState.z);
+
+    line.A=origin.y()-target.pos.y();
+    line.B=target.pos.x()-origin.x();
+    line.C=(origin.x()-target.pos.x())*origin.y()+(target.pos.y()-origin.y())*origin.x();
 }
 
 int SpecificWorker::startup_check()

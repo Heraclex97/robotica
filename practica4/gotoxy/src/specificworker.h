@@ -73,11 +73,9 @@ private:
     };
     Line line;
 
-    int mehemovio = 0;
-
     void gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta);
     void doShock(const RoboCompLaser::TLaserData &ldata);
-    void doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot);
+    void doDodge(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState &base, float speed, float rot);
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
     State currentS = State::IDLE;
@@ -85,9 +83,9 @@ private:
     bool obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth=10);
     bool target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar);
     bool lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left);
-    bool check_free_path_to_target(const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/);
+    bool check_free_path_to_target(const RoboCompLaser::TLaserData &ldata);
     QPointF world_to_robotTest(Eigen::Vector2f RW, Target target);
-    bool line_dist(int threshold);
+    bool line_dist(RoboCompGenericBase::TBaseState &base, int threshold);
 
 };
 
