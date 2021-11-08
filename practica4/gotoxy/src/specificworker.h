@@ -90,6 +90,8 @@ private:
     bool check_free_path_to_target(const RoboCompLaser::TLaserData &ldata/*, const Eigen::Vector2f &goal*/);
 
     QPointF world_to_robotTest(Eigen::Vector2f RW, Target target);
+
+    bool line_dist(int threshold);
 };
 
 #endif

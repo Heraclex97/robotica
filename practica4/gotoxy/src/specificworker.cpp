@@ -185,7 +185,7 @@ void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
 
 void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot)
 {
-    if(check_free_path_to_target(ldata)){
+    if(check_free_path_to_target(ldata) || line_dist(100)){
         currentS = State::GOTO;
     } else {
 //        usleep(rand() % (1500000 - 100000 + 1) + 100000);
@@ -206,6 +206,16 @@ void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, float speed
 //    if (d < umbral) currentS = State::GOTO;
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////
+bool SpecificWorker::line_dist(int threshold)
+{
+    auto d = abs(line.A*actual_point.x()+line.B*actual_point.y()+line.C)/ sqrt(pow(line.A,2)+ pow(line.B,2));
+  if (d < threshold)
+  {
+    return true;
+  }
+  return false;
+}
+
 bool SpecificWorker::obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth)
 {
     auto min = std::min_element(ldata.begin()+(ldata.size()/2 - semiwidth), ldata.end()-(ldata.size()/2 + semiwidth), [](auto a, auto b) { return a.dist < b.dist; });
