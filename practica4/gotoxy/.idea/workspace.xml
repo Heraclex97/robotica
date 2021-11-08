@@ -18,6 +18,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d8eab308-5981-4ff3-9ba7-07f3f551d68f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeError.log" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeError.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/CMakeOutput.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/Testing/Temporary/LastTest.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/gotoxy" beforeDir="false" afterPath="$PROJECT_DIR$/bin/gotoxy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/src/CMakeFiles/gotoxy.dir/gotoxy_autogen/mocs_compilation.cpp.o" afterDir="false" />
@@ -73,6 +75,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="gotoxy" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="gotoxy" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="gotoxy" RUN_TARGET_NAME="gotoxy">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -81,11 +88,6 @@
     <configuration name="gotoxy_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="gotoxy" TARGET_NAME="gotoxy_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -111,6 +113,7 @@
       <workItem from="1636105687800" duration="10387000" />
       <workItem from="1636200323393" duration="5020000" />
       <workItem from="1636360754283" duration="854000" />
+      <workItem from="1636382280310" duration="5722000" />
     </task>
     <servers />
   </component>

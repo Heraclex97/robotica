@@ -57,6 +57,7 @@ private:
     QGraphicsRectItem *laser_in_robot_polygon;
     QPointF last_point;
     QPointF actual_point;
+    int movDodge;
 
     struct Target
     {
