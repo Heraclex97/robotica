@@ -66,8 +66,6 @@ void SpecificWorker::initialize(int period)
     }
     catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
     connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
-    //    Cada vez que se pulse la pantalla, se crea la ecuación general de la recta
-
 
 	this->Period = period;
 	if(this->startup_check_flag)
@@ -106,50 +104,40 @@ void SpecificWorker::compute()
     {
         std::cout << ex << std::endl;
     }
-    //p4
-    //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
-    QPointF ppr;
 
     switch (currentS)
     {
         case State::IDLE:
-//            std::cout << "Idle " << std::endl;
+            std::cout << "Idle " << std::endl;
             movDodge = 0;
             if (target.active)
                 currentS = State::GOTO;
             break;
 
         case State::GOTO:
-//            std::cout << "Goto " << std::endl;
-            gotoTarget(ldata,baseState,ppr,adv,beta);
+            std::cout << "Goto " << std::endl;
+            gotoTarget(ldata,baseState,adv,beta);
             break;
 
         case State::SHOCK:
-//            std::cout << "Shock " << std::endl;
+            std::cout << "Shock " << std::endl;
             doShock(ldata);
             break;
 
         case State::DODGE:
-//            std::cout << "Dodge " << movDodge << std::endl;
+            std::cout << "Dodge " << std::endl;
             doDodge(ldata, baseState,300, 0.7);
             break;
     }
 }
 
-void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta)
+void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState, float adv, float beta)
 {
-    float mod;
-    float s;
-    float reduce_speed_if_turning;
-
-    //pasar target a coordenadas del robot (está en coordenadas del mundo)
-    pr = world_to_robot(baseState, target);//devuelve un QPointF
-    mod = sqrt(pow(pr.x(),2)+pow(pr.y(),2));
-    //calcular el ang que forma el robot con el target deltaRot1
-    beta = atan2(pr.x(),pr.y()); //velocidad de giro
-    //calcular una velocidad de avance que depende de la distancia y si se esta girando
-    s = 0.1;
-    reduce_speed_if_turning = exp(-pow(beta,2)/s);
+    QPointF pr = world_to_robot(baseState, target);
+    float mod = sqrt(pow(pr.x(),2)+pow(pr.y(),2));
+    beta = atan2(pr.x(),pr.y());
+    float s = 0.1;
+    float reduce_speed_if_turning = exp(-pow(beta,2)/s);
     adv = MAX_ADV_VEL * reduce_speed_if_turning * reduce_speed_if_close_to_target(mod);
 
     if (obstacle_ahead(ldata, 700))
@@ -175,10 +163,8 @@ void SpecificWorker::gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboComp
 
 void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
 {
-    if (!obstacle_ahead(ldata,1000,10)) {
-        std::cout << "Dodge " << std::endl;
+    if (!obstacle_ahead(ldata,1000,10))
         currentS = State::DODGE;
-    }
     else
         differentialrobot_proxy->setSpeedBase(0,0.6);
 }
@@ -186,11 +172,9 @@ void SpecificWorker::doShock(const RoboCompLaser::TLaserData &ldata)
 void SpecificWorker::doDodge(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState &base, float speed, float rot)
 {
     if(check_free_path_to_target(ldata) && lateral_distance(ldata,300,true)) {
-        std::cout << "Goto por check" << std::endl;
         currentS = State::GOTO;
     }
     else if (line_dist(base,10) && movDodge > 15) {
-        std::cout << "Goto por line_dist " << movDodge << std::endl;
         currentS = State::GOTO;
         movDodge = 0;
     } else {
@@ -333,7 +317,6 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata)
 
 QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target)
 {
-//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
     float alfa = state.alpha;
     Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
     Eigen::Vector2f RW(state.x,state.z); //robot
@@ -369,7 +352,6 @@ QPointF SpecificWorker::world_to_robotTest(Eigen::Vector2f RW, SpecificWorker::T
 
 float SpecificWorker::reduce_speed_if_close_to_target(float mod)
 {
-
     if ( mod<=150){
         return 0;
     }else if ( mod >1000){
