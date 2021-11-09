@@ -108,10 +108,6 @@ void SpecificWorker::compute()
     }
     catch(const Ice::Exception &e){ std::cout << e.what() << std::endl;}
 
-    //p4
-    //maquina de estados ,idle(esperar),avanzar(si choque sale a otro estado bordear), bordear (haber llegado al target, tener target a la vista, atravesar la linea de target te devuelve a la linea principal
-    QPointF ppr;
-
     switch (currentS)
     {
         case State::IDLE:
@@ -127,6 +123,31 @@ void SpecificWorker::compute()
         case State::DODGE:
             break;
     }
+}
+
+void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
+{
+    int i;
+    float x,y;
+    QPointF lineP;
+    Eigen::Vector2f RW (robot_polygon->x(), robot_polygon->y());
+    Eigen::Vector2f TW;
+
+    for (auto &p:ldata) {
+        x = p.dist * sin(p.angle);
+        y = p.dist * cos(p.angle);
+        QLineF line (robot_polygon->pos(),QPointF(x,y));
+        for (i = 0; i < line.length(); i+=TILE_SIZE/2) {
+            lineP = line.pointAt(i);
+            TW = Eigen::Vector2f (lineP.x(), lineP.y());
+            lineP = robot_to_world(RW,TW);
+            grid.add_miss(lineP);
+        }
+        if (p.dist < MAX_LASER_DIST)
+            grid.add_hit(lineP);
+    }
+
+
 }
 
 void SpecificWorker::new_target_slot(QPointF t)
@@ -182,6 +203,22 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
 
     auto TR = R * (TW-RW);
 
+    actual_point = QPointF(TR.x(),TR.y());
+
+    return actual_point;
+}
+
+QPointF SpecificWorker::robot_to_world(Eigen::Vector2f RW, Eigen::Vector2f TW)
+{
+    float alfa = atan2(RW.x(),RW.y());
+
+    Eigen::Matrix2f R(2,2);
+    R(0,0) = cos(alfa);
+    R(0,1) = -sin(alfa);
+    R(1,0) = sin(alfa);
+    R(1,1) = cos(alfa);
+
+    auto TR = R * TW + RW;
     actual_point = QPointF(TR.x(),TR.y());
 
     return actual_point;

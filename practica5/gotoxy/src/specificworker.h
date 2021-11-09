@@ -49,9 +49,10 @@ public slots:
     void new_target_slot(QPointF);
 
 private:
-    Grid grid;
+    Grid TILE;
     const int TILE_SIZE = 100;
     const float MAX_ADV_VEL = 1000;
+    const float MAX_LASER_DIST = 4000;
     std::shared_ptr < InnerModel > innerModel;
     bool startup_check_flag;
     AbstractGraphicViewer *viewer;
@@ -76,19 +77,22 @@ private:
     };
     Line line;
 
-    void gotoTarget(const RoboCompLaser::TLaserData &ldata, RoboCompGenericBase::TBaseState baseState,QPointF pr, float adv, float beta);
-    void doShock();
-    void doDodge(const RoboCompLaser::TLaserData &ldata, float speed, float rot);
+
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, DODGE};
     State currentS = State::IDLE;
-    float reduce_speed_if_close_to_target(float mod);
 
     bool obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth=10);
 
     bool target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar);
 
     bool lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left);
+
+    void update_map(const RoboCompLaser::TLaserData &ldata);
+
+    QPointF robot_to_world(Eigen::Vector2f RW, Eigen::Vector2f TW);
+
+    float reduce_speed_if_close_to_target(float mod);
 };
 
 #endif
