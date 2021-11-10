@@ -49,7 +49,7 @@ public slots:
     void new_target_slot(QPointF);
 
 private:
-    Grid TILE;
+    Grid grid;
     const int TILE_SIZE = 100;
     const float MAX_ADV_VEL = 1000;
     const float MAX_LASER_DIST = 4000;
@@ -60,7 +60,6 @@ private:
     QGraphicsPolygonItem *robot_polygon;
     QGraphicsRectItem *laser_in_robot_polygon;
     QPointF last_point;
-    QPointF actual_point;
     float deltaRot1, deltaRot2, deltaTrans;
     struct Target
     {

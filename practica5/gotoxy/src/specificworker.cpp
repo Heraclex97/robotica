@@ -67,10 +67,7 @@ void SpecificWorker::initialize(int period)
     }
     catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
     connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
-    //    Cada vez que se pulse la pantalla, se crea la ecuación general de la recta
-    line.A=bState.z-target.pos.y();
-    line.B=target.pos.x()-bState.x;
-    line.C=(bState.x-target.pos.x())*bState.z+(target.pos.y()-bState.z)*bState.x;
+
 
 
 	this->Period = period;
@@ -108,6 +105,7 @@ void SpecificWorker::compute()
     }
     catch(const Ice::Exception &e){ std::cout << e.what() << std::endl;}
 
+    update_map(ldata);
     switch (currentS)
     {
         case State::IDLE:
@@ -115,6 +113,7 @@ void SpecificWorker::compute()
             break;
 
         case State::GOTO:
+
             break;
 
         case State::SHOCK:
@@ -132,19 +131,22 @@ void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
     QPointF lineP;
     Eigen::Vector2f RW (robot_polygon->x(), robot_polygon->y());
     Eigen::Vector2f TW;
+    RoboCompGenericBase::TBaseState state;
+    differentialrobot_proxy->getBaseState(state);
 
     for (auto &p:ldata) {
         x = p.dist * sin(p.angle);
         y = p.dist * cos(p.angle);
-        QLineF line (robot_polygon->pos(),QPointF(x,y));
-        for (i = 0; i < line.length(); i+=TILE_SIZE/2) {
-            lineP = line.pointAt(i);
-            TW = Eigen::Vector2f (lineP.x(), lineP.y());
-            lineP = robot_to_world(RW,TW);
-            grid.add_miss(lineP);
+        for (i = 0; i <= 1; i+=TILE_SIZE/2) {
+            QPointF R; //R=0.0 + i*Q
+//            lineP = line.pointAt(i);
+//            TW = Eigen::Vector2f (lineP.x(), lineP.y());
+//            lineP = robot_to_world(RW,TW);
+//            TW = Eigen::Vector2f (lineP.x(), lineP.y());
+            grid.add_miss(TW);
         }
         if (p.dist < MAX_LASER_DIST)
-            grid.add_hit(lineP);
+            grid.add_hit(TW);
     }
 
 
@@ -203,9 +205,7 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
 
     auto TR = R * (TW-RW);
 
-    actual_point = QPointF(TR.x(),TR.y());
-
-    return actual_point;
+    return QPointF(TR.x(),TR.y());
 }
 
 QPointF SpecificWorker::robot_to_world(Eigen::Vector2f RW, Eigen::Vector2f TW)
@@ -219,9 +219,8 @@ QPointF SpecificWorker::robot_to_world(Eigen::Vector2f RW, Eigen::Vector2f TW)
     R(1,1) = cos(alfa);
 
     auto TR = R * TW + RW;
-    actual_point = QPointF(TR.x(),TR.y());
 
-    return actual_point;
+    return QPointF(TR.x(),TR.y());
 }
 
 float SpecificWorker::reduce_speed_if_close_to_target(float mod)
