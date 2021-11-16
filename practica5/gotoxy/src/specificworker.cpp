@@ -126,28 +126,30 @@ void SpecificWorker::compute()
 
 void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
 {
-    int i;
+    float i;
     float x,y;
     QPointF lineP;
-    Eigen::Vector2f RW (robot_polygon->x(), robot_polygon->y());
+    Eigen::Vector2f RW (0.0, 0.0);
     Eigen::Vector2f TW;
+    Eigen::Vector2f SW;
     RoboCompGenericBase::TBaseState state;
     differentialrobot_proxy->getBaseState(state);
-
+//    float step = TILE_SIZE/200;
     for (auto &p:ldata) {
         x = p.dist * sin(p.angle);
         y = p.dist * cos(p.angle);
-        for (i = 0; i <= 1; i+=TILE_SIZE/2) {
-            QPointF R; //R=0.0 + i*Q
-//            lineP = line.pointAt(i);
-//            TW = Eigen::Vector2f (lineP.x(), lineP.y());
-//            lineP = robot_to_world(RW,TW);
-//            TW = Eigen::Vector2f (lineP.x(), lineP.y());
-            grid.add_miss(TW);
+        TW = Eigen::Vector2f (x, y);
+        for (i = 0; i <= 1; i+=0.5) {
+            //QPointF R; //R=0.0 + i*Q //Q es TW sobre las coordenadas del robot
+            lineP = robot_to_world(state,TW);
+            SW = Eigen::Vector2f (lineP.x(), lineP.y());
+            //grid.add_miss(SW);
         }
-        if (p.dist < MAX_LASER_DIST)
-            grid.add_hit(TW);
+        if (p.dist < MAX_LASER_DIST) {
+            grid.add_hit(SW);
+        }
     }
+
 
 
 }
@@ -208,9 +210,10 @@ QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, Sp
     return QPointF(TR.x(),TR.y());
 }
 
-QPointF SpecificWorker::robot_to_world(Eigen::Vector2f RW, Eigen::Vector2f TW)
+QPointF SpecificWorker::robot_to_world(RoboCompGenericBase::TBaseState state, Eigen::Vector2f TW)
 {
-    float alfa = atan2(RW.x(),RW.y());
+    float alfa = state.alpha;
+    Eigen::Vector2f RW(state.x,state.z); //robot
 
     Eigen::Matrix2f R(2,2);
     R(0,0) = cos(alfa);

@@ -89,7 +89,7 @@ private:
 
     void update_map(const RoboCompLaser::TLaserData &ldata);
 
-    QPointF robot_to_world(Eigen::Vector2f RW, Eigen::Vector2f TW);
+    QPointF robot_to_world(RoboCompGenericBase::TBaseState state, Eigen::Vector2f TW);
 
     float reduce_speed_if_close_to_target(float mod);
 };
