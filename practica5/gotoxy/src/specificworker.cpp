@@ -133,20 +133,21 @@ void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
     differentialrobot_proxy->getBaseState(state);
 
     for (auto &p:ldata) {
-        int step = ceil(p.dist / (TILE_SIZE / 2.0));
+        float step = ceil(p.dist / (TILE_SIZE / 2.0));
         TW = Eigen::Vector2f(p.dist * sin(p.angle), p.dist * cos(p.angle));
         lineP = robot_to_world(state, TW);
-        int lastX = -1000000;
-        int lastY = -1000000;
-        int tarX = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
-        int tarY = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
+        float lastX = -1000000;
+        float lastY = -1000000;
+        float tarX = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
+        float tarY = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
         for (const auto &&step: iter::range(0.0, 1.0 - (1.0 / step), 1.0 / step)) {
             lineP = robot_to_world(state, TW * step);
-            int kx = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
-            int ky = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
+            float kx = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
+            float ky = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
             if (kx != lastX && kx != tarX && ky != lastY && ky != tarY) {
                 lineP = robot_to_world(state, TW * step);
                 grid.add_miss(Eigen::Vector2f(lineP.x(), lineP.y()));
+                
             }
             lastX = kx;
             lastY = ky;
