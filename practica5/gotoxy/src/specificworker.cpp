@@ -16,6 +16,7 @@
  *    You should have received a copy of the GNU General Public License
  *    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
  */
+#include <cppitertools/range.hpp>
 #include "specificworker.h"
 
 
@@ -126,32 +127,36 @@ void SpecificWorker::compute()
 
 void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
 {
-    float i;
-    float x,y;
     QPointF lineP;
-    Eigen::Vector2f RW (0.0, 0.0);
     Eigen::Vector2f TW;
-    Eigen::Vector2f SW;
     RoboCompGenericBase::TBaseState state;
     differentialrobot_proxy->getBaseState(state);
-//    float step = TILE_SIZE/200;
+
     for (auto &p:ldata) {
-        x = p.dist * sin(p.angle);
-        y = p.dist * cos(p.angle);
-        TW = Eigen::Vector2f (x, y);
-        for (i = 0; i <= 1; i+=0.5) {
-            //QPointF R; //R=0.0 + i*Q //Q es TW sobre las coordenadas del robot
-            lineP = robot_to_world(state,TW);
-            SW = Eigen::Vector2f (lineP.x(), lineP.y());
-            //grid.add_miss(SW);
+        int step = ceil(p.dist / (TILE_SIZE / 2.0));
+        TW = Eigen::Vector2f(p.dist * sin(p.angle), p.dist * cos(p.angle));
+        lineP = robot_to_world(state, TW);
+        int lastX = -1000000;
+        int lastY = -1000000;
+        int tarX = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
+        int tarY = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
+        for (const auto &&step: iter::range(0.0, 1.0 - (1.0 / step), 1.0 / step)) {
+            lineP = robot_to_world(state, TW * step);
+            int kx = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
+            int ky = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
+            if (kx != lastX && kx != tarX && ky != lastY && ky != tarY) {
+                lineP = robot_to_world(state, TW * step);
+                grid.add_miss(Eigen::Vector2f(lineP.x(), lineP.y()));
+            }
+            lastX = kx;
+            lastY = ky;
         }
-        if (p.dist < MAX_LASER_DIST) {
-            grid.add_hit(SW);
+
+        if (p.dist <= MAX_LASER_DIST) {
+            lineP = robot_to_world(state, TW);
+            grid.add_hit(Eigen::Vector2f(lineP.x(), lineP.y()));
         }
     }
-
-
-
 }
 
 void SpecificWorker::new_target_slot(QPointF t)
