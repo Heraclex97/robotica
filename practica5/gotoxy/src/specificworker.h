@@ -76,9 +76,16 @@ private:
     };
     Line line;
 
+    struct Door
+    {
+        QPointF A;
+        QPointF B;
+        bool operator ==(const Door& lhs);
 
+    };
+    std::set<Door> doors;
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
-    enum class State {IDLE, GOTO, SHOCK, DODGE};
+    enum class State {IDLE, GOTO, SHOCK, EXPLORE};
     State currentS = State::IDLE;
 
     bool obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth=10);
@@ -92,6 +99,10 @@ private:
     QPointF robot_to_world(RoboCompGenericBase::TBaseState state, Eigen::Vector2f TW);
 
     float reduce_speed_if_close_to_target(float mod);
+
+    void explore(const RoboCompLaser::TLaserData &ldata);
+
+    bool checkTiles();
 };
 
 #endif

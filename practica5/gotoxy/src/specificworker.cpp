@@ -88,7 +88,7 @@ void SpecificWorker::compute()
     RoboCompGenericBase::TBaseState baseState;
     RoboCompLaser::TLaserData ldata;
     float adv = 200;
-    static float beta = 2;
+    float beta = 2;
     try
     {
         ldata = laser_proxy->getLaserData();
@@ -104,25 +104,46 @@ void SpecificWorker::compute()
         robot_polygon->setRotation(r_state.rz*180/M_PI);
         robot_polygon->setPos(r_state.x, r_state.y);
     }
+
     catch(const Ice::Exception &e){ std::cout << e.what() << std::endl;}
 
     update_map(ldata);
     switch (currentS)
     {
         case State::IDLE:
-            currentS = State::GOTO;
+            currentS = State::EXPLORE;
             break;
 
         case State::GOTO:
-
             break;
 
         case State::SHOCK:
+            differentialrobot_proxy->setSpeedBase(5, 0.6);
+            currentS = State::EXPLORE;
             break;
 
-        case State::DODGE:
+        case State::EXPLORE:
+            explore(ldata);
             break;
     }
+}
+
+//////////////////////////////////////////////
+void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata)
+{
+    differentialrobot_proxy->setSpeedBase(0, 1);
+//    Guardar puertas y comprobar y saltar a GOTO
+}
+
+bool SpecificWorker::checkTiles ()
+{
+    int totTiles = grid.count_total();
+    int changingTiles;
+
+    if ((changingTiles/totTiles) < 0.5)
+        return true;
+    else
+        return false;
 }
 
 void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
@@ -147,7 +168,6 @@ void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
             if (kx != lastX && kx != tarX && ky != lastY && ky != tarY) {
                 lineP = robot_to_world(state, TW * step);
                 grid.add_miss(Eigen::Vector2f(lineP.x(), lineP.y()));
-                
             }
             lastX = kx;
             lastY = ky;
