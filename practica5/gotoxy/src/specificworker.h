@@ -50,7 +50,7 @@ public slots:
 
 private:
     Grid grid;
-    const int TILE_SIZE = 100;
+    const int TILE_SIZE = 200;
     const float MAX_ADV_VEL = 1000;
     const float MAX_LASER_DIST = 4000;
     std::shared_ptr < InnerModel > innerModel;
@@ -80,6 +80,7 @@ private:
     {
         QPointF A;
         QPointF B;
+        bool visited;
         bool operator ==(const Door& lhs);
 
     };
@@ -103,6 +104,8 @@ private:
     void explore(const RoboCompLaser::TLaserData &ldata);
 
     bool checkTiles();
+
+    void isDoor(const RoboCompLaser::TLaserData &ldata);
 };
 
 #endif

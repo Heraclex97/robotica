@@ -53,7 +53,7 @@ bool SpecificWorker::setParams(RoboCompCommonBehavior::ParameterList params)
 void SpecificWorker::initialize(int period)
 {
 	std::cout << "Initialize worker" << std::endl;
-    QRectF dimensions(-5000,-2500,10000,5000);
+    QRectF dimensions(-5100,-2600,10200,5200);
     viewer = new AbstractGraphicViewer(this, dimensions);
     grid.initialize(dimensions,TILE_SIZE,&viewer->scene,false);
     this->resize(900,450);
@@ -69,18 +69,11 @@ void SpecificWorker::initialize(int period)
     catch(const Ice::Exception &e) { std::cout << e.what() << std::endl;}
     connect(viewer, &AbstractGraphicViewer::new_mouse_coordinates, this, &SpecificWorker::new_target_slot);
 
-
-
 	this->Period = period;
 	if(this->startup_check_flag)
-	{
 		this->startup_check();
-	}
 	else
-	{
-		timer.start(Period);
-	}
-
+		timer.start(50);
 }
 
 void SpecificWorker::compute()
@@ -111,7 +104,7 @@ void SpecificWorker::compute()
     switch (currentS)
     {
         case State::IDLE:
-            currentS = State::EXPLORE;
+//            currentS = State::EXPLORE;
             break;
 
         case State::GOTO:
@@ -119,11 +112,11 @@ void SpecificWorker::compute()
 
         case State::SHOCK:
             differentialrobot_proxy->setSpeedBase(5, 0.6);
-            currentS = State::EXPLORE;
+//            currentS = State::EXPLORE;
             break;
 
         case State::EXPLORE:
-            explore(ldata);
+//            explore(ldata);
             break;
     }
 }
@@ -132,7 +125,34 @@ void SpecificWorker::compute()
 void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata)
 {
     differentialrobot_proxy->setSpeedBase(0, 1);
-//    Guardar puertas y comprobar y saltar a GOTO
+//    Guardar puertas
+    isDoor(ldata);
+
+    if (checkTiles())   //comprobar y saltar a GOTO
+        currentS = State::GOTO;
+}
+
+void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
+    QPointF a, b;
+//    Calcular los picos comprobando tooooodo el laser y viendo dónde el incremento de su longitud es mayor que 1000
+
+
+    QLineF dist (a,b);
+    bool iD = false;
+//    for (auto&& c : iter::combinations_with_replacement(peaks, 2))
+//    { // CHEK IF DISTANCE BETWEEN POINTS IS BETWEEN 1100 AND 900
+    if (900 <= dist.length() && dist.length() <= 1100)
+        iD = true;
+//    }
+
+    if (iD) {
+        Door d;
+        d.A = a;
+        d.B = b;
+        d.visited= false;
+//        if (!doors.contains(d))
+//            doors.insert(d);
+    }
 }
 
 bool SpecificWorker::checkTiles ()

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/gotoxy.iml" filepath="$PROJECT_DIR$/.idea/gotoxy.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/gotoxy2.iml" filepath="$PROJECT_DIR$/.idea/gotoxy2.iml" />
     </modules>
   </component>
 </project>
