@@ -81,10 +81,10 @@ private:
         QPointF A;
         QPointF B;
         bool visited;
-        bool operator ==(const Door& lhs);
+//        bool operator ==(const Door& lhs);
 
     };
-    std::set<Door> doors;
+    vector <Door> doors;
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, EXPLORE};
     State currentS = State::IDLE;
@@ -106,6 +106,8 @@ private:
     bool checkTiles();
 
     void isDoor(const RoboCompLaser::TLaserData &ldata);
+
+    void drawDoors(vector <QPointF> peaks);
 };
 
 #endif

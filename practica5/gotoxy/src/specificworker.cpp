@@ -17,6 +17,7 @@
  *    along with RoboComp.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <cppitertools/range.hpp>
+#include <cppitertools/combinations_with_replacement.hpp>
 #include "specificworker.h"
 
 
@@ -104,7 +105,7 @@ void SpecificWorker::compute()
     switch (currentS)
     {
         case State::IDLE:
-//            currentS = State::EXPLORE;
+            currentS = State::EXPLORE;
             break;
 
         case State::GOTO:
@@ -116,7 +117,7 @@ void SpecificWorker::compute()
             break;
 
         case State::EXPLORE:
-//            explore(ldata);
+            explore(ldata);
             break;
     }
 }
@@ -133,26 +134,57 @@ void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata)
 }
 
 void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
-    QPointF a, b;
+    QPointF a, b,x,y;
 //    Calcular los picos comprobando tooooodo el laser y viendo dónde el incremento de su longitud es mayor que 1000
-
-
-    QLineF dist (a,b);
-    bool iD = false;
-//    for (auto&& c : iter::combinations_with_replacement(peaks, 2))
-//    { // CHEK IF DISTANCE BETWEEN POINTS IS BETWEEN 1100 AND 900
-    if (900 <= dist.length() && dist.length() <= 1100)
-        iD = true;
-//    }
-
-    if (iD) {
-        Door d;
-        d.A = a;
-        d.B = b;
-        d.visited= false;
-//        if (!doors.contains(d))
-//            doors.insert(d);
+    //TEMPORAL REVISAR
+    vector <QPointF> peaks;
+    for (int i = 0; i < ldata.size(); i++){
+        a = QPointF(ldata[i].dist*sin(ldata[i].angle),ldata[i].dist*cos(ldata[i].angle));
+        b = QPointF(ldata[i+1].dist*sin(ldata[i+1].angle),ldata[i+1].dist*cos(ldata[i+1].angle));
+        QLineF dist(a,b);
+        if (dist.length()>1000){
+           peaks.push_back(a);
+           peaks.push_back(b);
+        }
     }
+
+    for (auto &&c: iter::combinations_with_replacement(peaks,2)) { // CHEK IF DISTANCE BETWEEN POINTS IS BETWEEN 1100 AND 900;
+        x = c[0];
+        y = c[1];
+        QLineF check(x,y);
+        if (check.length()>=900 && check.length()<=1100) {
+            for (auto p: doors) {
+                if(p.A != x && p.B != y) {
+                    Door d;
+                    d.A = x;
+                    d.B = y;
+                    d.visited = false;
+                    doors.push_back(d);
+                }
+            }
+        }
+
+    }
+    drawDoors(peaks);
+}
+void SpecificWorker::drawDoors (vector <QPointF> peaks)
+{
+    RoboCompGenericBase::TBaseState baseState;
+    differentialrobot_proxy->getBaseState(baseState);
+
+    static std::vector<QGraphicsItem*> door_points;
+    for(auto dp : door_points) viewer->scene.removeItem(dp);
+    door_points.clear();
+    QPointF d;
+    for(const auto p: peaks)
+    {
+        d = robot_to_world(baseState,Eigen::Vector2f (p.x(),p.y()));
+        door_points.push_back(viewer->scene.addRect(QRectF(d.x()-100, d.y()-100, 200, 200),
+                                                    QPen(QColor("Magenta")), QBrush(QColor("Magenta"))));
+        door_points.back()->setZValue(200);
+    }
+
+
 }
 
 bool SpecificWorker::checkTiles ()
