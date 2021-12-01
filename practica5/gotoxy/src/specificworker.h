@@ -85,6 +85,7 @@ private:
 
     };
     vector <Door> doors;
+    RoboCompFullPoseEstimation::FullPoseEuler r_state;
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, SHOCK, EXPLORE};
     State currentS = State::IDLE;
@@ -98,6 +99,7 @@ private:
     void update_map(const RoboCompLaser::TLaserData &ldata);
 
     QPointF robot_to_world(RoboCompGenericBase::TBaseState state, Eigen::Vector2f TW);
+    QPointF robot_to_world2(Eigen::Vector2f TW);
 
     float reduce_speed_if_close_to_target(float mod);
 
@@ -107,7 +109,11 @@ private:
 
     void isDoor(const RoboCompLaser::TLaserData &ldata);
 
-    void drawDoors(vector <QPointF> peaks);
+    void checkDoors (vector <QPointF> peaks);
+
+    bool checkCoordinates (QPointF p1, QPointF p2);
+
+    void drawDoors();
 };
 
 #endif

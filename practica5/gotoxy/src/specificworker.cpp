@@ -79,7 +79,7 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
-    RoboCompGenericBase::TBaseState baseState;
+
     RoboCompLaser::TLaserData ldata;
     float adv = 200;
     float beta = 2;
@@ -94,7 +94,7 @@ void SpecificWorker::compute()
     }
     try
     {
-        auto r_state = fullposeestimation_proxy->getFullPoseEuler();
+        r_state = fullposeestimation_proxy->getFullPoseEuler();
         robot_polygon->setRotation(r_state.rz*180/M_PI);
         robot_polygon->setPos(r_state.x, r_state.y);
     }
@@ -125,7 +125,7 @@ void SpecificWorker::compute()
 //////////////////////////////////////////////
 void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata)
 {
-    differentialrobot_proxy->setSpeedBase(0, 1);
+//    differentialrobot_proxy->setSpeedBase(0, 1);
 //    Guardar puertas
     isDoor(ldata);
 
@@ -138,53 +138,78 @@ void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
 //    Calcular los picos comprobando tooooodo el laser y viendo dónde el incremento de su longitud es mayor que 1000
     //TEMPORAL REVISAR
     vector <QPointF> peaks;
-    for (int i = 0; i < ldata.size(); i++){
+
+    for (long unsigned int i = 1; i < ldata.size()-1; i++){
         a = QPointF(ldata[i].dist*sin(ldata[i].angle),ldata[i].dist*cos(ldata[i].angle));
         b = QPointF(ldata[i+1].dist*sin(ldata[i+1].angle),ldata[i+1].dist*cos(ldata[i+1].angle));
         QLineF dist(a,b);
         if (dist.length()>1000){
-           peaks.push_back(a);
-           peaks.push_back(b);
+           if(ldata[i].dist<ldata[i+1].dist)
+               peaks.push_back(a);
+           else
+               peaks.push_back(b);
         }
     }
 
-    for (auto &&c: iter::combinations_with_replacement(peaks,2)) { // CHEK IF DISTANCE BETWEEN POINTS IS BETWEEN 1100 AND 900;
-        x = c[0];
-        y = c[1];
-        QLineF check(x,y);
-        if (check.length()>=900 && check.length()<=1100) {
-            for (auto p: doors) {
-                if(p.A != x && p.B != y) {
-                    Door d;
-                    d.A = x;
-                    d.B = y;
-                    d.visited = false;
-                    doors.push_back(d);
-                }
-            }
-        }
+    checkDoors(peaks);
 
-    }
-    drawDoors(peaks);
+    drawDoors();
 }
-void SpecificWorker::drawDoors (vector <QPointF> peaks)
-{
-    RoboCompGenericBase::TBaseState baseState;
-    differentialrobot_proxy->getBaseState(baseState);
 
+void SpecificWorker::drawDoors ()
+{
     static std::vector<QGraphicsItem*> door_points;
     for(auto dp : door_points) viewer->scene.removeItem(dp);
     door_points.clear();
-    QPointF d;
-    for(const auto p: peaks)
+    for(const auto p: doors)
     {
-        d = robot_to_world(baseState,Eigen::Vector2f (p.x(),p.y()));
-        door_points.push_back(viewer->scene.addRect(QRectF(d.x()-100, d.y()-100, 200, 200),
-                                                    QPen(QColor("Magenta")), QBrush(QColor("Magenta"))));
+//        QPointF d = robot_to_world2(Eigen::Vector2f (p.A.x(),p.A.y()));
+//        QPointF d2 = robot_to_world2(Eigen::Vector2f (p.B.x(),p.B.y()));
+        QPointF d = p.A;
+        QPointF d2 = p.B;
+
+        door_points.push_back(viewer->scene.addLine(QLineF(d,d2),QPen(QColor("Magenta"),100)));
         door_points.back()->setZValue(200);
     }
+}
 
+void SpecificWorker::checkDoors (vector <QPointF> peaks) {
+    for (auto &&c: iter::combinations_with_replacement(peaks,2)) { // CHEK IF DISTANCE BETWEEN POINTS IS BETWEEN 1100 AND 900;
 
+        QPointF x = robot_to_world2(Eigen::Vector2f (c[0].x(),c[0].y()));
+        QPointF y = robot_to_world2(Eigen::Vector2f (c[1].x(),c[1].y()));
+
+        bool iD = false;
+
+        QLineF check(x,y);
+        if (check.length()>=600 && check.length()<=1100) {
+            for (auto p: doors) {
+                if(!checkCoordinates(p.A, x) && !checkCoordinates(p.B, y))
+                    iD = false;
+
+                else {
+                    iD = true;
+                    break;
+                }
+            }
+
+            if (!iD) {
+                Door d;
+                d.A = x;
+                d.B = y;
+                d.visited = false;
+                doors.push_back(d);
+            }
+        }
+    }
+}
+
+bool SpecificWorker::checkCoordinates (QPointF p1, QPointF p2) {
+    int threshold = 1000;
+    if (abs(p1.x()-p2.x()) < threshold && abs(p1.y()-p2.y()) < threshold)
+        return true;
+    else
+        return false;
 }
 
 bool SpecificWorker::checkTiles ()
@@ -202,23 +227,22 @@ void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
 {
     QPointF lineP;
     Eigen::Vector2f TW;
-    RoboCompGenericBase::TBaseState state;
-    differentialrobot_proxy->getBaseState(state);
+
 
     for (auto &p:ldata) {
         float step = ceil(p.dist / (TILE_SIZE / 2.0));
         TW = Eigen::Vector2f(p.dist * sin(p.angle), p.dist * cos(p.angle));
-        lineP = robot_to_world(state, TW);
+        lineP = robot_to_world2(TW);
         float lastX = -1000000;
         float lastY = -1000000;
         float tarX = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
         float tarY = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
         for (const auto &&step: iter::range(0.0, 1.0 - (1.0 / step), 1.0 / step)) {
-            lineP = robot_to_world(state, TW * step);
+            lineP = robot_to_world2( TW * step);
             float kx = (lineP.x() - grid.dim.left()) / grid.TILE_SIZE;
             float ky = (lineP.y() - grid.dim.bottom()) / grid.TILE_SIZE;
             if (kx != lastX && kx != tarX && ky != lastY && ky != tarY) {
-                lineP = robot_to_world(state, TW * step);
+                lineP = robot_to_world2(TW * step);
                 grid.add_miss(Eigen::Vector2f(lineP.x(), lineP.y()));
             }
             lastX = kx;
@@ -226,7 +250,7 @@ void SpecificWorker::update_map(const RoboCompLaser::TLaserData &ldata)
         }
 
         if (p.dist <= MAX_LASER_DIST) {
-            lineP = robot_to_world(state, TW);
+            lineP = robot_to_world2(TW);
             grid.add_hit(Eigen::Vector2f(lineP.x(), lineP.y()));
         }
     }
@@ -292,6 +316,23 @@ QPointF SpecificWorker::robot_to_world(RoboCompGenericBase::TBaseState state, Ei
 {
     float alfa = state.alpha;
     Eigen::Vector2f RW(state.x,state.z); //robot
+
+    Eigen::Matrix2f R(2,2);
+    R(0,0) = cos(alfa);
+    R(0,1) = -sin(alfa);
+    R(1,0) = sin(alfa);
+    R(1,1) = cos(alfa);
+
+    auto TR = R * TW + RW;
+
+    return QPointF(TR.x(),TR.y());
+}
+
+
+QPointF SpecificWorker::robot_to_world2(Eigen::Vector2f TW)
+{
+    float alfa = r_state.rz;
+    Eigen::Vector2f RW(r_state.x,r_state.y); //robot
 
     Eigen::Matrix2f R(2,2);
     R(0,0) = cos(alfa);
