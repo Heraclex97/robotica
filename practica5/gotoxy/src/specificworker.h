@@ -50,7 +50,7 @@ public slots:
 
 private:
     Grid grid;
-    const int TILE_SIZE = 200;
+    const int TILE_SIZE = 100;
     const float MAX_ADV_VEL = 1000;
     const float MAX_LASER_DIST = 4000;
     std::shared_ptr < InnerModel > innerModel;
@@ -81,13 +81,13 @@ private:
         QPointF A;
         QPointF B;
         bool visited;
-//        bool operator ==(const Door& lhs);
+        Eigen::Vector2f midpoint;
 
     };
     vector <Door> doors;
     RoboCompFullPoseEstimation::FullPoseEuler r_state;
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
-    enum class State {IDLE, GOTO, SHOCK, EXPLORE};
+    enum class State {IDLE, GOTO, SHOCK, INIT_EXPLORE, EXPLORE};
     State currentS = State::IDLE;
 
     bool obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth=10);
@@ -103,7 +103,7 @@ private:
 
     float reduce_speed_if_close_to_target(float mod);
 
-    void explore(const RoboCompLaser::TLaserData &ldata);
+    void explore(const RoboCompLaser::TLaserData &ldata,double initial_angle);
 
     bool checkTiles();
 
@@ -114,6 +114,12 @@ private:
     bool checkCoordinates (QPointF p1, QPointF p2);
 
     void drawDoors();
+
+    void gotoDoor();
+
+    Eigen::Vector2f newMidPoint (Door d);
+
+    float distance(Eigen::Vector2f A);
 };
 
 #endif

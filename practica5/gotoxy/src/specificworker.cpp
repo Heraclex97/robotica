@@ -79,7 +79,7 @@ void SpecificWorker::initialize(int period)
 
 void SpecificWorker::compute()
 {
-
+    double initial_angle;
     RoboCompLaser::TLaserData ldata;
     float adv = 200;
     float beta = 2;
@@ -105,7 +105,7 @@ void SpecificWorker::compute()
     switch (currentS)
     {
         case State::IDLE:
-            currentS = State::EXPLORE;
+            currentS = State::INIT_EXPLORE;
             break;
 
         case State::GOTO:
@@ -113,24 +113,64 @@ void SpecificWorker::compute()
 
         case State::SHOCK:
             differentialrobot_proxy->setSpeedBase(5, 0.6);
-//            currentS = State::EXPLORE;
+            currentS = State::EXPLORE;
+            break;
+        case State::INIT_EXPLORE:
+            initial_angle = (r_state.rz < 0) ? (2 * M_PI + r_state.rz) : r_state.rz;
+            currentS = State::EXPLORE;
             break;
 
         case State::EXPLORE:
-            explore(ldata);
+            differentialrobot_proxy->setSpeedBase(0, 0.6);
+            explore(ldata,initial_angle);
             break;
     }
 }
 
 //////////////////////////////////////////////
-void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata)
+void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata, double initial_angle)
 {
-//    differentialrobot_proxy->setSpeedBase(0, 1);
-//    Guardar puertas
+    float current = (r_state.rz < 0) ? (2 * M_PI + r_state.rz) : r_state.rz;
     isDoor(ldata);
-
-    if (checkTiles())   //comprobar y saltar a GOTO
+    if (fabs(current - initial_angle) < (M_PI + 0.1) and fabs(current - initial_angle) > (M_PI - 0.1))
+    {
+        differentialrobot_proxy->setSpeedBase(0, 0);
+        gotoDoor();
         currentS = State::GOTO;
+    }
+}
+
+void SpecificWorker::gotoDoor()
+{
+    Door nearDoor = doors[0];
+    for (Door d: doors) {
+        if (!d.visited) {
+//            Comparar la distancia entre el punto actual r_state y el midpoint de ambas puertas
+
+            //Saltar a otro estado que atreviese a la puerta
+        }
+    }
+
+    Eigen::Vector2f p1 = Eigen::Vector2f (nearDoor.A.x(),nearDoor.A.y());
+    Eigen::Vector2f p2 = Eigen::Vector2f (nearDoor.B.x(),nearDoor.B.y());
+
+    Eigen::ParametrizedLine<float, 2> r = Eigen::ParametrizedLine<float, 2>(nearDoor.midpoint,(p1 - p2).unitOrthogonal());
+    qInfo() << __FUNCTION__ << r.pointAt(800.0).x() << r.pointAt(800.0).y();
+    Eigen::Vector2f external_midpoint = r.pointAt(1000.0);
+}
+
+Eigen::Vector2f SpecificWorker::newMidPoint (Door d){
+    Eigen::Vector2f p1 = Eigen::Vector2f (d.A.x(),d.A.y());
+    Eigen::Vector2f p2 = Eigen::Vector2f (d.B.x(),d.B.y());
+
+    return p1 + ((p2 - p1) / 2.0);
+}
+
+float SpecificWorker::distance (Eigen::Vector2f A) {
+    QPointF pA = QPointF(A.x(),A.y());
+    QPointF pRstate = QPointF(r_state.x,r_state.y);
+    QLineF line = QLineF (pA,pRstate);
+    return line.length();
 }
 
 void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
@@ -198,6 +238,7 @@ void SpecificWorker::checkDoors (vector <QPointF> peaks) {
                 d.A = x;
                 d.B = y;
                 d.visited = false;
+                d.midpoint = newMidPoint(d);
                 doors.push_back(d);
             }
         }
