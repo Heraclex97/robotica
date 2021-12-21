@@ -32,6 +32,7 @@
 #include <abstract_graphic_viewer/abstract_graphic_viewer.h>
 #include <eigen3/Eigen/Eigen>
 #include <grid2d/grid.h>
+#include <dynamic_window.h>
 
 class SpecificWorker : public GenericWorker
 {
@@ -50,6 +51,7 @@ public slots:
 
 private:
     Grid grid;
+    Dynamic_Window dw;
     const int TILE_SIZE = 100;
     const float MAX_ADV_VEL = 1000;
     const float MAX_LASER_DIST = 4000;
@@ -115,11 +117,15 @@ private:
 
     void drawDoors();
 
-    void gotoDoor();
+    void gotoDoor(const RoboCompLaser::TLaserData &ldata);
 
     Eigen::Vector2f newMidPoint (Door d);
 
     float distance(Eigen::Vector2f A);
+
+    void gotoPoint(const RoboCompLaser::TLaserData &ldata);
+
+    Eigen::Vector2f  world_to_robot2(Eigen::Vector2f point);
 };
 
 #endif

@@ -135,21 +135,50 @@ void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata, double init
     if (fabs(current - initial_angle) < (M_PI + 0.1) and fabs(current - initial_angle) > (M_PI - 0.1))
     {
         differentialrobot_proxy->setSpeedBase(0, 0);
-        gotoDoor();
+        gotoDoor(ldata);
         currentS = State::GOTO;
     }
 }
-
-void SpecificWorker::gotoDoor()
-{
-    Door nearDoor = doors[0];
-    for (Door d: doors) {
-        if (!d.visited) {
-//            Comparar la distancia entre el punto actual r_state y el midpoint de ambas puertas
-
-            //Saltar a otro estado que atreviese a la puerta
-        }
+void SpecificWorker::gotoPoint(const RoboCompLaser::TLaserData &ldata){
+    Eigen::Vector2f tar(target.pos.x(),target.pos.y());
+    auto tr = world_to_robot2(tar);
+    float dist = tr.norm();
+    QPointF a;
+    if(dist < 150)  // at target
+    {
+        qInfo() << __FUNCTION__ << "    Robot reached target room" << r_state.x << r_state.y ;
+        differentialrobot_proxy->setSpeedBase(0, 0);
+        //new_data_state.at_target_room = true;
     }
+    else  // continue to room
+    {
+
+        qInfo() << __FUNCTION__ << "    Robot reached target room2222" ;
+        // call dynamic window
+        QPolygonF laser_poly;
+        for(auto &&l : ldata)
+            laser_poly << QPointF(l.dist*sin(l.angle), l.dist*cos(l.angle));
+        auto [_, __, adv, rot, ___] = dw.compute(tr, laser_poly,
+                                                 Eigen::Vector3f(r_state.x, r_state.y, r_state.rz),
+                                                 Eigen::Vector3f(r_state.vx, r_state.vy, r_state.vrz),
+                                                 nullptr /*&viewer_robot->scene*/);
+        const float rgain = 0.8;
+        float rotation = rgain*rot;
+        float dist_break = std::clamp(dist/1000, 0.0f, 1.0f);
+        float advance = MAX_ADV_VEL * dist_break * exp(-pow(rotation,2)/0.1);
+        differentialrobot_proxy->setSpeedBase(advance, rotation);
+    }
+
+}
+void SpecificWorker::gotoDoor(const RoboCompLaser::TLaserData &ldata)
+{
+    Door nearDoor = doors.front();
+    for (Door d: doors) {
+        if (!d.visited && (distance(d.midpoint) < distance(nearDoor.midpoint)))
+                nearDoor = d;
+
+    }
+    //Saltar a otro estado que atreviese a la puerta más cercana
 
     Eigen::Vector2f p1 = Eigen::Vector2f (nearDoor.A.x(),nearDoor.A.y());
     Eigen::Vector2f p2 = Eigen::Vector2f (nearDoor.B.x(),nearDoor.B.y());
@@ -157,6 +186,13 @@ void SpecificWorker::gotoDoor()
     Eigen::ParametrizedLine<float, 2> r = Eigen::ParametrizedLine<float, 2>(nearDoor.midpoint,(p1 - p2).unitOrthogonal());
     qInfo() << __FUNCTION__ << r.pointAt(800.0).x() << r.pointAt(800.0).y();
     Eigen::Vector2f external_midpoint = r.pointAt(1000.0);
+
+    target.pos = QPointF(external_midpoint.x(),external_midpoint.y());
+    target.active = true;
+    qInfo() << __FUNCTION__ << "  TARGET" << target.pos.x() << target.pos.y();
+
+    gotoPoint(ldata);
+
 }
 
 Eigen::Vector2f SpecificWorker::newMidPoint (Door d){
@@ -174,9 +210,8 @@ float SpecificWorker::distance (Eigen::Vector2f A) {
 }
 
 void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
-    QPointF a, b,x,y;
-//    Calcular los picos comprobando tooooodo el laser y viendo dónde el incremento de su longitud es mayor que 1000
-    //TEMPORAL REVISAR
+    QPointF a, b;
+
     vector <QPointF> peaks;
 
     for (long unsigned int i = 1; i < ldata.size()-1; i++){
@@ -203,8 +238,6 @@ void SpecificWorker::drawDoors ()
     door_points.clear();
     for(const auto p: doors)
     {
-//        QPointF d = robot_to_world2(Eigen::Vector2f (p.A.x(),p.A.y()));
-//        QPointF d2 = robot_to_world2(Eigen::Vector2f (p.B.x(),p.B.y()));
         QPointF d = p.A;
         QPointF d2 = p.B;
 
@@ -369,7 +402,22 @@ QPointF SpecificWorker::robot_to_world(RoboCompGenericBase::TBaseState state, Ei
     return QPointF(TR.x(),TR.y());
 }
 
+Eigen::Vector2f SpecificWorker::world_to_robot2(Eigen::Vector2f point)
+{
+//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
+    float alfa = r_state.rz;
+    Eigen::Vector2f RW(r_state.x,r_state.y); //robot
 
+    Eigen::Matrix2f R(2,2);
+    R(0,0) = cos(alfa);
+    R(0,1) = sin(alfa);
+    R(1,0) = -sin(alfa);
+    R(1,1) = cos(alfa);
+
+    auto TR = R * (point-RW);
+
+    return TR;
+}
 QPointF SpecificWorker::robot_to_world2(Eigen::Vector2f TW)
 {
     float alfa = r_state.rz;
