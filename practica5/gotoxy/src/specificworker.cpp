@@ -109,6 +109,7 @@ void SpecificWorker::compute()
             break;
 
         case State::GOTO:
+            gotoPoint(ldata);
             break;
 
         case State::SHOCK:
@@ -148,7 +149,8 @@ void SpecificWorker::gotoPoint(const RoboCompLaser::TLaserData &ldata){
     {
         qInfo() << __FUNCTION__ << "    Robot reached target room" << r_state.x << r_state.y ;
         differentialrobot_proxy->setSpeedBase(0, 0);
-        //new_data_state.at_target_room = true;
+        target.active = false;
+        currentS = State::INIT_EXPLORE;
     }
     else  // continue to room
     {
@@ -177,7 +179,10 @@ void SpecificWorker::gotoDoor(const RoboCompLaser::TLaserData &ldata)
         if (!d.visited && (distance(d.midpoint) < distance(nearDoor.midpoint)))
                 nearDoor = d;
 
+
     }
+    nearDoor.visited = true;
+
     //Saltar a otro estado que atreviese a la puerta más cercana
 
     Eigen::Vector2f p1 = Eigen::Vector2f (nearDoor.A.x(),nearDoor.A.y());
@@ -191,7 +196,7 @@ void SpecificWorker::gotoDoor(const RoboCompLaser::TLaserData &ldata)
     target.active = true;
     qInfo() << __FUNCTION__ << "  TARGET" << target.pos.x() << target.pos.y();
 
-    gotoPoint(ldata);
+    //gotoPoint(ldata);
 
 }
 
@@ -218,7 +223,7 @@ void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
         a = QPointF(ldata[i].dist*sin(ldata[i].angle),ldata[i].dist*cos(ldata[i].angle));
         b = QPointF(ldata[i+1].dist*sin(ldata[i+1].angle),ldata[i+1].dist*cos(ldata[i+1].angle));
         QLineF dist(a,b);
-        if (dist.length()>1000){
+        if (dist.length()>800){
            if(ldata[i].dist<ldata[i+1].dist)
                peaks.push_back(a);
            else
@@ -255,7 +260,7 @@ void SpecificWorker::checkDoors (vector <QPointF> peaks) {
         bool iD = false;
 
         QLineF check(x,y);
-        if (check.length()>=600 && check.length()<=1100) {
+        if (check.length()>=400 && check.length()<=1300) {
             for (auto p: doors) {
                 if(!checkCoordinates(p.A, x) && !checkCoordinates(p.B, y))
                     iD = false;
