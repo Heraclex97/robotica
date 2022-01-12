@@ -109,12 +109,13 @@ void SpecificWorker::compute()
             break;
 
         case State::GOTO:
-            gotoPoint(ldata);
-            break;
-
-        case State::SHOCK:
-            differentialrobot_proxy->setSpeedBase(5, 0.6);
-            currentS = State::EXPLORE;
+            if(target_front.active){
+                gotoFront(ldata);
+            }else if (target.active) {
+                gotoPoint(ldata);
+            }else{
+                currentS = State::INIT_EXPLORE;
+            }
             break;
         case State::INIT_EXPLORE:
             initial_angle = (r_state.rz < 0) ? (2 * M_PI + r_state.rz) : r_state.rz;
@@ -140,22 +141,50 @@ void SpecificWorker::explore(const RoboCompLaser::TLaserData &ldata, double init
         currentS = State::GOTO;
     }
 }
+void SpecificWorker::gotoFront(const RoboCompLaser::TLaserData &ldata) {
+    Eigen::Vector2f tar(target_front.pos.x(), target_front.pos.y());
+    auto tr = world_to_robot2(tar);
+    float dist = tr.norm();
+    QPointF a;
+    if (dist < 300)  // at target
+    {
+        qInfo() << __FUNCTION__ << "    Robot reached target room" << r_state.x << r_state.y;
+        differentialrobot_proxy->setSpeedBase(0, 0);
+        target_front.active = false;
+    } else  // continue to room
+    {
+
+        qInfo() << __FUNCTION__ << "ROBOT COMING TO TARGET";
+        // call dynamic window
+        QPolygonF laser_poly;
+        for (auto &&l: ldata)
+            laser_poly << QPointF(l.dist * sin(l.angle), l.dist * cos(l.angle));
+        auto[_, __, adv, rot, ___] = dw.compute(tr, laser_poly,
+                                                Eigen::Vector3f(r_state.x, r_state.y, r_state.rz),
+                                                Eigen::Vector3f(r_state.vx, r_state.vy, r_state.vrz),
+                                                nullptr /*&viewer_robot->scene*/);
+        const float rgain = 0.6;
+        float rotation = rgain * rot;
+        float dist_break = std::clamp(dist / 1000, 0.0f, 1.0f);
+        float advance = MAX_ADV_VEL * dist_break * exp(-pow(rotation, 2) / 0.1);
+        differentialrobot_proxy->setSpeedBase(advance, rotation);
+    }
+}
 void SpecificWorker::gotoPoint(const RoboCompLaser::TLaserData &ldata){
     Eigen::Vector2f tar(target.pos.x(),target.pos.y());
     auto tr = world_to_robot2(tar);
     float dist = tr.norm();
     QPointF a;
-    if(dist < 150)  // at target
+    if(dist < 300)  // at target
     {
         qInfo() << __FUNCTION__ << "    Robot reached target room" << r_state.x << r_state.y ;
         differentialrobot_proxy->setSpeedBase(0, 0);
         target.active = false;
         currentS = State::INIT_EXPLORE;
-    }
-    else  // continue to room
+    }    else  // continue to room
     {
 
-        qInfo() << __FUNCTION__ << "    Robot reached target room2222" ;
+        qInfo() << __FUNCTION__ << "ROBOT COMING TO TARGET" ;
         // call dynamic window
         QPolygonF laser_poly;
         for(auto &&l : ldata)
@@ -164,7 +193,7 @@ void SpecificWorker::gotoPoint(const RoboCompLaser::TLaserData &ldata){
                                                  Eigen::Vector3f(r_state.x, r_state.y, r_state.rz),
                                                  Eigen::Vector3f(r_state.vx, r_state.vy, r_state.vrz),
                                                  nullptr /*&viewer_robot->scene*/);
-        const float rgain = 0.8;
+        const float rgain = 0.6;
         float rotation = rgain*rot;
         float dist_break = std::clamp(dist/1000, 0.0f, 1.0f);
         float advance = MAX_ADV_VEL * dist_break * exp(-pow(rotation,2)/0.1);
@@ -174,27 +203,31 @@ void SpecificWorker::gotoPoint(const RoboCompLaser::TLaserData &ldata){
 }
 void SpecificWorker::gotoDoor(const RoboCompLaser::TLaserData &ldata)
 {
-    Door nearDoor = doors.front();
-    for (Door d: doors) {
-        if (!d.visited && (distance(d.midpoint) < distance(nearDoor.midpoint)))
-                nearDoor = d;
-
-
+    int pos = -1;
+    for (int i = 0; i < doors.size(); i++){
+//    for (Door d: doors) {
+        if (!doors[i].visited  /*&& (distance(d.midpoint) < distance(nearDoor.midpoint))*/) {
+            pos = i;
+        }
     }
-    nearDoor.visited = true;
-
+    Door nearDoor = doors[pos];
+    doors[pos].visited = true;
     //Saltar a otro estado que atreviese a la puerta más cercana
 
-    Eigen::Vector2f p1 = Eigen::Vector2f (nearDoor.A.x(),nearDoor.A.y());
-    Eigen::Vector2f p2 = Eigen::Vector2f (nearDoor.B.x(),nearDoor.B.y());
+    Eigen::Vector2f p1 = Eigen::Vector2f(nearDoor.A.x(), nearDoor.A.y());
+    Eigen::Vector2f p2 = Eigen::Vector2f(nearDoor.B.x(), nearDoor.B.y());
 
-    Eigen::ParametrizedLine<float, 2> r = Eigen::ParametrizedLine<float, 2>(nearDoor.midpoint,(p1 - p2).unitOrthogonal());
+    Eigen::ParametrizedLine<float, 2> r = Eigen::ParametrizedLine<float, 2>(nearDoor.midpoint,
+                                                                            (p1 - p2).unitOrthogonal());
     qInfo() << __FUNCTION__ << r.pointAt(800.0).x() << r.pointAt(800.0).y();
-    Eigen::Vector2f external_midpoint = r.pointAt(1000.0);
+    Eigen::Vector2f external_midpoint = r.pointAt(1550.0);
 
-    target.pos = QPointF(external_midpoint.x(),external_midpoint.y());
+    target_front.pos = QPointF(r.pointAt(-800.0).x(), r.pointAt(-800.0).y());
+    target_front.active = true;
+    target.pos = QPointF(external_midpoint.x(), external_midpoint.y());
     target.active = true;
     qInfo() << __FUNCTION__ << "  TARGET" << target.pos.x() << target.pos.y();
+
 
     //gotoPoint(ldata);
 
@@ -223,7 +256,7 @@ void SpecificWorker::isDoor(const RoboCompLaser::TLaserData &ldata) {
         a = QPointF(ldata[i].dist*sin(ldata[i].angle),ldata[i].dist*cos(ldata[i].angle));
         b = QPointF(ldata[i+1].dist*sin(ldata[i+1].angle),ldata[i+1].dist*cos(ldata[i+1].angle));
         QLineF dist(a,b);
-        if (dist.length()>800){
+        if (dist.length()>600){
            if(ldata[i].dist<ldata[i+1].dist)
                peaks.push_back(a);
            else
@@ -258,6 +291,7 @@ void SpecificWorker::checkDoors (vector <QPointF> peaks) {
         QPointF y = robot_to_world2(Eigen::Vector2f (c[1].x(),c[1].y()));
 
         bool iD = false;
+        qInfo() << __FUNCTION__ << "ESTOY BUSCANDO UNA PUERTA OC?" ;
 
         QLineF check(x,y);
         if (check.length()>=400 && check.length()<=1300) {
