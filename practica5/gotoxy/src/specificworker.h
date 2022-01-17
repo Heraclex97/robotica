@@ -84,50 +84,31 @@ private:
         QPointF B;
         bool visited;
         Eigen::Vector2f midpoint;
-
     };
     vector <Door> doors;
     RoboCompFullPoseEstimation::FullPoseEuler r_state;
     QPointF world_to_robot(RoboCompGenericBase::TBaseState state, Target target);
     enum class State {IDLE, GOTO, INIT_EXPLORE, EXPLORE};
     State currentS = State::IDLE;
-
     bool obstacle_ahead(const RoboCompLaser::TLaserData &ldata, int dist, int semiwidth=10);
-
     bool target_visible(const RoboCompLaser::TLaserData &ldata, QPointF tar);
-
     bool lateral_distance(const RoboCompLaser::TLaserData &ldata, int dist, bool left);
-
     void update_map(const RoboCompLaser::TLaserData &ldata);
-
     QPointF robot_to_world(RoboCompGenericBase::TBaseState state, Eigen::Vector2f TW);
     QPointF robot_to_world2(Eigen::Vector2f TW);
-
     float reduce_speed_if_close_to_target(float mod);
-
     void explore(const RoboCompLaser::TLaserData &ldata,double initial_angle);
-
     bool checkTiles();
-
     void isDoor(const RoboCompLaser::TLaserData &ldata);
-
     void checkDoors (vector <QPointF> peaks);
-
     bool checkCoordinates (QPointF p1, QPointF p2);
-
     void drawDoors();
-
     void gotoDoor(const RoboCompLaser::TLaserData &ldata);
-
     Eigen::Vector2f newMidPoint (Door d);
-
     float distance(Eigen::Vector2f A);
-
     void gotoPoint(const RoboCompLaser::TLaserData &ldata);
     void gotoFront(const RoboCompLaser::TLaserData &ldata);
-
-
-        Eigen::Vector2f  world_to_robot2(Eigen::Vector2f point);
+    Eigen::Vector2f  world_to_robot2(Eigen::Vector2f point);
 };
 
 #endif

@@ -205,14 +205,12 @@ void SpecificWorker::gotoDoor(const RoboCompLaser::TLaserData &ldata)
 {
     int pos = -1;
     for (int i = 0; i < doors.size(); i++){
-//    for (Door d: doors) {
-        if (!doors[i].visited  /*&& (distance(d.midpoint) < distance(nearDoor.midpoint))*/) {
+        if (!doors[i].visited) {
             pos = i;
         }
     }
     Door nearDoor = doors[pos];
     doors[pos].visited = true;
-    //Saltar a otro estado que atreviese a la puerta más cercana
 
     Eigen::Vector2f p1 = Eigen::Vector2f(nearDoor.A.x(), nearDoor.A.y());
     Eigen::Vector2f p2 = Eigen::Vector2f(nearDoor.B.x(), nearDoor.B.y());
@@ -227,9 +225,6 @@ void SpecificWorker::gotoDoor(const RoboCompLaser::TLaserData &ldata)
     target.pos = QPointF(external_midpoint.x(), external_midpoint.y());
     target.active = true;
     qInfo() << __FUNCTION__ << "  TARGET" << target.pos.x() << target.pos.y();
-
-
-    //gotoPoint(ldata);
 
 }
 
@@ -285,13 +280,12 @@ void SpecificWorker::drawDoors ()
 }
 
 void SpecificWorker::checkDoors (vector <QPointF> peaks) {
-    for (auto &&c: iter::combinations_with_replacement(peaks,2)) { // CHEK IF DISTANCE BETWEEN POINTS IS BETWEEN 1100 AND 900;
+    for (auto &&c: iter::combinations_with_replacement(peaks,2)) {
 
         QPointF x = robot_to_world2(Eigen::Vector2f (c[0].x(),c[0].y()));
         QPointF y = robot_to_world2(Eigen::Vector2f (c[1].x(),c[1].y()));
 
         bool iD = false;
-        qInfo() << __FUNCTION__ << "ESTOY BUSCANDO UNA PUERTA OC?" ;
 
         QLineF check(x,y);
         if (check.length()>=400 && check.length()<=1300) {
@@ -387,7 +381,6 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
 {
     static QGraphicsItem *laser_polygon = nullptr;
     float x,y;
-    // code to delete any existing laser graphic element
     if(laser_polygon != nullptr)
         viewer->scene.removeItem(laser_polygon);
 
@@ -400,7 +393,6 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
         poly << QPointF(x,y);
     }
 
-    // code to fill poly with the laser polar coordinates (angle, dist) transformed to cartesian coordinates (x,y), all in the robot's  // reference system
     QColor color("LightGreen");
     color.setAlpha(40);
     laser_polygon = viewer->scene.addPolygon(laser_in_robot_polygon->mapToScene(poly), QPen(QColor("DarkGreen"), 30), QBrush(color));
@@ -409,7 +401,6 @@ void SpecificWorker::draw_laser(const RoboCompLaser::TLaserData &ldata) // robot
 
 QPointF SpecificWorker::world_to_robot(RoboCompGenericBase::TBaseState state, SpecificWorker::Target target)
 {
-//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
     float alfa = state.alpha;
     Eigen::Vector2f TW(target.pos.x(),target.pos.y()); //target
     Eigen::Vector2f RW(state.x,state.z); //robot
@@ -443,7 +434,6 @@ QPointF SpecificWorker::robot_to_world(RoboCompGenericBase::TBaseState state, Ei
 
 Eigen::Vector2f SpecificWorker::world_to_robot2(Eigen::Vector2f point)
 {
-//    declarar matriz, con el angulo y la pos libreria de algebra lineal (mult por vector)
     float alfa = r_state.rz;
     Eigen::Vector2f RW(r_state.x,r_state.y); //robot
 
